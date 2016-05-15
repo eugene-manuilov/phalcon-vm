@@ -21,6 +21,9 @@ Vagrant.configure(2) do |config|
     v.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
   end
   
+  config.vm.synced_folder "config/", "/srv/config"
+  config.vm.synced_folder "www/", "/srv/www/", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774" ]
+  
   if defined?(VagrantPlugins::HostsUpdater)
     paths = Dir[File.join(vagrant_dir, 'www', '**', 'phalcon-hosts')]
 
