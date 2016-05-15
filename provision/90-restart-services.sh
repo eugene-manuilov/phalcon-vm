@@ -6,7 +6,7 @@ echo -e "\nRestart services..."
 # Enable PHP modules by default
 phpenmod xdebug
 phpenmod mcrypt
-phpenmod phalconphp
+phpenmod phalcon
 
 service php7.0-fpm restart
 

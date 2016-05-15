@@ -59,6 +59,7 @@ apt_package_check_list=(
     # nodejs for use by grunt
     g++
     nodejs
+    npm
 
     #Mailcatcher requirement
     libsqlite3-dev
@@ -78,6 +79,7 @@ package_check() {
     local pkg
     local package_version
 
+    echo "Checking apt-get packages..."
     for pkg in "${apt_package_check_list[@]}"; do
         if not_installed "${pkg}"; then
             echo " *" $pkg [not installed]

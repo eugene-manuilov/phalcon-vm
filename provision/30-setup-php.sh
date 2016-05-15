@@ -18,13 +18,9 @@ echo " * Copied /srv/config/php-config/opcache.ini to /etc/php/7.0/fpm/conf.d/op
 cp "/srv/config/php-config/xdebug.ini" "/etc/php/7.0/mods-available/xdebug.ini"
 echo " * Copied /srv/config/php-config/xdebug.ini to /etc/php/7.0/mods-available/xdebug.ini"
 
-cp "/srv/config/php-config/phalconphp.ini" "/etc/php/7.0/mods-available/phalconphp.ini"
-echo " * Copied /srv/config/php-config/phalconphp.ini to /etc/php/7.0/mods-available/phanlconphp.ini"
+cp "/srv/config/php-config/phalcon.ini" "/etc/php/7.0/mods-available/phalcon.ini"
+echo " * Copied /srv/config/php-config/phalcon.ini to /etc/php/7.0/mods-available/phanlcon.ini"
 
 # Find the path to Xdebug and prepend it to xdebug.ini
 XDEBUG_PATH=$( find /usr/lib/php/ -name 'xdebug.so' | head -1 )
 sed -i "1izend_extension=\"$XDEBUG_PATH\"" "/etc/php/7.0/mods-available/xdebug.ini"
-
-# Find the path to PhalconPHP and prepend it to phalconphp.ini
-PHALCON_PATH=$( find /usr/lib/php/ -name 'phalcon.so' | head -1 )
-sed -i "1izend_extension=\"$PHALCON_PATH\"" "/etc/php/7.0/mods-available/phalconphp.ini"
