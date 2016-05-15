@@ -21,6 +21,7 @@ Vagrant.configure(2) do |config|
     v.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
   end
   
+  config.vm.synced_folder "provision/", "/srv/provision"
   config.vm.synced_folder "config/", "/srv/config"
   config.vm.synced_folder "www/", "/srv/www/", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774" ]
   
@@ -36,5 +37,5 @@ Vagrant.configure(2) do |config|
     config.hostsupdater.remove_on_suspend = true
   end
 
-  config.vm.provision :shell, :path => File.join("provision", "provision.sh")
+  config.vm.provision "shell", inline: "find /srv/provision/ -iname '*.sh' -type f -printf '%h/%f\n' | sort | bash"
 end
