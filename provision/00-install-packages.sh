@@ -29,6 +29,7 @@ apt_package_check_list=(
     
     # services
     nginx
+    memcached
     
     # other packages that come in handy
     imagemagick

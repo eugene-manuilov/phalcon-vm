@@ -1,2 +1,3 @@
 /.vagrant/
 /log/**/*.log
+/www/default/memcached-admin/

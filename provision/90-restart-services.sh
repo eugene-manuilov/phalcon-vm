@@ -3,6 +3,7 @@
 # Make sure the services we expect to be running are running.
 echo -e "\nRestart services..."
 service nginx restart
+service memcached restart
 
 # Enable PHP modules by default
 phpenmod xdebug
