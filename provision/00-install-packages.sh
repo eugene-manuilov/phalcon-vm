@@ -27,6 +27,9 @@ apt_package_check_list=(
     php-imagick
     php-pear
     
+    # services
+    nginx
+    
     # other packages that come in handy
     imagemagick
     subversion
