@@ -14,8 +14,8 @@ The primary goal is to provide an approachable development environment with a mo
     * `vagrant` will now be available as a command in your terminal, try it out.
     * ***Note:*** If Vagrant is already installed, use `vagrant -v` to check the version. You may want to consider upgrading if a much older version is in use.
 1. Install the [vagrant-hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater) plugin with `vagrant plugin install vagrant-hostsupdater`
-    * Note: This step is not a requirement, though it does make the process of starting up a virtual machine nicer by automating the entries needed in your local machine's `hosts` file to access the provisioned VVV domains in your browser.
-    * If you choose not to install this plugin, a manual entry should be added to your local `hosts` file that looks like this: `192.168.50.4  vvv.dev local.wordpress.dev local.wordpress-trunk.dev src.wordpress-develop.dev build.wordpress-develop.dev`
+    * Note: This step is not a requirement, though it does make the process of starting up a virtual machine nicer by automating the entries needed in your local machine's `hosts` file to access the provisioned domains in your browser.
+    * If you choose not to install this plugin, a manual entry should be added to your local `hosts` file that looks like this: `192.168.50.99  phalcon-vm phalcon.dev`
 1. Clone or extract the Phalcon VM project into a local directory
     * `git clone git@github.com:eugene-manuilov/phalcon-vm.git vagrant-local`
     * OR download and extract the repository [zip file](https://github.com/eugene-manuilov/phalcon-vm/archive/master.zip) to a local directory on your computer.
