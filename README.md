@@ -12,13 +12,14 @@ The primary goal is to provide an approachable development environment with a mo
 1. [nginx](http://nginx.org/) (mainline version)
 1. [mysql](https://www.mysql.com/) 5.7.x
 1. [Phalcon PHP](https://phalconphp.com/) 2.1.x
+1. [Phalcon Dev Tools](https://docs.phalconphp.com/en/latest/reference/tools.html) 2.0.x
 1. [Zephir](http://zephir-lang.com/) 0.9.x
 1. [php-fpm](http://php-fpm.org/) 7.0.x
 1. [memcached](http://memcached.org/)
 1. PHP [memcache extension](https://pecl.php.net/package/memcache)
 1. PHP [xdebug extension](https://pecl.php.net/package/xdebug/)
 1. PHP [imagick extension](https://pecl.php.net/package/imagick/)
-1. [PHPUnit](https://phpunit.de/)
+1. [PHPUnit](https://phpunit.de/) 5.3.x
 1. [ack-grep](http://beyondgrep.com/)
 1. [git](http://git-scm.com/)
 1. [subversion](https://subversion.apache.org/)

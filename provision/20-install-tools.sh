@@ -85,7 +85,8 @@ composer_install() {
         echo "Updating Composer..."
         COMPOSER_HOME=/usr/local/src/composer composer self-update
         COMPOSER_HOME=/usr/local/src/composer composer -q global config bin-dir /usr/local/bin
-        COMPOSER_HOME=/usr/local/src/composer composer -q global require --no-update phalcon/devtools:2.0.11
+        COMPOSER_HOME=/usr/local/src/composer composer -q global require --no-update phpunit/phpunit:5.3.*
+        COMPOSER_HOME=/usr/local/src/composer composer -q global require --no-update phalcon/devtools:2.0.*
         COMPOSER_HOME=/usr/local/src/composer composer global update --ignore-platform-reqs
         
         ln -s /usr/local/bin/phalcon.php /usr/bin/phalcon
