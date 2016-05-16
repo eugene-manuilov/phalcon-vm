@@ -150,8 +150,8 @@ mailcatcher_install() {
         gpg -q --no-tty --batch --keyserver "hkp://keyserver.ubuntu.com:80" --recv-keys BF04FF17
 
         printf " * RVM [not installed]\n Installing from source"
-        curl --silent -L "https://get.rvm.io" | sudo bash -s stable --ruby
-        source "/usr/local/rvm/scripts/rvm"
+        sudo curl --silent -L "https://get.rvm.io" | sudo bash -s stable --ruby
+        sudo source "/usr/local/rvm/scripts/rvm"
     fi
 
     mailcatcher_version="$(/usr/bin/env mailcatcher --version 2>&1 | grep 'mailcatcher ' | cut -d " " -f 2)"
@@ -163,8 +163,8 @@ mailcatcher_install() {
         printf " * $pkg %${real_space}.${#mailcatcher_version}s ${mailcatcher_version}\n"
     else
         echo " * Mailcatcher [not installed]"
-        /usr/bin/env rvm default@mailcatcher --create do gem install mailcatcher --no-rdoc --no-ri
-        /usr/bin/env rvm wrapper default@mailcatcher --no-prefix mailcatcher catchmail
+        sudo /usr/bin/env rvm default@mailcatcher --create do gem install mailcatcher --no-rdoc --no-ri
+        sudo /usr/bin/env rvm wrapper default@mailcatcher --no-prefix mailcatcher catchmail
     fi
 
     if [[ -f "/etc/init/mailcatcher.conf" ]]; then
