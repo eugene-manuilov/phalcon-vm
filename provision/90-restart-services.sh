@@ -4,11 +4,13 @@
 echo -e "\nRestart services..."
 service nginx restart
 service memcached restart
+service mailcatcher restart
 
 # Enable PHP modules by default
 phpenmod xdebug
 phpenmod mcrypt
 phpenmod phalcon
+phpenmod mailcatcher
 
 service php7.0-fpm restart
 
