@@ -7,12 +7,13 @@
     <body>
         <ul class="nav">
             <li class="active"><a href="/">Home</a></li>
+            <li><a href="/database-admin/">phpMyAdmin</a></li>
             <li><a href="/memcached-admin/">phpMemcachedAdmin</a></li>
             <li><a href="/php-status?html&amp;full">PHP Status</a></li>
         </ul>
 
         <ul class="nav">
-            <li><a href="http://phalcon.dev/">http://pahlcon.dev</a></li>
+            <li><a href="http://phalcon.dev/">http://pahlcon.dev/</a></li>
         </ul>
     </body>
 </html>

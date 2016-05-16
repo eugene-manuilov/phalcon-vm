@@ -1,5 +1,6 @@
 /.vagrant/
 /log/**/*.log
 /www/default/memcached-admin/
+/www/default/database-admin/
 /www/**/.phalcon
 /www/**/cache/*.php

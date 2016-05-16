@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 
 setup_mysql() {
-    # Use debconf-set-selections to specify the default password for the root MySQL
-    # account. This runs on every provision, even if MySQL has been installed. If
-    # MySQL is already installed, it will not affect anything.
-    echo mysql-server mysql-server/root_password password "root" | debconf-set-selections
-    echo mysql-server mysql-server/root_password_again password "root" | debconf-set-selections
-
     # If MySQL is installed, go through the various imports and service tasks.
     local exists_mysql
 
@@ -34,6 +28,24 @@ setup_mysql() {
     else
         echo -e "\nMySQL is not installed."
     fi
+    
+    setup_phpmyadmin
+}
+
+setup_phpmyadmin() {
+    # Download phpMyAdmin
+    if [[ ! -d /srv/www/default/database-admin ]]; then
+        echo "Downloading phpMyAdmin..."
+        cd /srv/www/default
+        wget -q -O phpmyadmin.tar.gz "https://files.phpmyadmin.net/phpMyAdmin/4.6.1/phpMyAdmin-4.6.1-all-languages.zip"
+        tar -xf phpmyadmin.tar.gz
+        mv phpMyAdmin-4.6.1-all-languages database-admin
+        rm phpmyadmin.tar.gz
+    else
+        echo "PHPMyAdmin already installed."
+    fi
+    
+    cp "/srv/config/phpmyadmin-config/config.inc.php" "/srv/www/default/database-admin/"
 }
 
 setup_mysql
