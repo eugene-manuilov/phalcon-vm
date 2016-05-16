@@ -30,6 +30,7 @@ apt_package_check_list=(
     # services
     nginx
     memcached
+    mysql-server
     
     # other packages that come in handy
     imagemagick
