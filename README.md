@@ -6,6 +6,33 @@ Phalcon VM is an open source [Vagrant](https://www.vagrantup.com/) configuration
 
 The primary goal is to provide an approachable development environment with a modern server configuration for project written with PHP7 and Phalcon 2.x framework. The project also contains compiled [Zephir](http://zephir-lang.com/) executable, which allows you to go even further, beyond just PHP.
 
+## What will be installed?
+
+1. [Ubuntu](http://www.ubuntu.com/) 16.04 LTS (Xenial Xerus)
+1. [nginx](http://nginx.org/) (mainline version)
+1. [mysql](https://www.mysql.com/) 5.7.x
+1. [Phalcon PHP](https://phalconphp.com/) 2.1.x
+1. [Zephir](http://zephir-lang.com/) 0.9.x
+1. [php-fpm](http://php-fpm.org/) 7.0.x
+1. [memcached](http://memcached.org/)
+1. PHP [memcache extension](https://pecl.php.net/package/memcache)
+1. PHP [xdebug extension](https://pecl.php.net/package/xdebug/)
+1. PHP [imagick extension](https://pecl.php.net/package/imagick/)
+1. [PHPUnit](https://phpunit.de/)
+1. [ack-grep](http://beyondgrep.com/)
+1. [git](http://git-scm.com/)
+1. [subversion](https://subversion.apache.org/)
+1. [ngrep](http://ngrep.sourceforge.net/usage.html)
+1. [dos2unix](http://dos2unix.sourceforge.net/)
+1. [Composer](https://github.com/composer/composer)
+1. [phpMemcachedAdmin](https://code.google.com/p/phpmemcacheadmin/)
+1. [phpMyAdmin](http://www.phpmyadmin.net/) (multi-language)
+1. [Opcache Status](https://github.com/rlerdorf/opcache-status)
+1. [Webgrind](https://github.com/jokkedk/webgrind)
+1. [NodeJs](https://nodejs.org/)
+1. [grunt-cli](https://github.com/gruntjs/grunt-cli)
+1. [Mailcatcher](http://mailcatcher.me/)
+
 ## Setup Phalcon VM
 
 1. Start with any local operating system such as Mac OS X, Linux, or Windows.
