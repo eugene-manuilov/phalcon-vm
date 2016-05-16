@@ -9,6 +9,9 @@
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/database-admin/">phpMyAdmin</a></li>
             <li><a href="/memcached-admin/">phpMemcachedAdmin</a></li>
+	        <li><a href="/opcache-status/opcache.php">Opcache Status</a></li>
+	        <li><a href="/webgrind/">Webgrind</a></li>
+            <li><a href="/phpinfo.php">PHP Info</a></li>
             <li><a href="/php-status?html&amp;full">PHP Status</a></li>
         </ul>
 

@@ -101,8 +101,37 @@ graphviz_install() {
     ln -sf "/usr/bin/dot" "/usr/local/bin/dot"
 }
 
+webgrind_install() {
+    # Webgrind install (for viewing callgrind/cachegrind files produced by
+    # xdebug profiler)
+    if [[ ! -d "/srv/www/default/webgrind" ]]; then
+        echo -e "\nDownloading webgrind, see https://github.com/michaelschiller/webgrind.git"
+        git clone "https://github.com/michaelschiller/webgrind.git" "/srv/www/default/webgrind"
+    else
+        echo -e "\nUpdating webgrind..."
+        cd /srv/www/default/webgrind
+        git pull --rebase origin master
+    fi
+}
+
+opcached_install() {
+    # Checkout Opcache Status to provide a dashboard for viewing statistics
+    # about PHP's built in opcache.
+    if [[ ! -d "/srv/www/default/opcache-status" ]]; then
+        echo -e "\nDownloading Opcache Status, see https://github.com/rlerdorf/opcache-status/"
+        cd /srv/www/default
+        git clone "https://github.com/rlerdorf/opcache-status.git" opcache-status
+    else
+        echo -e "\nUpdating Opcache Status"
+        cd /srv/www/default/opcache-status
+        git pull --rebase origin master
+    fi
+}
+
 npm_install
 xdebug_install
 ack_install
 composer_install
 graphviz_install
+webgrind_install
+opcached_install
