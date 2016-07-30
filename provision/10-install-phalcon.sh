@@ -19,8 +19,7 @@ if [[ -f /usr/lib/php/20151012/phalcon.so ]]; then
     echo "PhalconPHP is already installed"
 else
     echo "Installing PhalconPHP..."
-    git clone git://github.com/phalcon/cphalcon.git /tmp/cphalcon 2>&1
-    cd /tmp/cphalcon/
-    git checkout origin/2.1.x -b origin/2.1.x 2>&1
-    sudo zephir build —backend=ZendEngine3 2>&1
+    git clone --depth=5 git://github.com/phalcon/cphalcon.git /tmp/cphalcon 2>&1
+    cd /tmp/cphalcon/build
+	sudo ./install
 fi
