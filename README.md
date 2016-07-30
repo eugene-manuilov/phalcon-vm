@@ -4,15 +4,15 @@ Phalcon VM is an open source [Vagrant](https://www.vagrantup.com/) configuration
 
 ## About Phalcon VM
 
-The primary goal is to provide an approachable development environment with a modern server configuration for project written with PHP7 and Phalcon 2.x framework. The project also contains compiled [Zephir](http://zephir-lang.com/) executable, which allows you to go even further, beyond just PHP.
+The primary goal is to provide an approachable development environment with a modern server configuration for project written with PHP7 and Phalcon 3.x framework. The project also contains compiled [Zephir](http://zephir-lang.com/) executable, which allows you to go even further, beyond just PHP.
 
 ## What will be installed?
 
 1. [Ubuntu](http://www.ubuntu.com/) 16.04 LTS (Xenial Xerus)
 1. [nginx](http://nginx.org/) (mainline version)
 1. [mysql](https://www.mysql.com/) 5.7.x
-1. [Phalcon PHP](https://phalconphp.com/) 2.1.x
-1. [Phalcon Dev Tools](https://docs.phalconphp.com/en/latest/reference/tools.html) 2.0.x
+1. [Phalcon PHP](https://phalconphp.com/) 3.x
+1. [Phalcon Dev Tools](https://docs.phalconphp.com/en/latest/reference/tools.html) 3.x
 1. [Zephir](http://zephir-lang.com/) 0.9.x
 1. [php-fpm](http://php-fpm.org/) 7.0.x
 1. [memcached](http://memcached.org/)
