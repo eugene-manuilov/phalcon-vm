@@ -1,8 +1,5 @@
-.vagrant/
-log/**/*.log
-www/default/memcached-admin/
-www/default/database-admin/
-www/default/webgrind/
-www/default/opcache-status/
-www/**/.phalcon
-www/**/cache/*.php
+/.vagrant/
+/log/**/*.log
+/www/
+!/www/default/index.php
+!/www/default/phpinfo.php
