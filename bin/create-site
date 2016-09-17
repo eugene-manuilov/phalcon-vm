@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+
+# Get root folder
+DIR="$( dirname $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd ) )"
+
+# If we have tput, let's set our colors
+if [[ ! -z $(which tput 2>/dev/null) ]]; then
+	normal=$(tput sgr0)
+	bold=$(tput bold)
+	red=$(tput setaf 1)
+	green=$(tput setaf 2)
+	yellow=$(tput setaf 3)
+	magenta=$(tput setaf 5)
+	cyan=$(tput setaf 6)
+fi
+
+__prompt() {
+	printf "%b" "${magenta} $1: ${normal}"
+}
+
+__warning() {
+	printf "%b" "${red} $1 ${normal}\n"
+}
+
+__error() {
+    printf "%b" "[${bold}${red}Error${normal}]${bold}${red} ${1:-'Unknown Error'}${normal}\n" >&2
+}
+
+__info() {
+	printf "%b" "${bold}${yellow}$1${normal} \n"
+}
+
+__direcotry() {
+	while [ -z "$site" ]; do
+		__prompt "Name of new site directory"
+		read -r site
+
+		if [ -z "$site" ]; then
+			__error "You must enter a directory name."
+		elif [ -f "$path/config/nginx-config/sites/$site.conf" ]; then
+			__error "Site $site already exists. Remove config/nginx-config/sites/$site.conf to run setup again."
+			unset site
+		elif [ -d "$DIR/www/$site" ]; then
+			__warning "Directory $DIR/www/$site already exists. Existing files will be overwritten."
+		fi
+	done
+
+	if [ ! -d "$DIR/www/$site" ]; then
+		mkdir "$DIR/www/$site"
+	fi
+}
+
+__domain() {
+	while [ -z "$domain" ]; do
+		__prompt "Space separated domains to use (leave blank for ${site// /-}.dev)"
+		read -r domain
+
+		if [ -z "$domain" ]; then
+			domain="${site// /-}.dev"
+		fi
+	done
+
+	__info "Adding $domain to new pahlcon-hosts file... "
+	echo "$domain" > "$DIR/www/$site/phalcon-hosts"
+
+	__info "Creating nginx-config/sites/$site.conf... "
+	cd $DIR/config/nginx-config/sites
+	sed -e "s/testserver\.com/$domain/" \
+		-e "s|/srv/www/testserver|/srv/www/$site/htdocs/public|" local-nginx-example.conf-sample > "$site".conf
+}
+
+__site() {
+	__prompt "Git repo to clone (leave blank to skip)"
+	read -r git_repo
+
+	if [ ! -z "$git_repo" ]; then
+		git clone --recursive "$git_repo" $DIR/www/$site/htdocs
+	else
+		mkdir "$DIR/www/$site/htdocs"
+	fi
+}
+
+__main() {
+	__direcotry
+	__domain
+	__site
+}
+
+__main
