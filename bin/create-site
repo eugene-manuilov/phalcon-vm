@@ -30,6 +30,31 @@ __info() {
 	printf "%b" "${bold}${yellow}$1${normal} \n"
 }
 
+
+__vagrant_is_running() {
+	local is_running
+	is_running="true"
+	vagrant global-status | grep "$DIR\s*"'$' | grep -q running || is_running="false"
+	echo "$is_running"
+}
+
+__vagrant_maybe_halt() {
+	local is_running
+	is_running=$(__vagrant_is_running)
+	if [[ "$is_running" = "true" ]]; then
+		__info "Running \`vagrant halt\`"
+		vagrant halt
+	else
+		__info "Vagrant not running, skipping \`vagrant halt\`..."
+	fi
+}
+
+__vagrant_up() {
+	__info "Running vagrant up --provision... "
+	cd "$DIR"
+	vagrant up --provision
+}
+
 __direcotry() {
 	while [ -z "$site" ]; do
 		__prompt "Name of new site directory"
@@ -84,6 +109,8 @@ __main() {
 	__direcotry
 	__domain
 	__site
+	__vagrant_maybe_halt
+	__vagrant_up
 }
 
 __main
