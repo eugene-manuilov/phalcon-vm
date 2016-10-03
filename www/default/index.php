@@ -15,9 +15,5 @@
             <li><a href="/phpinfo.php">PHP Info</a></li>
             <li><a href="/php-status?html&amp;full">PHP Status</a></li>
         </ul>
-
-        <ul class="nav">
-            <li><a href="http://phalcon.dev/">http://pahlcon.dev/</a></li>
-        </ul>
     </body>
 </html>
