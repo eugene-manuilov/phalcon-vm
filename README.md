@@ -43,7 +43,7 @@ The primary goal is to provide an approachable development environment with a mo
     * ***Note:*** If Vagrant is already installed, use `vagrant -v` to check the version. You may want to consider upgrading if a much older version is in use.
 1. Install the [vagrant-hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater) plugin with `vagrant plugin install vagrant-hostsupdater`
     * Note: This step is not a requirement, though it does make the process of starting up a virtual machine nicer by automating the entries needed in your local machine's `hosts` file to access the provisioned domains in your browser.
-    * If you choose not to install this plugin, a manual entry should be added to your local `hosts` file that looks like this: `192.168.50.99  phalcon-vm phalcon.dev`
+    * If you choose not to install this plugin, a manual entry should be added to your local `hosts` file that looks like this: `192.168.50.99  phalcon-vm`
 1. Clone or extract the Phalcon VM project into a local directory
     * `git clone git@github.com:eugene-manuilov/phalcon-vm.git phalcon-vm`
     * OR download and extract the repository [zip file](https://github.com/eugene-manuilov/phalcon-vm/archive/master.zip) to a local directory on your computer.
@@ -52,8 +52,13 @@ The primary goal is to provide an approachable development environment with a mo
     * Be patient as the magic happens. This could take a while on the first run as your local machine downloads the required files.
     * Watch as the script ends, as an administrator or `su` ***password may be required*** to properly modify the hosts file on your local machine.
 1. Visit any of the following default sites in your browser:
-    * [http://phalcon.dev/](http://phalcon.dev/) for Phalcon site
     * [http://phalcon-vm/](http://phalcon-vm/) for a default dashboard containing several useful tools
+
+## Create Custom Site
+
+You can easily create a new site by running `./bin/create-site` command. It will ask you a name for new site directory, its domain name and git repository for the project. Then it will halt vagrant, if it is running, and start it again with provisioning mode. In a few minutes you will get your site up and running again.
+
+Please, pay attention to domain name question. The script allows you to enter space-separated list of domains which will be bound to your site. For example: `mysite.dev test.mysite.dev test2.mysite.dev`
 
 ## LICENSE
 

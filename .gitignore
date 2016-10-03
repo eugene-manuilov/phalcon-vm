@@ -1,8 +1,8 @@
-.vagrant/
-log/**/*.log
-www/default/memcached-admin/
-www/default/database-admin/
-www/default/webgrind/
-www/default/opcache-status/
-www/**/.phalcon
-www/**/cache/*.php
+/.vagrant/
+/log/**/*.log
+/www/
+!/www/default/index.php
+!/www/default/phpinfo.php
+/config/nginx-config/sites/
+!/config/nginx-config/sites/default.conf
+!/config/nginx-config/sites/local-nginx-example.conf-sample
