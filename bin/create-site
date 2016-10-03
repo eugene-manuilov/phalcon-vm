@@ -101,7 +101,14 @@ __site() {
 	if [ ! -z "$git_repo" ]; then
 		git clone --recursive "$git_repo" $DIR/www/$site/htdocs
 	else
-		mkdir "$DIR/www/$site/htdocs"
+		mkdir -p "$DIR/www/$site/htdocs/public"
+		touch "$DIR/www/$site/htdocs/public/index.php"
+		cat <<EOF > "$DIR/www/$site/htdocs/public/index.php"
+<?php
+
+echo '<h1>', ucfirst( "$site" ), ' has been created.</h1>';
+echo 'Please, use <a href="https://docs.phalconphp.com/en/latest/reference/tools.html">Phalcon Dev Tool</a> to generate project skeleton.';
+EOF
 	fi
 }
 
