@@ -58,7 +58,9 @@ The primary goal is to provide an approachable development environment with a mo
 
 You can easily create a new site by running `./bin/create-site` command. It will ask you a name for new site directory, its domain name and git repository for the project. Then it will halt vagrant, if it is running, and start it again with provisioning mode. In a few minutes you will get your site up and running again.
 
-Please, pay attention to domain name question. The script allows you to enter space-separated list of domains which will be bound to your site. For example: `mysite.dev test.mysite.dev test2.mysite.dev`
+If your site uses multiple domains, you can easily add it by entering multiple space-separated domains when the scripts asks for to enter it. For example: `mysite.dev test.mysite.dev test2.mysite.dev`
+
+Also, please, pay attantion that in case if you want to create a new site from scratch and you don't enter git repository, then you will need to generate site skeleton using Phalcon Dev Tools. To do it, you will need to loging into vagrant instance using SSH access and navigate to the site folder (`/srv/www/{site-name}/`) and create a new project using `phalcon project` command.
 
 ## LICENSE
 
