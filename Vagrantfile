@@ -14,6 +14,9 @@ $setup_puppet = <<SCRIPT
 			puppet-module-puppetlabs-postgresql \
 			puppet-module-puppetlabs-rabbitmq \
 			puppet-module-puppetlabs-vcsrepo
+
+		puppet module install nanliu-staging
+		puppet module upgrade puppetlabs-postgresql
 	fi
 SCRIPT
 
