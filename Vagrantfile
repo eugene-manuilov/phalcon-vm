@@ -3,6 +3,20 @@
 
 vagrant_dir = File.expand_path(File.dirname(__FILE__))
 
+$setup_puppet = <<SCRIPT
+	if ! dpkg -s puppet > /dev/null; then
+		sudo apt-get update --quiet --yes
+		sudo apt-get install --quiet --yes \
+			puppet \
+			puppet-module-puppetlabs-apt \
+			puppet-module-puppetlabs-mongodb \
+			puppet-module-puppetlabs-mysql \
+			puppet-module-puppetlabs-postgresql \
+			puppet-module-puppetlabs-rabbitmq \
+			puppet-module-puppetlabs-vcsrepo
+	fi
+SCRIPT
+
 Vagrant.configure(2) do |config|
 	config.vm.box = "ubuntu/xenial64"
 	config.vm.hostname = "phalcon-vm"
@@ -38,7 +52,7 @@ Vagrant.configure(2) do |config|
 		config.hostsupdater.remove_on_suspend = true
 	end
 
-	config.vm.provision :shell, :inline => "if ! dpkg -s puppet > /dev/null; then sudo apt-get update --quiet --yes && sudo apt-get install puppet --quiet --yes; fi"
+	config.vm.provision :shell, :inline => $setup_puppet
 
 	config.vm.provision :puppet do |puppet|
 		puppet.module_path = "puppet/modules"
