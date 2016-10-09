@@ -1,3 +1,0 @@
-[submodule "puppet/modules/phalcon"]
-	path = puppet/modules/phalcon
-	url = git@github.com:phalcon/puppet.git

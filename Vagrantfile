@@ -9,14 +9,14 @@ $setup_puppet = <<SCRIPT
 		sudo apt-get install --quiet --yes \
 			puppet \
 			puppet-module-puppetlabs-apt \
-			puppet-module-puppetlabs-mongodb \
 			puppet-module-puppetlabs-mysql \
 			puppet-module-puppetlabs-postgresql \
 			puppet-module-puppetlabs-rabbitmq \
 			puppet-module-puppetlabs-vcsrepo
 
 		puppet module install nanliu-staging
-		puppet module install example42/puppi
+		puppet module install computology-packagecloud
+		puppet module upgrade puppetlabs-stdlib
 		puppet module upgrade puppetlabs-postgresql
 	fi
 SCRIPT
@@ -59,9 +59,7 @@ Vagrant.configure(2) do |config|
 	config.vm.provision :shell, :inline => $setup_puppet
 
 	config.vm.provision :puppet do |puppet|
-		puppet.module_path = "puppet/modules"
 		puppet.manifests_path = "puppet/manifests"
 		puppet.manifest_file  = "init.pp"
-		puppet.options = ['--templatedir', '/srv/puppet/files']
 	end
 end
