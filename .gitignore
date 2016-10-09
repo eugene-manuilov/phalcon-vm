@@ -1,5 +1,4 @@
 /.vagrant/
-/log/**/*.log
 /www/
 !/www/default/index.php
 !/www/default/phpinfo.php
