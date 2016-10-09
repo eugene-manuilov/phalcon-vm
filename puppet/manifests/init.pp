@@ -5,7 +5,7 @@ $packages = [
 	'php7.0-json', 'php-memcache', 'php-imagick', 'php-pear',
 
 	# services
-    'nginx', 'memcached',
+	'nginx',
 
 	# other packages that come in handy
 	'imagemagick', 'subversion', 'git', 'zip', 'unzip', 'ngrep', 'curl', 'make',
@@ -45,7 +45,6 @@ file { '/srv/log/nginx': ensure => 'directory', owner => 'root', group => 'root'
 service { 'nginx': ensure => 'running', enable => true, require => [ Package['nginx'], File['/srv/log/nginx'] ] }
 
 # Configure Memcache
-file { '/etc/memcached.conf': source => '/srv/config/memcached-config/memcached.conf', owner => 'root', group => 'root', require => Package['memcached'], notify => Service['memcached'] }
 file { '/srv/log/memcached.log': ensure => 'present', owner => 'root', group => 'root' }
-service { 'memcached': ensure => 'running', enable => true, require => [ Package['memcached'], File['/srv/log/memcached.log'] ] }
+class { 'memcached': listen_ip => '127.0.0.1', max_memory => 128, user => 'memcache', logfile => '/srv/log/memcached.log', require => File['/srv/log/memcached.log'] }
 vcsrepo { '/srv/www/default/memcached-admin': ensure => 'present', provider => 'git', source => 'https://github.com/wp-cloud/phpmemcacheadmin.git', revision => '1.2.2.1' }

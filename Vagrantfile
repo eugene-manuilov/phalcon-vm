@@ -16,6 +16,7 @@ $setup_puppet = <<SCRIPT
 
 		puppet module install nanliu-staging
 		puppet module install computology-packagecloud
+		puppet module install saz-memcached
 		puppet module upgrade puppetlabs-stdlib
 		puppet module upgrade puppetlabs-postgresql
 	fi
