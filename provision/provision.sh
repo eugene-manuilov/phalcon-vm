@@ -25,3 +25,4 @@ fi
 
 # concatinates all puppet scripts into init.pp file
 cat /srv/puppet/manifests/partials/*.pp > /srv/puppet/manifests/init.pp
+puppet apply /srv/puppet/manifests/init.pp
