@@ -4,9 +4,8 @@
 #
 # This file is specified in Vagrantfile and is loaded by Vagrant whenever
 # the commands `vagrant up`, `vagrant provision`, or `vagrant reload` are used.
-# It checks and installs puppet package and its modules to make sure the main
-# provisioning will work smoothly.
 
+# installs puppet and its modules if it is not installed yet
 if ! dpkg -s puppet > /dev/null; then
 	apt-get update --quiet --yes
 	apt-get install --quiet --yes \
@@ -23,3 +22,6 @@ if ! dpkg -s puppet > /dev/null; then
 	puppet module upgrade puppetlabs-stdlib
 	puppet module upgrade puppetlabs-postgresql
 fi
+
+# concatinates all puppet scripts into init.pp file
+cat /srv/puppet/manifests/partials/*.pp > /srv/puppet/manifests/init.pp
