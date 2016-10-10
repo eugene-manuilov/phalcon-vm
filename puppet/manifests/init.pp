@@ -2,7 +2,7 @@ $packages = [
 	# php packages
 	'php7.0', 'php7.0-fpm', 'php7.0-common', 'php7.0-dev', 'php7.0-mbstring',
 	'php7.0-mcrypt', 'php7.0-mysql', 'php7.0-imap', 'php7.0-curl', 'php7.0-gd',
-	'php7.0-json', 'php-memcache', 'php-imagick', 'php-pear',
+	'php7.0-json', 'php-memcache', 'php-imagick', 'php-pear', 'php-xdebug',
 
 	# services
 	'nginx',
@@ -48,3 +48,7 @@ service { 'nginx': ensure => 'running', enable => true, require => [ Package['ng
 file { '/srv/log/memcached.log': ensure => 'present', owner => 'root', group => 'root' }
 class { 'memcached': listen_ip => '127.0.0.1', max_memory => 128, user => 'memcache', logfile => '/srv/log/memcached.log', require => File['/srv/log/memcached.log'] }
 vcsrepo { '/srv/www/default/memcached-admin': ensure => 'present', provider => 'git', source => 'https://github.com/wp-cloud/phpmemcacheadmin.git', revision => '1.2.2.1' }
+
+# Tools
+vcsrepo { '/srv/www/default/webgrind': ensure => 'present', provider => 'git', source => 'https://github.com/michaelschiller/webgrind.git' }
+vcsrepo { '/srv/www/default/opcache-status': ensure => 'present', provider => 'git', source => 'https://github.com/rlerdorf/opcache-status.git' }
