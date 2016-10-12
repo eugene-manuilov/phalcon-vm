@@ -4,7 +4,7 @@
 vagrant_dir = File.expand_path(File.dirname(__FILE__))
 
 Vagrant.configure(2) do |config|
-	config.vm.box = "ubuntu/xenial64"
+	config.vm.box = "geerlingguy/ubuntu1604"
 	config.vm.hostname = "phalcon-vm"
 	config.vm.network :private_network, ip: "192.168.50.99"
 
