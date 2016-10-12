@@ -6,12 +6,11 @@
 # the commands `vagrant up`, `vagrant provision`, or `vagrant reload` are used.
 
 # installs puppet and its modules if it is not installed yet
-if ! dpkg -s puppet > /dev/null; then
+if ! dpkg -s puppet > /dev/null 2>&1; then
 	apt-get update --quiet --yes
 	apt-get install --quiet --yes \
 		puppet \
 		puppet-module-puppetlabs-apt \
-		puppet-module-puppetlabs-mysql \
 		puppet-module-puppetlabs-postgresql \
 		puppet-module-puppetlabs-rabbitmq \
 		puppet-module-puppetlabs-vcsrepo

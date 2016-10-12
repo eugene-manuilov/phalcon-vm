@@ -1,11 +1,7 @@
-class phalconvm::packagecloud {
-	packagecloud::repo { 'phalcon/stable':
-		type => 'deb'
-	}
-
-	package { 'php7.0-phalcon':
-		ensure => 'installed'
-	}
+packagecloud::repo { 'phalcon/stable':
+	type => 'deb'
 }
 
-class { 'phalconvm::packagecloud': }
+package { 'php7.0-phalcon':
+	ensure => 'installed'
+}
