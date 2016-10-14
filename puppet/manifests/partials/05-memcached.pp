@@ -11,11 +11,3 @@ class { 'memcached':
 	logfile    => '/srv/log/memcached.log',
 	require    => File['/srv/log/memcached.log']
 }
-
-vcsrepo { '/srv/www/default/memcached-admin':
-	ensure   => 'present',
-	provider => 'git',
-	source   => 'https://github.com/wp-cloud/phpmemcacheadmin.git',
-	revision => '1.2.2.1',
-	depth    => 3,
-}
