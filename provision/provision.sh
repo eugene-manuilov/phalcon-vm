@@ -8,18 +8,13 @@
 # installs puppet and its modules if it is not installed yet
 if ! dpkg -s puppet > /dev/null 2>&1; then
 	apt-get update --quiet --yes
-	apt-get install --quiet --yes \
-		puppet \
-		puppet-module-puppetlabs-apt \
-		puppet-module-puppetlabs-postgresql \
-		puppet-module-puppetlabs-rabbitmq \
-		puppet-module-puppetlabs-vcsrepo
+	apt-get install --quiet --yes puppet
 
-	puppet module install nanliu-staging
+	puppet module install puppetlabs-stdlib
+	puppet module install puppetlabs-apt
+	puppet module install puppetlabs-vcsrepo
 	puppet module install computology-packagecloud
 	puppet module install saz-memcached
-	puppet module upgrade puppetlabs-stdlib
-	puppet module upgrade puppetlabs-postgresql
 fi
 
 # concatinates all puppet scripts into init.pp file
