@@ -21,7 +21,7 @@ Vagrant.configure(2) do |config|
 		v.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
 	end
 
-	config.vm.synced_folder "puppet/", "/srv/puppet/"
+	config.vm.synced_folder "provision/", "/srv/provision/"
 	config.vm.synced_folder "config/", "/srv/config/"
 	config.vm.synced_folder "log/", "/srv/log/", :owner => "www-data"
 	config.vm.synced_folder "www/", "/srv/www/", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774" ]

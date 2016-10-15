@@ -18,5 +18,5 @@ if ! dpkg -s puppet > /dev/null 2>&1; then
 fi
 
 # concatinates all puppet scripts into init.pp file
-cat /srv/puppet/manifests/partials/*.pp > /srv/puppet/manifests/init.pp
+cat /srv/provision/puppet/partials/*.pp > /srv/provision/puppet/init.pp
 puppet apply /srv/puppet/manifests/init.pp
