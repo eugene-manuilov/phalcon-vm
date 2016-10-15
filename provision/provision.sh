@@ -15,8 +15,9 @@ if ! dpkg -s puppet > /dev/null 2>&1; then
 	puppet module install puppetlabs-vcsrepo
 	puppet module install computology-packagecloud
 	puppet module install saz-memcached
+	puppet module install puppet-nginx
 fi
 
 # concatinates all puppet scripts into init.pp file
 cat /srv/provision/puppet/partials/*.pp > /srv/provision/puppet/init.pp
-puppet apply /srv/puppet/manifests/init.pp
+puppet apply /srv/provision/puppet/init.pp

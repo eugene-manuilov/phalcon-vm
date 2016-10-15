@@ -5,7 +5,7 @@ $packages = [
 	'php7.0-json', 'php-memcache', 'php-imagick', 'php-pear', 'php-xdebug',
 
 	# services
-	'nginx', 'mysql-server',
+	'mysql-server',
 
 	# other packages that come in handy
 	'imagemagick', 'subversion', 'git', 'zip', 'unzip', 'ngrep', 'curl', 'make',
