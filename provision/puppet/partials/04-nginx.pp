@@ -3,8 +3,8 @@ file { '/srv/log/nginx':
 }
 
 class { 'nginx':
-	error_log => '/srv/log/nginx/error.log',
-	require   => File['/srv/log/nginx'],
+	nginx_error_log => '/srv/log/nginx/error.log',
+	require         => File['/srv/log/nginx'],
 }
 
 nginx::resource::upstream { 'phpupstream':
@@ -23,12 +23,16 @@ nginx::resource::vhost { "phalcon-vm":
 			ensure        => present,
 			try_files     => ['$uri', '=404'],
 			fastcgi       => 'phpupstream',
-			fastcgi_param => 'SCRIPT_FILENAME $document_root$fastcgi_script_name',
+			fastcgi_param => {
+				'SCRIPT_FILENAME' => '$document_root$fastcgi_script_name'
+			},
 		},
 		'/php-status' => {
 			ensure        => present,
 			fastcgi       => 'phpupstream',
-			fastcgi_param => 'SCRIPT_FILENAME $document_root$fastcgi_script_name',
+			fastcgi_param => {
+				'SCRIPT_FILENAME' => '$document_root$fastcgi_script_name'
+			},
 		}
 	},
 }
