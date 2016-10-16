@@ -1,4 +1,5 @@
 /.vagrant/
+/.data/
 /www/
 !/www/default/index.php
 !/www/default/phpinfo.php

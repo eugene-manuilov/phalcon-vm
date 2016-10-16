@@ -9,7 +9,7 @@ class { 'nginx':
 
 nginx::resource::upstream { 'phpupstream':
 	ensure  => present,
-	members => ['unix:/var/run/php7-fpm.sock'],
+	members => ['unix:/run/php/php7.0-fpm.sock'],
 }
 
 nginx::resource::vhost { "phalcon-vm":

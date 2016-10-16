@@ -13,6 +13,7 @@ if ! dpkg -s puppet > /dev/null 2>&1; then
 	puppet module install puppetlabs-stdlib
 	puppet module install puppetlabs-apt
 	puppet module install puppetlabs-vcsrepo
+	puppet module install puppetlabs-inifile
 	puppet module install computology-packagecloud
 	puppet module install saz-memcached
 	puppet module install puppet-nginx
