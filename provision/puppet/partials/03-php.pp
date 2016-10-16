@@ -95,3 +95,29 @@ create_ini_settings( $opcache, {
 service { 'php7.0-fpm':
 	ensure => running,
 }
+
+exec { 'composer-config':
+	command     => '/usr/bin/composer -q global config bin-dir /usr/local/bin',
+	environment => 'COMPOSER_HOME=/usr/local/src/composer',
+	require     => Package['composer'],
+}
+
+exec { 'composer-phalcon-dev-tools':
+	command     => '/usr/bin/composer -q global require phalcon/devtools',
+	creates     => '/usr/local/src/composer/vendor/phalcon/devtools',
+	environment => 'COMPOSER_HOME=/usr/local/src/composer',
+	require     => [ Package['composer'], Exec['composer-config'] ],
+}
+
+file { '/usr/bin/phalcon':
+	ensure  => 'link',
+	target  => '/usr/local/bin/phalcon.php',
+	require => Exec['composer-phalcon-dev-tools'],
+}
+
+exec { 'composer-phpunit':
+	command     => '/usr/bin/composer -q global require phpunit/phpunit',
+	creates     => '/usr/local/src/composer/vendor/phpunit/phpunit',
+	environment => 'COMPOSER_HOME=/usr/local/src/composer',
+	require     => [ Package['composer'], Exec['composer-config'] ],
+}
