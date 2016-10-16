@@ -1,3 +1,12 @@
+packagecloud::repo { 'phalcon/stable':
+	type => 'deb'
+}
+
+package { 'php7.0-phalcon':
+	ensure  => 'installed',
+	require => Packagecloud::Repo['phalcon/stable'],
+}
+
 $poold_www = {
 	'www' => {
 		'listen.mode'          => '0666',
