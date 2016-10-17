@@ -9,3 +9,4 @@
 /provision/puppet/init.pp
 /nbproject/
 /www/default/bower_components/
+/www/default/node_modules/
