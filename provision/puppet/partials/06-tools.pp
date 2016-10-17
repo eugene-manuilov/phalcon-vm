@@ -36,3 +36,16 @@
 # 	revision => '1.2.2.1',
 # 	depth    => 3,
 # }
+
+# Bower
+exec { 'bower-install':
+	command => '/usr/bin/npm install -g bower',
+	creates => '/usr/local/bin/bower',
+    require => Package['npm'],
+}
+
+file { '/usr/bin/node':
+	ensure  => 'link',
+	target  => '/usr/bin/nodejs',
+	require => Package['nodejs'],
+}

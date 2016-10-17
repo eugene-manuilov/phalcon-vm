@@ -1,0 +1,7 @@
+{
+	"name": "phalcon-vm",
+	"private": true,
+	"dependencies": {
+		"angular-material": "^1.1.1"
+	}
+}

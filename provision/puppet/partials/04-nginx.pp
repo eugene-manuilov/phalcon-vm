@@ -15,7 +15,7 @@ nginx::resource::upstream { 'phpupstream':
 nginx::resource::vhost { "phalcon-vm":
 	ensure         => present,
 	listen_options => 'default_server',
-	www_root       => "/srv/www/default",
+	www_root       => "/srv/www/default/public",
 	index_files    => ['index.php'],
 	try_files      => ['$uri', '$uri/', '/index.php?$args'],
 	locations      => {

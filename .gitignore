@@ -1,10 +1,11 @@
 /.vagrant/
 /.data/
-/www/
-!/www/default/index.php
-!/www/default/phpinfo.php
+/www/*
+!/www/default/
 /config/nginx-config/sites/
 !/config/nginx-config/sites/default.conf
 !/config/nginx-config/sites/local-nginx-example.conf-sample
 /ubuntu-xenial-16.04-cloudimg-console.log
 /provision/puppet/init.pp
+/nbproject/
+/www/default/bower_components/
