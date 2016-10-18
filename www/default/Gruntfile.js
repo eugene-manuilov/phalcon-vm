@@ -31,6 +31,9 @@ module.exports = function(grunt) {
 				boss: true,
 				eqnull: true,
 				globals: {
+					window: false,
+					document: false,
+					console: false,
 					angular: false
 				}
 			}
@@ -38,7 +41,8 @@ module.exports = function(grunt) {
 		sass: {
 			options: {
 				sourceMap: true,
-				precision: 5
+				precision: 5,
+				outputStyle: 'compressed'
 			},
 			all: {
 				files: {

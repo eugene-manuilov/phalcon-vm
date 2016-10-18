@@ -3,8 +3,12 @@ file { '/srv/log/nginx':
 }
 
 class { 'nginx':
-	nginx_error_log => '/srv/log/nginx/error.log',
-	require         => File['/srv/log/nginx'],
+	nginx_error_log   => '/srv/log/nginx/error.log',
+    sendfile          => 'Off',
+    http_tcp_nopush   => 'On',
+    keepalive_timeout => 5,
+    server_tokens     => 'Off',
+	require           => File['/srv/log/nginx'],
 }
 
 nginx::resource::upstream { 'phpupstream':
