@@ -19,7 +19,11 @@
 
 	ul {
 		margin: 1em 0;
-		padding: 0 16px;
+		padding: 0 1.5em;
+
+		ul {
+			margin: .5em .5em 1em 0;
+		}
 	}
 
 	.section-title {
@@ -27,7 +31,7 @@
 		color: rgba(255, 255, 255, 0.54);
 		display: block;
 		margin: 1em 0 0;
-		padding: 8px 16px 0;
+		padding: .5em 1.5em 0;
 		line-height: 32px;
 	}
 

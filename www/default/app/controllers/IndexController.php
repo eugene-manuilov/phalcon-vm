@@ -22,7 +22,11 @@ class IndexController extends \Phalcon\Mvc\Controller {
 					array(
 						'label' => 'Queue Systems',
 						'items' => array( 'gearman' => 'Gearman', 'rabbitmq' => 'RabbitMQ' ),
-					)
+					),
+					array(
+						'label' => 'Search Engines',
+						'items' => array( 'elastic' => 'Elasticsearch', 'sphinx' => 'Sphinx' ),
+					),
 				),
 			),
 		);
