@@ -3,3 +3,48 @@
 	color: white;
 	background-color: #106CC8;
 }
+
+#sidebar {
+	#logo {
+		text-transform: uppercase;
+		text-align: center;
+		display: block;
+		padding: 0;
+		margin: .5em 0;
+	}
+
+	md-divider {
+		border-color: #267ED5;
+	}
+
+	ul {
+		margin: 1em 0;
+		padding: 0 16px;
+	}
+
+	.section-title {
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.54);
+		display: block;
+		margin: 1em 0 0;
+		padding: 8px 16px 0;
+		line-height: 32px;
+	}
+
+	.group-title {
+		text-transform: uppercase;
+		display: block;
+		line-height: 32px;
+		font-weight: bold;
+	}
+
+	.menu-item {
+		margin: 0 0 .33em;
+		list-style: circle;
+
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
+	}
+}

@@ -51,6 +51,22 @@ module.exports = function(grunt) {
 					'public/css/app.css': 'assets/css/app.scss'
 				}
 			}
+		},
+		watch:  {
+			styles: {
+				files: ['assets/css/**/*.scss'],
+				tasks: ['css'],
+				options: {
+					debounceDelay: 500
+				}
+			},
+			scripts: {
+				files: ['assets/js/**/*.js'],
+				tasks: ['js'],
+				options: {
+					debounceDelay: 500
+				}
+			}
 		}
 	});
 

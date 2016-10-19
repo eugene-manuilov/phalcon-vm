@@ -1,26 +1,32 @@
 <md-sidenav id="sidebar" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
 	<header class="nav-header" layout-padding>
-		<h1 class="md-heading">PhalconVM</h1>
+		<h1 id="logo" class="md-heading">PhalconVM</h1>
 	</header>
 
-	<md-content id="sidebar-menu" layout-padding>
-		<h2>Server Environment</h2>
+	<md-divider></md-divider>
+
+	<md-content id="sidebar-menu">
+		<span class="section-title">Server Environment</span>
 		<ul>
 			<li ng-repeat="group in environment">
-				<h3>{{group.label}}</h3>
+				<span class="group-title">{{group.label}}</span>
 				<ul>
-					<li ng-repeat="(key, label) in group.items">
+					<li class="menu-item" ng-repeat="(key, label) in group.items">
 						<a href="#/env/{{key}}">{{label}}</a>
 					</li>
 				</ul>
 			</li>
 		</ul>
 
-		<h2>Web Sites</h2>
+		<md-divider></md-divider>
+
+		<span class="section-title">Web Sites</span>
 		<ul>
 		</ul>
 
-		<h2>Tools</h2>
+		<md-divider></md-divider>
+
+		<span class="section-title">Tools</span>
 		<ul>
 		</ul>
 	</md-content>
