@@ -12,6 +12,7 @@ module.exports = function(grunt) {
 						'bower_components/angular-aria/angular-aria.js',
 						'bower_components/angular-messages/angular-messages.js',
 						'bower_components/angular-material/angular-material.js',
+						'bower_components/angular-route/angular-route.js',
 						'assets/js/application.js'
 					]
 				}
@@ -34,7 +35,8 @@ module.exports = function(grunt) {
 					window: false,
 					document: false,
 					console: false,
-					angular: false
+					angular: false,
+					phalconvm: false
 				}
 			}
 		},

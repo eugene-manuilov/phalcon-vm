@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php echo $this->tag->getTitle(); ?>
 		<?php $this->assets->outputCss(); ?>
+		<?php $this->assets->outputInlineCss(); ?>
     </head>
     <body layout="row" ng-controller="AppCtrl">
 		<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
@@ -14,6 +15,25 @@
 			</header>
 
 			<md-content layout-padding>
+				<h2>Server Environment</h2>
+				<ul>
+					<li ng-repeat="group in environment">
+						<h3>{{group.label}}</h3>
+						<ul>
+							<li ng-repeat="(key, label) in group.items">
+								<a href="#/env/{{key}}">{{label}}</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+				<h2>Web Sites</h2>
+				<ul>
+				</ul>
+
+				<h2>Tools</h2>
+				<ul>
+				</ul>
 			</md-content>
 		</md-sidenav>
 
@@ -33,12 +53,13 @@
 				</div>
 			</md-toolbar>
 
-			<md-content layout-padding>
+			<md-content layout-padding ng-view>
 			</md-content>
 		</div>
 
 		<?php //echo $this->getContent(); ?>
 
+		<?php $this->assets->outputInlineJs(); ?>
 		<?php $this->assets->outputJs(); ?>
     </body>
 </html>
