@@ -26,7 +26,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
 				),
 			),
 		);
-		
+
 		$this->tag->setTitle( 'Phalcon VM' );
 
 		$this->assets->addCss( '//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic', false );
@@ -34,6 +34,8 @@ class IndexController extends \Phalcon\Mvc\Controller {
 
 		$this->assets->addInlineJs( sprintf( 'var phalconvm = %s;', json_encode( $phalconvm ) ) );
 		$this->assets->addJs( 'js/app.js' );
+
+		$this->view->phalconvm = $phalconvm;
 	}
 
 }

@@ -3,63 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php echo $this->tag->getTitle(); ?>
-		<?php $this->assets->outputCss(); ?>
-		<?php $this->assets->outputInlineCss(); ?>
-    </head>
-    <body layout="row" ng-controller="AppCtrl">
-		<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
-			<header class="nav-header" layout-padding>
-				<h1 class="md-heading">PhalconVM</h1>
-			</header>
-
-			<md-content layout-padding>
-				<h2>Server Environment</h2>
-				<ul>
-					<li ng-repeat="group in environment">
-						<h3>{{group.label}}</h3>
-						<ul>
-							<li ng-repeat="(key, label) in group.items">
-								<a href="#/env/{{key}}">{{label}}</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-
-				<h2>Web Sites</h2>
-				<ul>
-				</ul>
-
-				<h2>Tools</h2>
-				<ul>
-				</ul>
-			</md-content>
-		</md-sidenav>
-
-		<div layout="column" flex>
-			<md-toolbar>
-				<div class="md-toolbar-tools">
-					<md-button class="md-icon-button" ng-click="toggleSidenav()" hide-gt-sm>
-						<md-icon md-svg-src="/svg/ic_menu_black_24px.svg" aria-label="menu" style="color:white"></md-icon>
-					</md-button>
-
-					<!-- fill up the space between left and right area -->
-					<span flex></span>
-
-					<md-button ng-disabled="true">
-						Save Changes
-					</md-button>
-				</div>
-			</md-toolbar>
-
-			<md-content layout-padding ng-view>
-			</md-content>
-		</div>
-
-		<?php //echo $this->getContent(); ?>
-
-		<?php $this->assets->outputInlineJs(); ?>
-		<?php $this->assets->outputJs(); ?>
-    </body>
+        <meta name="viewport" content="width=device-width, initial-scale=1"><?php
+		echo $this->tag->getTitle();
+		$this->assets->outputCss();
+		$this->assets->outputInlineCss();
+	?></head>
+    <body layout="row" ng-controller="AppCtrl"><?php
+		echo $this->getContent();
+		$this->assets->outputInlineJs();
+		$this->assets->outputJs();
+	?></body>
 </html>
