@@ -1,7 +1,10 @@
 <?php foreach ( $phalconvm['menu']['environment'] as $group ) : ?>
 	<?php foreach ( $group['items'] as $item => $label ) : ?>
 		<script id="tmpl-env-<?php echo $item; ?>" type="text/html">
-			<h1 class="md-headline"><?php echo $label; ?></h1>
+			<header class="header">
+				<h2 class="md-display-1"><?php echo $label; ?></h2>
+			</header>
+
 			<?php $this->partial( 'index/environment/' . $item ); ?>
 		</script>
 	<?php endforeach; ?>

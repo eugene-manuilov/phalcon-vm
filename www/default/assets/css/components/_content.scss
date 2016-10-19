@@ -1,0 +1,17 @@
+#content {
+	max-width: $content-width;
+	margin: 16px;
+
+	.header > h2 {
+		margin: 0;
+		color: #164371;
+	}
+
+	p {
+		font-size: 16px;
+		font-weight: 400;
+		letter-spacing: 0.010em;
+		line-height: 1.6em;
+		margin: 0.8em 0 1.6em;
+	}
+}
