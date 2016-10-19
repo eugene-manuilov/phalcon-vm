@@ -1,6 +1,8 @@
 <md-sidenav id="sidebar" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
 	<header class="nav-header" layout-padding>
-		<h1 id="logo" class="md-heading">PhalconVM</h1>
+		<h1 id="logo" class="md-heading">
+			<a href="/">PhalconVM</a>
+		</h1>
 	</header>
 
 	<md-divider></md-divider>
@@ -8,7 +10,7 @@
 	<md-content id="sidebar-menu">
 		<span class="section-title">Server Environment</span>
 		<ul>
-			<li ng-repeat="group in environment">
+			<li ng-repeat="group in menu.environment">
 				<span class="group-title">{{group.label}}</span>
 				<ul>
 					<li class="menu-item" ng-repeat="(key, label) in group.items">
@@ -28,6 +30,13 @@
 
 		<span class="section-title">Tools</span>
 		<ul>
+			<li ng-repeat="group in menu.tools">
+				<ul>
+					<li class="menu-item" ng-repeat="(key, label) in group.items">
+						<a href="#/tools/{{key}}">{{label}}</a>
+					</li>
+				</ul>
+			</li>
 		</ul>
 	</md-content>
 </md-sidenav>

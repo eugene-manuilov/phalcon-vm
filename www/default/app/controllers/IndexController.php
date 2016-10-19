@@ -28,6 +28,17 @@ class IndexController extends \Phalcon\Mvc\Controller {
 						'items' => array( 'elastic' => 'Elasticsearch', 'sphinx' => 'Sphinx' ),
 					),
 				),
+				'tools' => array(
+					array(
+						'label' => false,
+						'items' => array(
+							'webgrind'       => 'Webgrind',
+							'php-info'       => 'PHP Info',
+							'php-status'     => 'PHP Status',
+							'opcache-status' => 'Opcache Status',
+						),
+					),
+				),
 			),
 		);
 
