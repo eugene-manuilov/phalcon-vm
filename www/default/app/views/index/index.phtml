@@ -1,6 +1,10 @@
 <?php
 
 foreach ( $phalconvm['menu'] as $type => $groups ) :
+	if ( 'tools' == $type ) :
+		continue;
+	endif;
+	
 	foreach ( $groups as $group ) :
 		foreach ( $group['items'] as $item => $label ) :
 			?><script id="tmpl-<?php echo $type; ?>-<?php echo $item; ?>" type="text/html">

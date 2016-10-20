@@ -32,10 +32,10 @@ class IndexController extends \Phalcon\Mvc\Controller {
 					array(
 						'label' => false,
 						'items' => array(
-							'webgrind'       => 'Webgrind',
-							'php-info'       => 'PHP Info',
-							'php-status'     => 'PHP Status',
-							'opcache-status' => 'Opcache Status',
+//							'webgrind'              => 'Webgrind',
+							'/php-info.php'         => 'PHP Info',
+							'/php-status?html&full' => 'PHP Status',
+//							'opcache-status'        => 'Opcache Status',
 						),
 					),
 				),

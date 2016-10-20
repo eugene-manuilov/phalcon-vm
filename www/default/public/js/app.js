@@ -71087,17 +71087,6 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 			}
 		});
 
-		$routeProvider.when('/tools/:tool', {
-			controller: 'EnvCtrl',
-			controllerAs: 'env',
-			template: function(params) {
-				var id = 'tmpl-tools-' + params.tool,
-					template = document.getElementById(id);
-
-				return template ? template.innerHTML : ' ';
-			}
-		});
-
 		$routeProvider.otherwise({redirectTo: ''});
 
 		$locationProvider.html5Mode(false);
