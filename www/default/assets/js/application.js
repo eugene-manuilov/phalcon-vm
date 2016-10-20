@@ -1,5 +1,5 @@
 (function(angular, phalconvm) {
-	phalconvm.app = angular.module('PhalconVM', ['ngMaterial', 'ngRoute']);
+	phalconvm.app = angular.module('PhalconVM', ['ngMaterial', 'ngRoute', 'ngSanitize']);
 
 	phalconvm.app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 		$routeProvider.when('/env/:service', {
@@ -18,10 +18,29 @@
 		$locationProvider.html5Mode(false);
 	}]);
 
-	phalconvm.app.controller('AppCtrl', ['$scope', '$mdSidenav', function ($scope, $mdSidenav) {
-		$scope.menu = phalconvm.menu;
+	phalconvm.app.controller('AppCtrl', ['$mdSidenav', '$mdDialog', function ($mdSidenav, $mdDialog) {
+		var self = this;
 
-		$scope.toggleSidenav = function() {
+		self.nasty = false;
+		self.menu = phalconvm.menu;
+
+		self.setNasty = function() {
+			self.nasty = true;
+		};
+
+		self.saveChanges = function() {
+			self.nasty = false;
+
+			$mdDialog.show(
+				$mdDialog.alert()
+					.clickOutsideToClose(true)
+					.title('Saved changes')
+					.htmlContent('Changes have been saved. Please, do not forget to halt your vagrant box<br>and up it again with <b>--provision</b> mode.')
+					.ok('Got it!')
+			);
+		};
+
+		self.toggleSidenav = function() {
 			$mdSidenav('left').toggle();
 		};
 	}]);

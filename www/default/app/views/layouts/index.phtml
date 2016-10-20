@@ -10,7 +10,7 @@
 	<md-content id="sidebar-menu">
 		<span class="section-title">Server Environment</span>
 		<ul>
-			<li ng-repeat="group in menu.environment">
+			<li ng-repeat="group in app.menu.environment">
 				<span class="group-title">{{group.label}}</span>
 				<ul>
 					<li class="menu-item" ng-repeat="(key, label) in group.items">
@@ -30,7 +30,7 @@
 
 		<span class="section-title">Tools</span>
 		<ul>
-			<li ng-repeat="group in menu.tools">
+			<li ng-repeat="group in app.menu.tools">
 				<ul>
 					<li class="menu-item" ng-repeat="(key, label) in group.items">
 						<a href="{{key}}">{{label}}</a>
@@ -44,14 +44,14 @@
 <div layout="column" flex>
 	<md-toolbar id="toolbar">
 		<div class="md-toolbar-tools">
-			<md-button class="md-icon-button" ng-click="toggleSidenav()" hide-gt-sm>
+			<md-button class="md-icon-button" ng-click="app.toggleSidenav()" hide-gt-sm>
 				<md-icon md-svg-src="/svg/ic_menu_black_24px.svg" aria-label="menu" style="color:white"></md-icon>
 			</md-button>
 
 			<!-- fill up the space between left and right area -->
 			<span flex></span>
 
-			<md-button ng-disabled="true">
+			<md-button class="md-primary" ng-disabled="!app.nasty" ng-click="app.saveChanges()">
 				Save Changes
 			</md-button>
 		</div>
