@@ -1,0 +1,35 @@
+app: null
+data:
+    mysql:
+        service: []
+        phpMyAdmin: []
+menu:
+    environment:
+        - label: "Web Sevices"
+          items:
+              nginx: "Nginx"
+
+        - label: "Databases"
+          items:
+              mysql: "MySQL"
+              postgres: "PostgreSQL"
+              mongodb: "MongoDB"
+
+        - label: "Caching Systems"
+          items:
+              redis: "Redis"
+              memcached: "Memcached"
+
+        - label: "Queue Systems"
+          items:
+              gearman: "Gearman"
+              rabbitmq: "RabbitMQ"
+
+        - label: "Search Engines"
+          items:
+              elastic: "Elasticsearch"
+              sphinx: "Sphinx"
+    tools:
+        - items:
+            "/php-info.php": "PHP Info"
+            "/php-status?html&full": "PHP Status"

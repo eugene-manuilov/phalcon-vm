@@ -3,50 +3,8 @@
 class IndexController extends \Phalcon\Mvc\Controller {
 
 	public function indexAction() {
-		$phalconvm = array(
-			'app'  => null,
-			'data' => array(
-				'mysql' => array(
-					'service'    => array(),
-					'phpMyAdmin' => array(),
-				),
-			),
-			'menu' => array(
-				'environment' => array(
-					array(
-						'label' => 'Web Sevices',
-						'items' => array( 'nginx' => 'Nginx' ),
-					),
-					array(
-						'label' => 'Databases',
-						'items' => array( 'mysql' => 'MySQL', 'postgres' => 'PostgreSQL', 'mongodb' => 'MongoDB' ),
-					),
-					array(
-						'label' => 'Caching Systems',
-						'items' => array( 'redis' => 'Redis', 'memcached' => 'Memcached' ),
-					),
-					array(
-						'label' => 'Queue Systems',
-						'items' => array( 'gearman' => 'Gearman', 'rabbitmq' => 'RabbitMQ' ),
-					),
-					array(
-						'label' => 'Search Engines',
-						'items' => array( 'elastic' => 'Elasticsearch', 'sphinx' => 'Sphinx' ),
-					),
-				),
-				'tools' => array(
-					array(
-						'label' => false,
-						'items' => array(
-//							'webgrind'              => 'Webgrind',
-							'/php-info.php'         => 'PHP Info',
-							'/php-status?html&full' => 'PHP Status',
-//							'opcache-status'        => 'Opcache Status',
-						),
-					),
-				),
-			),
-		);
+		$phalconvm = new \Phalcon\Config\Adapter\Yaml( APP_PATH . '/config/phalconvm.yml' );
+		$phalconvm = $phalconvm->toArray();
 
 		$this->tag->setTitle( 'Phalcon VM' );
 
