@@ -4,8 +4,6 @@
 vagrant_dir = File.expand_path(File.dirname(__FILE__))
 
 Vagrant.configure(2) do |config|
-	vagrant_version = Vagrant::VERSION.sub(/^v/, '')
-
 	config.vm.box = "geerlingguy/ubuntu1604"
 	config.vm.hostname = "phalcon-vm"
 	config.vm.network :private_network, ip: "192.168.50.99"
@@ -42,7 +40,5 @@ Vagrant.configure(2) do |config|
 
 	config.vm.provision :shell, :path => File.join( "provision", "provision.sh" )
 
-	if vagrant_version >= "1.6.0"
-		config.vm.provision :shell, inline: "sudo service nginx restart", run: "always"
-	end
+	config.vm.provision :shell, inline: "sudo service nginx restart", run: "always"
 end
