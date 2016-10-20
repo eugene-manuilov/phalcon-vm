@@ -5,6 +5,12 @@ class IndexController extends \Phalcon\Mvc\Controller {
 	public function indexAction() {
 		$phalconvm = array(
 			'app'  => null,
+			'data' => array(
+				'mysql' => array(
+					'service'    => array(),
+					'phpMyAdmin' => array(),
+				),
+			),
 			'menu' => array(
 				'environment' => array(
 					array(

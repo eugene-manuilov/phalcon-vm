@@ -71100,6 +71100,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 		};
 	}]);
 
-	phalconvm.app.controller('EnvCtrl', [function() {
+	phalconvm.app.controller('EnvCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+		$scope.data = phalconvm.data[$routeParams.service] = phalconvm.data[$routeParams.service] || {};
 	}]);
 })(angular, phalconvm);
