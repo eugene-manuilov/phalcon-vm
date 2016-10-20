@@ -1,17 +1,50 @@
 #content {
-	max-width: $content-width;
-	margin: 16px;
+	.content-container {
+		max-width: $content-width;
+		margin: 16px;
+	}
 
 	.header > h2 {
 		margin: 0;
 		color: #164371;
 	}
 
-	p {
+	> p {
 		font-size: 16px;
 		font-weight: 400;
 		letter-spacing: 0.010em;
 		line-height: 1.6em;
 		margin: 0.8em 0 1.6em;
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+
+	.md-title {
+		margin-top: 1.5em;
+	}
+
+	.md-2-line {
+		p {
+			font-size: 11px;
+		}
+	}
+
+	.md-secondary-container {
+		min-width: 75px;
+
+		> * {
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		input {
+			text-align: center;
+			width: 50px;
+			border-color: rgba(0, 0, 0, 0.1);
+			border-bottom-color: rgba(0, 0, 0, 0.2);
+			padding: 5px 0;
+		}
 	}
 }
