@@ -18,7 +18,7 @@
 		$locationProvider.html5Mode(false);
 	}]);
 
-	phalconvm.app.controller('AppCtrl', ['$mdSidenav', '$mdDialog', function ($mdSidenav, $mdDialog) {
+	phalconvm.app.controller('AppCtrl', ['$mdSidenav', '$mdDialog', '$http', function ($mdSidenav, $mdDialog, $http) {
 		var self = this;
 
 		self.nasty = false;
@@ -30,6 +30,8 @@
 
 		self.saveChanges = function() {
 			self.nasty = false;
+
+			$http.post('/save', phalconvm.data);
 
 			$mdDialog.show(
 				$mdDialog.alert()

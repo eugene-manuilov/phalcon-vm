@@ -71831,7 +71831,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 		$locationProvider.html5Mode(false);
 	}]);
 
-	phalconvm.app.controller('AppCtrl', ['$mdSidenav', '$mdDialog', function ($mdSidenav, $mdDialog) {
+	phalconvm.app.controller('AppCtrl', ['$mdSidenav', '$mdDialog', '$http', function ($mdSidenav, $mdDialog, $http) {
 		var self = this;
 
 		self.nasty = false;
@@ -71843,6 +71843,8 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 		self.saveChanges = function() {
 			self.nasty = false;
+
+			$http.post('/save', phalconvm.data);
 
 			$mdDialog.show(
 				$mdDialog.alert()

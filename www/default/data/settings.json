@@ -1,0 +1,25 @@
+{
+	"mysql": {
+		"service": {
+			"Enabled": false
+		},
+		"phpMyAdmin": {
+			"Enabled": false,
+			"MaxDbList": "100",
+			"MaxTableList": "250",
+			"ShowSQL": true,
+			"AllowUserDropDatabase": true,
+			"Confirm": true,
+			"UseDbSearch": true
+		}
+	},
+	"nginx": {},
+	"redis": {},
+	"postgres": {},
+	"mongodb": {},
+	"memcached": {},
+	"gearman": {},
+	"rabbitmq": {},
+	"elastic": {},
+	"sphinx": {}
+}
