@@ -39,12 +39,19 @@
 			margin-right: auto;
 		}
 
-		input {
+		input[type="text"] {
 			text-align: center;
 			width: 50px;
+			border-width: 1px;
 			border-color: rgba(0, 0, 0, 0.1);
+			border-bottom-width: 2px;
 			border-bottom-color: rgba(0, 0, 0, 0.2);
 			padding: 5px 0;
+
+			&:focus {
+				outline-color: #106CC8;
+				outline-width: 1px;
+			}
 		}
 	}
 }
