@@ -13,13 +13,20 @@
 			"UseDbSearch": true
 		}
 	},
-	"nginx": {},
-	"redis": {},
-	"postgres": {},
-	"mongodb": {},
-	"memcached": {},
-	"gearman": {},
-	"rabbitmq": {},
-	"elastic": {},
-	"sphinx": {}
+	"nginx": [],
+	"redis": [],
+	"postgres": [],
+	"mongodb": [],
+	"memcached": {
+		"service": {
+			"Enabled": false
+		},
+		"phpMemcacheAdmin": {
+			"Enabled": false
+		}
+	},
+	"gearman": [],
+	"rabbitmq": [],
+	"elastic": [],
+	"sphinx": []
 }
