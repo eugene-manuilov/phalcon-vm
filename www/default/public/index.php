@@ -27,7 +27,9 @@ try {
 	/**
 	 * Include Autoloader
 	 */
-	include APP_PATH . '/config/loader.php';
+	$loader = new \Phalcon\Loader();
+	$loader->registerDirs( array( $config->application->controllersDir ) );
+	$loader->register();
 
 	/**
 	 * Handle the request

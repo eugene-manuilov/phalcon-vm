@@ -6,7 +6,14 @@ use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\Mvc\Router;
 
 $di->setShared( 'config', function () {
-	return include APP_PATH . "/config/config.php";
+	return new \Phalcon\Config( array(
+		'application' => array(
+			'appDir'         => APP_PATH . '/',
+			'controllersDir' => APP_PATH . '/controllers/',
+			'viewsDir'       => APP_PATH . '/views/',
+			'baseUri'        => '/',
+		),
+	) );
 } );
 
 $di->setShared( 'url', function () {
