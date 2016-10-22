@@ -1,6 +1,6 @@
 {
 	"mysql": {
-		"service": {
+		"server": {
 			"Enabled": false
 		},
 		"phpMyAdmin": {
@@ -13,20 +13,55 @@
 			"UseDbSearch": true
 		}
 	},
-	"nginx": [],
-	"redis": [],
-	"postgres": [],
-	"mongodb": [],
+	"nginx": {
+		"server": {
+			"Enabled": true
+		}
+	},
+	"redis": {
+		"server": {
+			"Enabled": false
+		}
+	},
+	"postgres": {
+		"server": {
+			"Enabled": false
+		},
+		"phpPgAdmin": {
+			"Enabled": false
+		}
+	},
+	"mongodb": {
+		"server": {
+			"Enabled": false
+		}
+	},
 	"memcached": {
-		"service": {
+		"server": {
 			"Enabled": false
 		},
 		"phpMemcacheAdmin": {
 			"Enabled": false
 		}
 	},
-	"gearman": [],
-	"rabbitmq": [],
-	"elastic": [],
-	"sphinx": []
+	"gearman": {
+		"server": {
+			"Enabled": false
+		}
+	},
+	"rabbitmq": {
+		"server": {
+			"Enabled": false
+		}
+	},
+	"elasticsearch": {
+		"server": {
+			"Enabled": false
+		}
+	},
+	"sphinx": {
+		"server": {
+			"Enabled": false
+		}
+	}
 }

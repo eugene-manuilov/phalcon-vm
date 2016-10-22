@@ -1,13 +1,18 @@
 <?php
 
+use Phalcon\Config\Adapter\Yaml;
+
 class IndexController extends \Phalcon\Mvc\Controller {
 
 	public function indexAction() {
 		$data = file_get_contents( BASE_PATH . '/data/settings.json' );
 
-		$phalconvm = new \Phalcon\Config\Adapter\Yaml( APP_PATH . '/config/phalconvm.yml' );
+		$phalconvm = new Yaml( APP_PATH . '/config/phalconvm.yml' );
 		$phalconvm = $phalconvm->toArray();
 		$phalconvm['data'] = json_decode( $data, true );
+
+		$fields = new Yaml( APP_PATH . '/config/groups.yml' );
+		$fields = $fields->toArray();
 
 		$this->tag->setTitle( 'Phalcon VM' );
 
@@ -18,6 +23,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
 		$this->assets->addJs( 'js/app.js' );
 
 		$this->view->phalconvm = $phalconvm;
+		$this->view->groups = $fields;
 	}
 
 	public function saveAction() {

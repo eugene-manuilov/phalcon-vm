@@ -23,7 +23,7 @@ menu:
 
         - label: "Search Engines"
           items:
-              elastic: "Elasticsearch"
+              elasticsearch: "Elasticsearch"
               sphinx: "Sphinx"
     tools:
         - items:

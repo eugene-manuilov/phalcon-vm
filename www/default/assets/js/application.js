@@ -6,7 +6,7 @@
 			controller: 'EnvCtrl',
 			controllerAs: 'env',
 			template: function(params) {
-				var id = 'tmpl-environment-' + params.service,
+				var id = 'tmpl-' + params.service,
 					template = document.getElementById(id);
 
 				return template ? template.innerHTML : ' ';
