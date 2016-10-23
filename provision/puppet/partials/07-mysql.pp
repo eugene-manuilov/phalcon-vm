@@ -1,9 +1,22 @@
-class phalconvm_mysql($settings) {
-	$enabled = $settings[server][Enabled]
-	$ensure = $enabled ? {
-		true    => 'present',
-		false   => 'absent',
-		default => 'absent',
+class phalconvm_mysql(
+	$enabled = false,
+) {
+	package { 'mysql-server':
+		ensure => $enabled ? {
+			true    => 'present',
+			false   => 'purged',
+			default => 'purged',
+		},
+	}
+
+	file { '/srv/log/mysql':
+		ensure => $enabled ? {
+			true    => 'directory',
+			false   => 'absent',
+			default => 'absent',
+		},
+		owner  => 'root',
+		group  => 'root',
 	}
 }
 
@@ -21,12 +34,6 @@ class phalconvm_mysql($settings) {
 #	group   => 'root',
 #	require => Package['mysql-server'],
 #	notify  => Service['mysql']
-#}
-#
-#file { '/srv/log/mysql':
-#	ensure => 'directory',
-#	owner  => 'root',
-#	group  => 'root'
 #}
 #
 #service { 'mysql':
