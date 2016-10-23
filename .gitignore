@@ -1,12 +1,10 @@
 /.vagrant/
 /.data/
+/nbproject/
+/provision/puppet/init.pp
 /www/*
 !/www/default/
-/config/nginx-config/sites/
-!/config/nginx-config/sites/default.conf
-!/config/nginx-config/sites/local-nginx-example.conf-sample
-/ubuntu-xenial-16.04-cloudimg-console.log
-/provision/puppet/init.pp
-/nbproject/
 /www/default/bower_components/
 /www/default/node_modules/
+/www/default/public/opcache-status
+/www/default/public/webgrind

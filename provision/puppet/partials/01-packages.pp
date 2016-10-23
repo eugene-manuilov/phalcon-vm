@@ -4,9 +4,6 @@ $packages = [
 	'php7.0-mcrypt', 'php7.0-mysql', 'php7.0-imap', 'php7.0-curl', 'php7.0-gd',
 	'php7.0-json', 'php-memcache', 'php-imagick', 'php-pear', 'php-xdebug',
 
-	# services
-	'mysql-server',
-
 	# other packages that come in handy
 	'imagemagick', 'subversion', 'git', 'zip', 'unzip', 'ngrep', 'curl', 'make',
 	'autoconf', 'automake', 'build-essential', 'libxslt1-dev', 're2c',

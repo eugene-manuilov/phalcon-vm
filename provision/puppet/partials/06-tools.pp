@@ -1,41 +1,18 @@
-# # Webgrind
-# vcsrepo { '/srv/www/default/webgrind':
-# 	ensure   => 'present',
-# 	provider => 'git',
-# 	source   => 'https://github.com/michaelschiller/webgrind.git',
-# 	depth    => 3,
-# }
-#
-# # Opcache Status
-# vcsrepo { '/srv/www/default/opcache-status':
-# 	ensure   => 'present',
-# 	provider => 'git',
-# 	source   => 'https://github.com/rlerdorf/opcache-status.git',
-# 	depth    => 3,
-# }
-#
-# # phpMyAdmin
-# vcsrepo { '/srv/www/default/database-admin/':
-# 	ensure   => 'present',
-# 	provider => 'git',
-# 	source   => 'https://github.com/phpmyadmin/phpmyadmin.git',
-# 	revision => 'RELEASE_4_6_4',
-# 	depth    => 3,
-# }
-#
-# file { '/srv/www/default/database-admin/config.inc.php':
-# 	source  => '/srv/config/phpmyadmin-config/config.inc.php',
-# 	require => Vcsrepo['/srv/www/default/database-admin/'],
-# }
-#
-# # phpMemcacheAdmin
-# vcsrepo { '/srv/www/default/memcached-admin':
-# 	ensure   => 'present',
-# 	provider => 'git',
-# 	source   => 'https://github.com/wp-cloud/phpmemcacheadmin.git',
-# 	revision => '1.2.2.1',
-# 	depth    => 3,
-# }
+# Webgrind
+vcsrepo { '/srv/www/default/public/webgrind':
+	ensure   => 'present',
+	provider => 'git',
+	source   => 'https://github.com/michaelschiller/webgrind.git',
+	depth    => 1,
+}
+
+# Opcache Status
+vcsrepo { '/srv/www/default/public/opcache-status':
+	ensure   => 'present',
+	provider => 'git',
+	source   => 'https://github.com/rlerdorf/opcache-status.git',
+	depth    => 1,
+}
 
 # Bower
 exec { 'bower-install':
@@ -48,4 +25,41 @@ file { '/usr/bin/node':
 	ensure  => 'link',
 	target  => '/usr/bin/nodejs',
 	require => Package['nodejs'],
+}
+
+# Composer
+
+exec { 'composer-config':
+	command     => '/usr/bin/composer -q global config bin-dir /usr/local/bin',
+	environment => 'COMPOSER_HOME=/usr/local/src/composer',
+	require     => Package['composer'],
+}
+
+$composer_dependency = [ Package['composer'], Exec['composer-config'] ]
+
+exec { 'composer-phalcon-dev-tools':
+	command     => '/usr/bin/composer -q global require phalcon/devtools',
+	creates     => '/usr/local/src/composer/vendor/phalcon/devtools',
+	environment => 'COMPOSER_HOME=/usr/local/src/composer',
+	require     => $composer_dependency,
+}
+
+exec { 'composer-codeception':
+	command     => '/usr/bin/composer -q global require codeception/codeception',
+	creates     => '/usr/local/src/composer/vendor/codeception/codeception',
+	environment => 'COMPOSER_HOME=/usr/local/src/composer',
+	require     => $composer_dependency,
+}
+
+exec { 'composer-phpunit':
+	command     => '/usr/bin/composer -q global require phpunit/phpunit',
+	creates     => '/usr/local/src/composer/vendor/phpunit/phpunit',
+	environment => 'COMPOSER_HOME=/usr/local/src/composer',
+	require     => $composer_dependency,
+}
+
+file { '/usr/bin/phalcon':
+	ensure  => 'link',
+	target  => '/usr/local/bin/phalcon.php',
+	require => Exec['composer-phalcon-dev-tools'],
 }
