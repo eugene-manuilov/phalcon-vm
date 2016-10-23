@@ -71819,9 +71819,8 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 			controller: 'EnvCtrl',
 			controllerAs: 'env',
 			template: function(params) {
-				var id = 'tmpl-' + params.service,
-					template = document.getElementById(id);
-
+				var template = document.getElementById('tmpl-' + params.service);
+				
 				return template ? template.innerHTML : ' ';
 			}
 		});
@@ -71861,6 +71860,6 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 	}]);
 
 	phalconvm.app.controller('EnvCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
-		$scope.data = phalconvm.data[$routeParams.service] = phalconvm.data[$routeParams.service] || {};
+		$scope.data = phalconvm.data;
 	}]);
 })(angular, phalconvm);

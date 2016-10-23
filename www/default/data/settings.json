@@ -1,67 +1,47 @@
 {
 	"mysql": {
-		"server": {
-			"Enabled": false
-		},
-		"phpMyAdmin": {
-			"Enabled": false,
-			"MaxDbList": "100",
-			"MaxTableList": "250",
-			"ShowSQL": true,
-			"AllowUserDropDatabase": true,
-			"Confirm": true,
-			"UseDbSearch": true
-		}
+		"enabled": false
+	},
+	"phpMyAdmin": {
+		"enabled": false,
+		"maxDbList": "100",
+		"maxTableList": "250",
+		"showSQL": true,
+		"allowUserDropDatabase": true,
+		"confirm": true,
+		"useDbSearch": true
 	},
 	"nginx": {
-		"server": {
-			"Enabled": true
-		}
+		"enabled": true
 	},
 	"redis": {
-		"server": {
-			"Enabled": false
-		}
+		"enabled": false
 	},
 	"postgres": {
-		"server": {
-			"Enabled": false
-		},
-		"phpPgAdmin": {
-			"Enabled": false
-		}
+		"enabled": false
+	},
+	"phpPgAdmin": {
+		"enabled": false
 	},
 	"mongodb": {
-		"server": {
-			"Enabled": false
-		}
+		"enabled": false
 	},
 	"memcached": {
-		"server": {
-			"Enabled": false
-		},
-		"phpMemcacheAdmin": {
-			"Enabled": false
-		}
+		"enabled": false
+	},
+	"phpMemcacheAdmin": {
+		"enabled": false
 	},
 	"gearman": {
-		"server": {
-			"Enabled": false
-		}
+		"enabled": false
 	},
 	"rabbitmq": {
-		"server": {
-			"Enabled": false
-		}
+		"enabled": false
 	},
 	"elasticsearch": {
-		"server": {
-			"Enabled": false
-		}
+		"enabled": false
 	},
 	"sphinx": {
-		"server": {
-			"Enabled": false
-		}
+		"enabled": false
 	}
 }
