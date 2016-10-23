@@ -74,7 +74,7 @@ $xdebug = {
 }
 
 create_ini_settings( $xdebug, {
-	path => '/etc/php/7.0/mods-available/xdebug.ini',
+	path    => '/etc/php/7.0/mods-available/xdebug.ini',
 	require => [ Package['php-xdebug'], File['/srv/log/xdebug-remote.log'] ],
 	notify  => Service['php7.0-fpm'],
 } )
@@ -87,7 +87,7 @@ $opcache = {
 }
 
 create_ini_settings( $opcache, {
-	path => '/etc/php/7.0/mods-available/opcache.ini',
+	path    => '/etc/php/7.0/mods-available/opcache.ini',
 	require => Package['php7.0'],
 	notify  => Service['php7.0-fpm'],
 } )
