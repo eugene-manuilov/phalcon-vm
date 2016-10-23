@@ -27,5 +27,7 @@ menu:
               sphinx: "Sphinx"
     tools:
         - items:
+            "/opcache-status/opcache.php": "Opcache Status"
+            "/webgrind": "Webgrind"
             "/php-info.php": "PHP Info"
             "/php-status?html&full": "PHP Status"
