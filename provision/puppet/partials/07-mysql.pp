@@ -1,3 +1,12 @@
+class phalconvm_mysql($settings) {
+	$enabled = $settings[server][Enabled]
+	$ensure = $enabled ? {
+		true    => 'present',
+		false   => 'absent',
+		default => 'absent',
+	}
+}
+
 #file { '/etc/mysql/my.cnf':
 #	source  => '/srv/config/mysql-config/my.cnf',
 #	owner   => 'root',
