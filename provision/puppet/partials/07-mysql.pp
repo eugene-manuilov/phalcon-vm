@@ -1,22 +1,41 @@
 class phalconvm_mysql(
 	$enabled = false,
 ) {
-	package { 'mysql-server':
-		ensure => $enabled ? {
-			true    => 'present',
-			false   => 'purged',
-			default => 'purged',
-		},
-	}
+	if $enabled == true {
+		package { 'mysql-server':
+			ensure => 'present',
+		}
 
-	file { '/srv/log/mysql':
-		ensure => $enabled ? {
-			true    => 'directory',
-			false   => 'absent',
-			default => 'absent',
-		},
-		owner  => 'root',
-		group  => 'root',
+		service { 'mysql':
+			ensure  => 'running',
+			require => Package['mysql-server'],
+		}
+
+		file { '/srv/log/mysql':
+			ensure => 'directory',
+			owner  => 'root',
+			group  => 'root',
+		}
+	} else {
+		service { 'mysql':
+			ensure => 'stopped',
+		}
+
+		package { 'mysql-server':
+			ensure  => 'purged',
+			require => Service['mysql'],
+		}
+
+		exec { '/usr/bin/apt-get autoremove --purge -y':
+			refreshonly => true,
+			subscribe   => Package['mysql-server'],
+		}
+
+		file { '/srv/log/mysql':
+			ensure => 'absent',
+			owner  => 'root',
+			group  => 'root',
+		}
 	}
 }
 
