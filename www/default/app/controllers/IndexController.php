@@ -5,11 +5,21 @@ use Phalcon\Config\Adapter\Yaml;
 class IndexController extends \Phalcon\Mvc\Controller {
 
 	public function indexAction() {
-		$data = file_get_contents( BASE_PATH . '/data/settings.json' );
+		$defaults = file_get_contents( BASE_PATH . '/data/defaults.json' );
+		$defaults = json_decode( $defaults, true );
+
+		$settings = array();
+		if ( is_readable( BASE_PATH . '/data/settings.json' ) ) {
+			$settings = file_get_contents( BASE_PATH . '/data/settings.json' );
+			$settings = json_decode( $settings, true );
+			if ( ! $settings ) {
+				$settings = array();
+			}
+		}
 
 		$phalconvm = new Yaml( APP_PATH . '/config/phalconvm.yml' );
 		$phalconvm = $phalconvm->toArray();
-		$phalconvm['data'] = json_decode( $data, true );
+		$phalconvm['data'] = array_merge( $defaults, $settings );
 
 		$fields = new Yaml( APP_PATH . '/config/groups.yml' );
 		$fields = $fields->toArray();

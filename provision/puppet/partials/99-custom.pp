@@ -1,4 +1,6 @@
-$settings = loadjson('/srv/www/default/data/settings.json')
+$defaultSettings = loadjson( '/srv/www/default/data/defaults.json', {} )
+$userSettings = loadjson( '/srv/www/default/data/settings.json', {} )
+$settings = deep_merge( $defaultSettings, $userSettings )
 
 # class { 'phalconvm_nginx': * => $settings[nginx] }
 class { 'phalconvm_mysql': * => $settings[mysql] }

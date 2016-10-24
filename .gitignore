@@ -8,3 +8,4 @@
 /www/default/node_modules/
 /www/default/public/opcache-status
 /www/default/public/webgrind
+/www/default/data/settings.json
