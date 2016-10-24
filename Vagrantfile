@@ -39,6 +39,5 @@ Vagrant.configure(2) do |config|
 	end
 
 	config.vm.provision :shell, :path => File.join( "provision", "provision.sh" )
-
-	config.vm.provision :shell, inline: "sudo service nginx restart", run: "always"
+	config.vm.provision :shell, :path => File.join( "provision", "startup.sh" ), run: "always"
 end

@@ -1,9 +1,4 @@
 #!/bin/bash
-#
-# provision.sh
-#
-# This file is specified in Vagrantfile and is loaded by Vagrant whenever
-# the commands `vagrant up`, `vagrant provision`, or `vagrant reload` are used.
 
 # installs puppet and its modules if it is not installed yet
 if [ ! -f /opt/puppetlabs/bin/puppet ]; then
