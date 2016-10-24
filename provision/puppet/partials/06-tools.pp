@@ -24,7 +24,7 @@ file { '/usr/bin/node':
 exec { 'npm-install-bower':
 	command => '/usr/bin/npm install -g bower',
 	creates => '/usr/local/bin/bower',
-    require => [ Package['npm'], File['/usr/bin/node'] ],
+	require => [ Package['npm'], File['/usr/bin/node'] ],
 }
 
 exec { 'npm-install-grunt':

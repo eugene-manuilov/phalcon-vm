@@ -9,7 +9,9 @@
 		"showSQL": true,
 		"allowUserDropDatabase": true,
 		"confirm": true,
-		"useDbSearch": true
+		"useDbSearch": true,
+		"retainQueryBox": false,
+		"ignoreMultiSubmitErrors": false
 	},
 	"nginx": {
 		"enabled": true

@@ -25,4 +25,4 @@ fi
 
 # concatinates all puppet scripts into init.pp file
 cat /srv/provision/puppet/partials/*.pp > /srv/provision/puppet/init.pp
-/opt/puppetlabs/bin/puppet apply /srv/provision/puppet/init.pp
+/opt/puppetlabs/bin/puppet apply /srv/provision/puppet/init.pp --noop

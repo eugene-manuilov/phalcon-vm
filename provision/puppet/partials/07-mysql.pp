@@ -31,16 +31,16 @@ class phalconvm_mysql(
 		$mysqlcnf = {
 			'mysqld' => {
 				'bind-address'          => '0.0.0.0',
-                'max_allowed_packet'    => '128M',
-                'innodb_file_per_table' => '1',
-            }
-        }
+				'max_allowed_packet'    => '128M',
+				'innodb_file_per_table' => '1',
+			}
+		}
 
 		create_ini_settings( $mysqlcnf, {
 			path    => '/etc/mysql/mysql.conf.d/mysqld.cnf',
 			require => Package['mysql-server'],
 			notify  => Service['mysql'],
-        } )
+		} )
 	} else {
 		service { 'mysql':
 			ensure => 'stopped',
@@ -57,17 +57,3 @@ class phalconvm_mysql(
 		}
 	}
 }
-
-# # phpMyAdmin
-# vcsrepo { '/srv/www/default/database-admin/':
-# 	ensure   => 'present',
-# 	provider => 'git',
-# 	source   => 'https://github.com/phpmyadmin/phpmyadmin.git',
-# 	revision => 'RELEASE_4_6_4',
-# 	depth    => 3,
-# }
-#
-# file { '/srv/www/default/database-admin/config.inc.php':
-# 	source  => '/srv/config/phpmyadmin-config/config.inc.php',
-# 	require => Vcsrepo['/srv/www/default/database-admin/'],
-# }

@@ -6,6 +6,7 @@
 !/www/default/
 /www/default/bower_components/
 /www/default/node_modules/
-/www/default/public/opcache-status
-/www/default/public/webgrind
+/www/default/public/opcache-status/
+/www/default/public/webgrind/
+/www/default/public/phpmyadmin/
 /www/default/data/settings.json
