@@ -11,11 +11,36 @@ class phalconvm_mysql(
 			require => Package['mysql-server'],
 		}
 
-		file { '/srv/log/mysql':
-			ensure => 'directory',
-			owner  => 'root',
-			group  => 'root',
+		$mycnf = {
+			'client'     => {
+				'user'     => 'root',
+				'password' => 'root',
+			},
+			'mysqladmin' => {
+				'user'     => 'root',
+				'password' => 'root',
+			},
 		}
+
+		create_ini_settings( $mycnf, {
+			path    => '/home/vagrant/.my.cnf',
+			require => Package['mysql-server'],
+			notify  => Service['mysql'],
+		} )
+
+		$mysqlcnf = {
+			'mysqld' => {
+				'bind-address'          => '0.0.0.0',
+                'max_allowed_packet'    => '128M',
+                'innodb_file_per_table' => '1',
+            }
+        }
+
+		create_ini_settings( $mysqlcnf, {
+			path    => '/etc/mysql/mysql.conf.d/mysqld.cnf',
+			require => Package['mysql-server'],
+			notify  => Service['mysql'],
+        } )
 	} else {
 		service { 'mysql':
 			ensure => 'stopped',
@@ -30,37 +55,9 @@ class phalconvm_mysql(
 			refreshonly => true,
 			subscribe   => Package['mysql-server'],
 		}
-
-		file { '/srv/log/mysql':
-			ensure => 'absent',
-			owner  => 'root',
-			group  => 'root',
-		}
 	}
 }
 
-#file { '/etc/mysql/my.cnf':
-#	source  => '/srv/config/mysql-config/my.cnf',
-#	owner   => 'root',
-#	group   => 'root',
-#	require => Package['mysql-server'],
-#	notify  => Service['mysql']
-#}
-#
-#file { '/home/vagrant/.my.cnf':
-#	source  => '/srv/config/mysql-config/root-my.cnf',
-#	owner   => 'root',
-#	group   => 'root',
-#	require => Package['mysql-server'],
-#	notify  => Service['mysql']
-#}
-#
-#service { 'mysql':
-#	ensure  => 'running',
-#	enable  => true,
-#	require => [ Package['mysql-server'], File['/srv/log/mysql'] ]
-#}
-#
 # # phpMyAdmin
 # vcsrepo { '/srv/www/default/database-admin/':
 # 	ensure   => 'present',
