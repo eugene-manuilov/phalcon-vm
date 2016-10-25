@@ -11,12 +11,12 @@ class phalconvm_phpmyadmin(
 ) {
 	if $enabled == true {
 		archive { '/tmp/phpmyadmin.tar.gz':
-			ensure          => present,
-			source          => 'https://github.com/phpmyadmin/phpmyadmin/archive/RELEASE_4_6_4.tar.gz',
-			extract         => true,
-			extract_path    => '/tmp/',
-			creates         => '/srv/www/default/public/phpmyadmin/index.php',
-			cleanup         => true,
+			ensure       => 'present',
+			source       => 'https://github.com/phpmyadmin/phpmyadmin/archive/RELEASE_4_6_4.tar.gz',
+			extract      => true,
+			extract_path => '/tmp/',
+			creates      => '/srv/www/default/public/phpmyadmin/index.php',
+			cleanup      => true,
 		}
 
 		->
