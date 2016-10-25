@@ -25,6 +25,13 @@ class phalconvm_phpmyadmin(
 			command => '/bin/mv /tmp/phpmyadmin-RELEASE_4_6_4 /srv/www/default/public/phpmyadmin',
 			creates => '/srv/www/default/public/phpmyadmin/index.php',
 		}
+
+		->
+
+		file { '/srv/www/default/public/phpmyadmin/config.inc.php':
+			ensure  => 'present',
+			content => template( '/srv/provision/puppet/templates/phpmyadmin/config.inc.php.erb' ),
+		}
 	} else {
 		file { '/srv/www/default/public/phpmyadmin/':
 			ensure => 'absent',
@@ -32,8 +39,3 @@ class phalconvm_phpmyadmin(
 		}
 	}
 }
-
-# file { '/srv/www/default/database-admin/config.inc.php':
-# 	source  => '/srv/config/phpmyadmin-config/config.inc.php',
-# 	require => Vcsrepo['/srv/www/default/database-admin/'],
-# }

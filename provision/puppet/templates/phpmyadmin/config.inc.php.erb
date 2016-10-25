@@ -1,0 +1,17 @@
+<?php
+
+$cfg['blowfish_secret'] = 'a8b7c6d';
+
+$i = 0;
+
+$i++;
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
+$cfg['Servers'][$i]['host'] = 'localhost';
+$cfg['Servers'][$i]['connect_type'] = 'tcp';
+$cfg['Servers'][$i]['compress'] = false;
+$cfg['Servers'][$i]['extension'] = 'mysqli';
+$cfg['Servers'][$i]['AllowNoPassword'] = false;
+
+if ( file_exists( 'config.inc.custom.php' ) ) {
+	include( 'config.inc.custom.php' );
+}
