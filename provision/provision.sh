@@ -16,8 +16,9 @@ if [ ! -f /opt/puppetlabs/bin/puppet ]; then
 	/opt/puppetlabs/bin/puppet module install computology-packagecloud
 	/opt/puppetlabs/bin/puppet module install saz-memcached
 	/opt/puppetlabs/bin/puppet module install puppet-nginx
+	/opt/puppetlabs/bin/puppet module install puppet-archive
 fi
 
 # concatinates all puppet scripts into init.pp file
 cat /srv/provision/puppet/partials/*.pp > /srv/provision/puppet/init.pp
-/opt/puppetlabs/bin/puppet apply /srv/provision/puppet/init.pp --noop
+/opt/puppetlabs/bin/puppet apply /srv/provision/puppet/init.pp

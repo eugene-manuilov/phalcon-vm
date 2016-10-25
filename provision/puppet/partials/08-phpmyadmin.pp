@@ -9,21 +9,28 @@ class phalconvm_phpmyadmin(
 	$retainQueryBox = false,
 	$ignoreMultiSubmitErrors = false,
 ) {
-	vcsrepo { '/srv/www/default/public/phpmyadmin/':
-		ensure   => $enabled ? {
-			true    => 'present',
-			false   => 'absent',
-			default => 'absent',
-		},
-		provider => 'git',
-		source   => 'https://github.com/phpmyadmin/phpmyadmin.git',
-		revision => 'RELEASE_4_6_4',
-		depth    => 1,
-	}
+	if $enabled == true {
+		archive { '/tmp/phpmyadmin.tar.gz':
+			ensure          => present,
+			source          => 'https://github.com/phpmyadmin/phpmyadmin/archive/RELEASE_4_6_4.tar.gz',
+			extract         => true,
+			extract_path    => '/tmp/',
+			creates         => '/srv/www/default/public/phpmyadmin/index.php',
+			cleanup         => true,
+		}
 
-#	if $enabled == true {
-#    } else {
-#    }
+		->
+
+		exec { 'move-phpmyadmin':
+			command => '/bin/mv /tmp/phpmyadmin-RELEASE_4_6_4 /srv/www/default/public/phpmyadmin',
+			creates => '/srv/www/default/public/phpmyadmin/index.php',
+		}
+	} else {
+		file { '/srv/www/default/public/phpmyadmin/':
+			ensure => 'absent',
+			force  => true,
+		}
+	}
 }
 
 # file { '/srv/www/default/database-admin/config.inc.php':
