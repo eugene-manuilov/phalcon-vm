@@ -15,7 +15,7 @@ if [ ! -f /opt/puppetlabs/bin/puppet ]; then
 	/opt/puppetlabs/bin/puppet module install puppetlabs-inifile
 	/opt/puppetlabs/bin/puppet module install computology-packagecloud
 	/opt/puppetlabs/bin/puppet module install saz-memcached
-	/opt/puppetlabs/bin/puppet module install puppet-nginx
+	/opt/puppetlabs/bin/puppet module install puppet-nginx --version 0.4.0
 	/opt/puppetlabs/bin/puppet module install puppet-archive
 fi
 
