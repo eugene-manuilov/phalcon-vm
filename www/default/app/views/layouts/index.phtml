@@ -14,7 +14,7 @@
 				<span class="group-title">{{group.label}}</span>
 				<ul>
 					<li class="menu-item" ng-repeat="(key, label) in group.items">
-						<a href="#/env/{{key}}">{{label}}</a>
+						<a ng-href="#env={{key}}">{{label}}</a>
 					</li>
 				</ul>
 			</li>
@@ -33,7 +33,7 @@
 			<li ng-repeat="group in app.menu.tools">
 				<ul>
 					<li class="menu-item" ng-repeat="(key, label) in group.items">
-						<a href="{{key}}">{{label}}</a>
+						<a ng-href="#iframe={{key}}">{{label}}</a>
 					</li>
 				</ul>
 			</li>
@@ -41,7 +41,7 @@
 	</md-content>
 </md-sidenav>
 
-<div layout="column" flex>
+<div id="wrapper" layout="column" flex>
 	<md-toolbar id="toolbar">
 		<div class="md-toolbar-tools">
 			<md-button class="md-icon-button" ng-click="app.toggleSidenav()" hide-gt-sm>
@@ -57,8 +57,7 @@
 		</div>
 	</md-toolbar>
 
-	<md-content id="content" layout-padding ng-view>
-	</md-content>
+	<div id="content" ng-view></div>
 </div>
 
 <?php echo $this->getContent(); ?>

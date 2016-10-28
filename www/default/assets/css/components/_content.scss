@@ -1,4 +1,15 @@
+#wrapper {
+	position: relative;
+	overflow-x: hidden
+}
+
 #content {
+	position: absolute;
+	top: 64px;
+	left: 0;
+	right: 0;
+	bottom: 4px;
+
 	.content-container {
 		max-width: $content-width;
 		margin: 16px;

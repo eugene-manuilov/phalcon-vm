@@ -30,4 +30,4 @@ menu:
             "/opcache-status/opcache.php": "Opcache Status"
             "/webgrind": "Webgrind"
             "/php-info.php": "PHP Info"
-            "/php-status?html&full": "PHP Status"
+            "/php-status%3Fhtml%26full": "PHP Status"

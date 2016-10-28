@@ -71815,13 +71815,25 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 	phalconvm.app = angular.module('PhalconVM', ['ngMaterial', 'ngRoute', 'ngSanitize']);
 
 	phalconvm.app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-		$routeProvider.when('/env/:service', {
+		$routeProvider.when('/env=:service*', {
 			controller: 'EnvCtrl',
 			controllerAs: 'env',
 			template: function(params) {
 				var template = document.getElementById('tmpl-' + params.service);
-				
-				return template ? template.innerHTML : ' ';
+
+				if (template) {
+					return '<md-content layout-padding>' + template.innerHTML + '</md-content>';
+				}
+
+				return ' ';
+			}
+		});
+
+		$routeProvider.when('/iframe=:href*', {
+			controller: 'FrameCtrl',
+			controllerAs: 'frm',
+			template: function(params) {
+				return '<iframe src="' + params.href + '" width="100%" height="100%" md-content style="border:none"/>';
 			}
 		});
 
@@ -71861,5 +71873,9 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 	phalconvm.app.controller('EnvCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
 		$scope.data = phalconvm.data;
+	}]);
+
+	phalconvm.app.controller('FrameCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+
 	}]);
 })(angular, phalconvm);
