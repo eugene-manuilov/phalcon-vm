@@ -8,7 +8,7 @@ $packages = [
 	'imagemagick', 'subversion', 'git', 'zip', 'unzip', 'ngrep', 'curl', 'make',
 	'autoconf', 'automake', 'build-essential', 'libxslt1-dev', 're2c',
 	'libxml2-dev', 'libmcrypt-dev', 'vim', 'colordiff', 'gcc', 'libpcre3-dev',
-	'dos2unix', 'ntp', 'gettext', 'composer', 'libyaml-dev',
+	'dos2unix', 'ntp', 'gettext', 'composer', 'libyaml-dev', 'ack-grep',
 
 	# nodejs for use by grunt
 	'g++', 'nodejs', 'npm',
