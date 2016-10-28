@@ -1,10 +1,18 @@
 <?php
 
+/**
+ * Please, don't modify this file directly, because it will be overriden on next
+ * provision. You can create config.inc.custom.php file with your settings. Put
+ * it into the same folder and it will be automatically used.
+ *
+ * @see: https://docs.phpmyadmin.net/en/latest/config.html
+ */
+
 $cfg['blowfish_secret'] = 'a8b7c6d';
 
-$i = 0;
+$i = 1;
 
-$i++;
+// server settings
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 $cfg['Servers'][$i]['host'] = 'localhost';
 $cfg['Servers'][$i]['connect_type'] = 'tcp';
@@ -12,6 +20,17 @@ $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['extension'] = 'mysqli';
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
 
+// general settings
+$cfg['MaxDbList'] = <%= @maxDbList %>;
+$cfg['MaxTableList'] = <%= @maxTableList %>;
+$cfg['ShowSQL'] = <%= @showSQL %>;
+$cfg['AllowUserDropDatabase'] = <%= @allowUserDropDatabase %>;
+$cfg['Confirm'] = <%= @confirm %>;
+$cfg['UseDbSearch'] = <%= @useDbSearch %>;
+$cfg['RetainQueryBox'] = <%= @retainQueryBox %>;
+$cfg['IgnoreMultiSubmitErrors'] = <%= @ignoreMultiSubmitErrors %>;
+
+// load custom config
 if ( file_exists( 'config.inc.custom.php' ) ) {
 	include( 'config.inc.custom.php' );
 }
