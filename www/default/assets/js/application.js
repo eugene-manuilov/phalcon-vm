@@ -58,10 +58,12 @@
 		};
 	}]);
 
-	phalconvm.app.controller('EnvCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+	phalconvm.app.controller('EnvCtrl', ['$scope', '$rootScope', '$routeParams', function($scope, $rootScope, $routeParams) {
+		$rootScope.saveButton = true;
 		$scope.data = phalconvm.data;
 	}]);
 
-	phalconvm.app.controller('FrameCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+	phalconvm.app.controller('FrameCtrl', ['$scope', '$rootScope', '$routeParams', function($scope, $rootScope, $routeParams) {
+		$rootScope.saveButton = false;
 	}]);
 })(angular, phalconvm);

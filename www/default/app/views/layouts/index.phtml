@@ -51,7 +51,7 @@
 			<!-- fill up the space between left and right area -->
 			<span flex></span>
 
-			<md-button class="md-primary" ng-disabled="!app.nasty" ng-click="app.saveChanges()">
+			<md-button class="md-primary" ng-disabled="!app.nasty" ng-click="app.saveChanges()" ng-show="$root.saveButton">
 				Save Changes
 			</md-button>
 		</div>
