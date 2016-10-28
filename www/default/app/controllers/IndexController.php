@@ -20,7 +20,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
 		$phalconvm = new Yaml( APP_PATH . '/config/phalconvm.yml' );
 		$phalconvm = $phalconvm->toArray();
 		$phalconvm['data'] = array_merge( $defaults, $settings );
-		if ( ! empty( $phalconvm['data']['phpMyAdmin']['enabled'] ) ) {
+		if ( ! empty( $phalconvm['data']['phpMyAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phpmyadmin/index.php' ) ) {
 			$phalconvm['menu']['tools'][0]['items']['/phpmyadmin'] = 'phpMyAdmin';
 		}
 
