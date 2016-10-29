@@ -9,4 +9,5 @@
 /www/default/public/opcache-status/
 /www/default/public/webgrind/
 /www/default/public/phpmyadmin/
+/www/default/public/phpmemcachedadmin/
 /www/default/data/settings.json

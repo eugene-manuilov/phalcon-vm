@@ -1,22 +1,37 @@
-#file { '/srv/log/memcached.log':
-#	ensure => 'present',
-#	owner  => 'root',
-#	group  => 'root'
-#}
-#
-#class { 'memcached':
-#	listen_ip  => '127.0.0.1',
-#	max_memory => 128,
-#	user       => 'memcache',
-#	logfile    => '/srv/log/memcached.log',
-#	require    => File['/srv/log/memcached.log']
-#}
-#
-# # phpMemcacheAdmin
-# vcsrepo { '/srv/www/default/memcached-admin':
-# 	ensure   => 'present',
-# 	provider => 'git',
-# 	source   => 'https://github.com/wp-cloud/phpmemcacheadmin.git',
-# 	revision => '1.2.2.1',
-# 	depth    => 3,
-# }
+class phalconvm_memcached(
+	$enabled = false,
+	$max_memory = 128,
+	$tcp_port = 11211,
+) {
+	if $enabled == true {
+		file { '/srv/log/memcached.log':
+			ensure => 'present',
+		}
+
+		->
+
+		class { 'memcached':
+			package_ensure => 'present',
+			listen_ip  => '127.0.0.1',
+			tcp_port   => $tcp_port,
+			max_memory => $max_memory,
+			user       => 'memcache',
+			logfile    => '/srv/log/memcached.log',
+		}
+	} else {
+		file { '/srv/log/memcached.log':
+			ensure => 'absent',
+		}
+
+		class { 'memcached':
+			package_ensure => 'absent',
+		}
+
+		->
+
+		exec { '/usr/bin/apt-get autoremove --purge -y':
+			refreshonly => true,
+			subscribe   => Package['memcached'],
+		}
+	}
+}

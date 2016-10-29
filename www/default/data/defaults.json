@@ -29,7 +29,9 @@
 		"enabled": false
 	},
 	"memcached": {
-		"enabled": false
+		"enabled": false,
+		"max_memory": "128",
+		"tcp_port": "11211"
 	},
 	"phpMemcacheAdmin": {
 		"enabled": false

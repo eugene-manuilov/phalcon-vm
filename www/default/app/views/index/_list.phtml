@@ -7,7 +7,7 @@
 			<?php elseif ( 'checkbox' == $field['type'] ) : ?>
 				<md-checkbox class="md-secondary" ng-model="data.<?php echo $key; ?>.<?php echo $id; ?>" ng-change="app.setNasty()"></md-checkbox>
 			<?php else : ?>
-				<input type="text" class="md-secondary" placeholder="100" ng-model="data.<?php echo $key; ?>.<?php echo $id; ?>" ng-change="app.setNasty()">
+				<input type="text" class="md-secondary" ng-model="data.<?php echo $key; ?>.<?php echo $id; ?>" ng-change="app.setNasty()">
 			<?php endif; ?>
 
 			<div class="md-list-item-text">
