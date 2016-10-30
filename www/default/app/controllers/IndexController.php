@@ -1,36 +1,12 @@
 <?php
 
-use Phalcon\Config\Adapter\Yaml;
-
 class IndexController extends \Phalcon\Mvc\Controller {
 
 	public function indexAction() {
-		$defaults = file_get_contents( BASE_PATH . '/data/defaults.json' );
-		$defaults = json_decode( $defaults, true );
+		$di = $this->getDI();
 
-		$settings = array();
-		if ( is_readable( BASE_PATH . '/data/settings.json' ) ) {
-			$settings = file_get_contents( BASE_PATH . '/data/settings.json' );
-			$settings = json_decode( $settings, true );
-			if ( ! $settings ) {
-				$settings = array();
-			}
-		}
-
-		$phalconvm = new Yaml( APP_PATH . '/config/phalconvm.yml' );
-		$phalconvm = $phalconvm->toArray();
-		$phalconvm['data'] = array_replace_recursive( $defaults, $settings );
-
-		if ( ! empty( $phalconvm['data']['phpMyAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phpmyadmin/index.php' ) ) {
-			$phalconvm['menu']['tools'][0]['items']['/phpmyadmin'] = 'phpMyAdmin';
-		}
-
-		if ( ! empty( $phalconvm['data']['phpMemcacheAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phpmemcachedadmin/index.php' ) ) {
-			$phalconvm['menu']['tools'][0]['items']['/phpmemcachedadmin'] = 'phpMemcacheAdmin';
-		}
-
-		$fields = new Yaml( APP_PATH . '/config/groups.yml' );
-		$fields = $fields->toArray();
+		$phalconvm = $di->getShared( 'phalconvmConfig' );
+		$fields = $di->getShared( 'fieldsConfig' );
 
 		$this->tag->setTitle( 'Phalcon VM' );
 
