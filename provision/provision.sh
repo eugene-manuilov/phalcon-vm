@@ -14,6 +14,7 @@ if [ ! -f /opt/puppetlabs/bin/puppet ]; then
 	/opt/puppetlabs/bin/puppet module install puppetlabs-vcsrepo --version 1.4.0
 	/opt/puppetlabs/bin/puppet module install puppetlabs-inifile --version 1.6.0
 	/opt/puppetlabs/bin/puppet module install puppetlabs-mysql --version 3.9.0
+	/opt/puppetlabs/bin/puppet module install puppetlabs-mongodb --version 0.14.0
 	/opt/puppetlabs/bin/puppet module install computology-packagecloud --version 0.3.1
 	/opt/puppetlabs/bin/puppet module install saz-memcached --version 2.8.1
 	/opt/puppetlabs/bin/puppet module install puppet-nginx --version 0.4.0
