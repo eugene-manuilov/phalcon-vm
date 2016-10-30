@@ -1,4 +1,4 @@
-class phalconvm_phpmyadmin(
+class phalconvm::mysql::phpmyadmin(
 	$enabled = false,
 	$maxDbList = 100,
 	$maxTableList = 250,
@@ -30,7 +30,7 @@ class phalconvm_phpmyadmin(
 
 		file { '/srv/www/default/public/phpmyadmin/config.inc.php':
 			ensure  => 'present',
-			content => template( '/srv/provision/puppet/templates/phpmyadmin/config.inc.php.erb' ),
+			content => template( 'phalconvm/phpmyadmin/config.inc.php.erb' ),
 		}
 	} else {
 		file { '/srv/www/default/public/phpmyadmin/':

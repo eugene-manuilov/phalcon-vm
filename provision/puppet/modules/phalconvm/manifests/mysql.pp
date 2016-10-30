@@ -1,6 +1,4 @@
-class phalconvm_mysql(
-	$enabled = false,
-) {
+class phalconvm::mysql( $enabled = false ) {
 	if $enabled == true {
 		class { '::mysql::server':
 			root_password           => 'root',

@@ -1,9 +1,6 @@
-class phalconvm_mongodb(
-	$enabled = false,
-) {
+class phalconvm::mongodb( $enabled = false ) {
 	if $enabled == true {
-		class { '::mongodb::server':
-		}
+		class { '::mongodb::server': }
 	} else {
 		service { 'mongodb':
 			ensure => 'stopped',

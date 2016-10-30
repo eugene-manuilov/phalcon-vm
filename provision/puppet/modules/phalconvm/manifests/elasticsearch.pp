@@ -1,6 +1,4 @@
-class phalconvm_elasticsearch(
-	$enabled = false,
-) {
+class phalconvm::elasticsearch( $enabled = false ) {
 	if $enabled == true {
 		class { 'elasticsearch':
 			java_install      => true,

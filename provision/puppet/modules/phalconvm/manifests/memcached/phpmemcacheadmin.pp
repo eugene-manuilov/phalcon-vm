@@ -1,6 +1,4 @@
-class phalconvm_phpmemcacheadmin(
-	$enabled = false,
-) {
+class phalconvm::memcached::phpmemcacheadmin( $enabled = false ) {
 	vcsrepo { '/srv/www/default/public/phpmemcachedadmin':
 		ensure   => $enabled ? {
 			true    => 'present',

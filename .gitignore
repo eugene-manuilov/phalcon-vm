@@ -1,7 +1,6 @@
 /.vagrant/
 /.data/
 /nbproject/
-/provision/puppet/init.pp
 /www/*
 !/www/default/
 /www/default/bower_components/

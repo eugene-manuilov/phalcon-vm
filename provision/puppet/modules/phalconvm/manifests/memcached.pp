@@ -1,8 +1,4 @@
-class phalconvm_memcached(
-	$enabled = false,
-	$max_memory = 128,
-	$tcp_port = 11211,
-) {
+class phalconvm::memcached( $enabled = false, $max_memory = 128, $tcp_port = 11211 ) {
 	if $enabled == true {
 		file { '/srv/log/memcached.log':
 			ensure => 'present',
@@ -22,7 +18,7 @@ class phalconvm_memcached(
 		file { '/srv/log/memcached.log':
 			ensure => 'absent',
 		}
-		
+
 		service { 'memcached':
 			ensure => 'stopped',
 		}

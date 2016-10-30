@@ -1,8 +1,6 @@
 # https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-sphinx-on-ubuntu-14-04
 
-class phalconvm_sphinx(
-	$enabled = false,
-) {
+class phalconvm::sphinxsearch( $enabled = false ) {
 	if $enabled == true {
 		package { 'sphinxsearch': ensure => 'installed' }
 	} else {
