@@ -1,3 +1,5 @@
+# https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-sphinx-on-ubuntu-14-04
+
 class phalconvm_sphinx(
 	$enabled = false,
 ) {

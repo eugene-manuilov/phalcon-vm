@@ -18,6 +18,7 @@ if [ ! -f /opt/puppetlabs/bin/puppet ]; then
 	/opt/puppetlabs/bin/puppet module install saz-memcached --version 2.8.1
 	/opt/puppetlabs/bin/puppet module install puppet-nginx --version 0.4.0
 	/opt/puppetlabs/bin/puppet module install puppet-archive --version 1.1.2
+	/opt/puppetlabs/bin/puppet module install elasticsearch-elasticsearch --version 0.14.0
 fi
 
 # concatinates all puppet scripts into init.pp file
