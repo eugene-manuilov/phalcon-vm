@@ -22,14 +22,22 @@ class phalconvm_memcached(
 		file { '/srv/log/memcached.log':
 			ensure => 'absent',
 		}
-
-		class { 'memcached':
-			package_ensure => 'absent',
+		
+		service { 'memcached':
+			ensure => 'stopped',
 		}
 
 		->
 
-		exec { '/usr/bin/apt-get autoremove --purge -y':
+		package { 'memcached':
+			ensure  => 'purged',
+			require => Service['memcached'],
+		}
+
+		->
+
+		exec { 'memcached-removed':
+			command     => '/usr/bin/apt-get autoremove --purge -y',
 			refreshonly => true,
 			subscribe   => Package['memcached'],
 		}

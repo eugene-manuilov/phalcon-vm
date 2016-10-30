@@ -12,12 +12,13 @@ class phalconvm_sphinx(
 
 		package { 'sphinxsearch':
 			ensure  => 'purged',
-			require => Service['mysql'],
+			require => Service['sphinxsearch'],
 		}
 
 		->
 
-		exec { '/usr/bin/apt-get autoremove --purge -y':
+		exec { 'sphinxsearch-remove':
+			command     => '/usr/bin/apt-get autoremove --purge -y',
 			refreshonly => true,
 			subscribe   => Package['sphinxsearch'],
 		}

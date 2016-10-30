@@ -20,7 +20,8 @@ class phalconvm_mysql(
 
 		->
 
-		exec { '/usr/bin/apt-get autoremove --purge -y':
+		exec { 'mysql-remove':
+			command     => '/usr/bin/apt-get autoremove --purge -y',
 			refreshonly => true,
 			subscribe   => Package['mysql-server'],
 		}
