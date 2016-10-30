@@ -30,7 +30,8 @@
 
 		<span class="section-title">Tools</span>
 		<ul>
-			<li ng-repeat="group in app.menu.tools">
+			<li ng-repeat="group in app.menu.tools | filter: app.notEmptyGroup">
+				<span class="group-title">{{group.label}}</span>
 				<ul>
 					<li class="menu-item" ng-repeat="(key, label) in group.items">
 						<a ng-href="#iframe={{key}}">{{label}}</a>

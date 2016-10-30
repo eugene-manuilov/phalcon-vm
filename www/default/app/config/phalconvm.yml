@@ -24,9 +24,13 @@ menu:
         - label: "Search Engines"
           items:
               elasticsearch: "Elasticsearch"
-              sphinx: "Sphinx"
+              sphinx: "Sphinxsearch"
     tools:
-        - items:
+        - label: "Services"
+          items: []
+
+        - label: "Miscellaneous"
+          items:
             "/opcache-status/opcache.php": "Opcache Status"
             "/webgrind": "Webgrind"
             "/php-info.php": "PHP Info"

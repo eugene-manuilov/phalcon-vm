@@ -35,6 +35,12 @@
 		self.nasty = false;
 		self.menu = phalconvm.menu;
 
+		self.notEmptyGroup = function(group) {
+			var emptyObject = angular.equals({}, group.items),
+				emptyArray = angular.equals([], group.items);
+			return ! emptyArray && ! emptyObject;
+		};
+
 		self.setNasty = function() {
 			self.nasty = true;
 		};
