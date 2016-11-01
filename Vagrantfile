@@ -37,6 +37,12 @@ Vagrant.configure(2) do |config|
 		config.hostsupdater.remove_on_suspend = true
 	end
 
-	config.vm.provision :shell, :path => File.join( "provision", "provision.sh" )
-	config.vm.provision :shell, :path => File.join( "provision", "startup.sh" ), run: "always"
+	config.vm.provision "fix-no-tty", type: "shell" do |s|
+		s.privileged = false
+		s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
+	end
+
+	config.vm.provision "provision", type: "shell", path: File.join( "provision", "provision.sh" )
+
+	config.vm.provision "startup", type: "shell", path: File.join( "provision", "startup.sh" ), run: "always"
 end
