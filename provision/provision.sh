@@ -28,6 +28,7 @@ if [ ! -f /opt/puppetlabs/bin/puppet ]; then
 	puppet module install puppet-nginx --version 0.4.0
 	puppet module install puppet-archive --version 1.1.2
 	puppet module install elasticsearch-elasticsearch --version 0.14.0
+	puppet module install arioch-redis --version 1.2.3
 fi
 
 # apply puppet configuration

@@ -23,6 +23,7 @@ class phalconvm ( $settings ) {
 #	class { 'phalconvm::postgres':                    * => $settings[postgres] }
 #	class { 'phalconvm::phppgadmin':                  * => $settings[phpPgAdmin] }
 	class { 'phalconvm::mongodb':                     * => $settings[mongodb] }
+	class { 'phalconvm::redis':                       * => $settings[redis] }
 	class { 'phalconvm::memcached':                   * => $settings[memcached] }
 	class { 'phalconvm::memcached::phpmemcacheadmin': * => $settings[phpMemcacheAdmin] }
 #	class { 'phalconvm::gearman':                     * => $settings[gearman] }
