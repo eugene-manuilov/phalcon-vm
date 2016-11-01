@@ -15,21 +15,8 @@ if [ ! -f /opt/puppetlabs/bin/puppet ]; then
 
 	# set basemodulepath
 	puppet config set basemodulepath "/etc/puppetlabs/code/modules:/opt/puppetlabs/puppet/modules:/srv/provision/puppet/modules" --section main
-
-	# install puppet modules
-	puppet module install puppetlabs-stdlib --version 4.13.1
-	puppet module install puppetlabs-apt --version 2.3.0
-	puppet module install puppetlabs-vcsrepo --version 1.4.0
-	puppet module install puppetlabs-inifile --version 1.6.0
-	puppet module install puppetlabs-mysql --version 3.9.0
-	puppet module install puppetlabs-mongodb --version 0.14.0
-	puppet module install computology-packagecloud --version 0.3.1
-	puppet module install saz-memcached --version 2.8.1
-	puppet module install puppet-nginx --version 0.4.0
-	puppet module install puppet-archive --version 1.1.2
-	puppet module install elasticsearch-elasticsearch --version 0.14.0
-	puppet module install arioch-redis --version 1.2.3
 fi
 
-# apply puppet configuration
+# install puppet modules and apply server configurations
+puppet apply /srv/provision/puppet/modules.pp
 puppet apply /srv/provision/puppet/setup.pp
