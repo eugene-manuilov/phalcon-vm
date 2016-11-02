@@ -20,8 +20,8 @@ class phalconvm ( $settings ) {
 	class { 'phalconvm::nginx':                       * => $settings[nginx] }
 	class { 'phalconvm::mysql':                       * => $settings[mysql] }
 	class { 'phalconvm::mysql::phpmyadmin':           * => $settings[phpMyAdmin] }
-#	class { 'phalconvm::postgres':                    * => $settings[postgres] }
-#	class { 'phalconvm::phppgadmin':                  * => $settings[phpPgAdmin] }
+	class { 'phalconvm::postgres':                    * => $settings[postgres] }
+	class { 'phalconvm::postgres::phppgadmin':        * => $settings[phpPgAdmin] }
 	class { 'phalconvm::mongodb':                     * => $settings[mongodb] }
 	class { 'phalconvm::redis':                       * => $settings[redis] }
 	class { 'phalconvm::memcached':                   * => $settings[memcached] }

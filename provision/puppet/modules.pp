@@ -23,6 +23,11 @@ exec { 'puppetlabs-mysql':
 	creates => '/etc/puppetlabs/code/environments/production/modules/mysql/',
 }
 
+exec { 'puppetlabs-postgresql':
+	command => '/opt/puppetlabs/bin/puppet module install puppetlabs-postgresql --version 4.8.0',
+	creates => '/etc/puppetlabs/code/environments/production/modules/postgresql/',
+}
+
 exec { 'puppetlabs-mongodb':
 	command => '/opt/puppetlabs/bin/puppet module install puppetlabs-mongodb --version 0.14.0',
 	creates => '/etc/puppetlabs/code/environments/production/modules/mongodb/',

@@ -9,6 +9,7 @@ restart() {
 restart nginx
 restart php7.0-fpm
 restart mysql
+restart postgresql
 restart mongodb
 restart redis-server
 restart memcached
