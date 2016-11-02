@@ -12,4 +12,5 @@ restart mysql
 restart mongodb
 restart redis-server
 restart memcached
+restart gearman-job-server
 restart sphinxsearch
