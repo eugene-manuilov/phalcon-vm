@@ -23,14 +23,10 @@ class phalconvm::memcached( $enabled = false, $max_memory = 128, $tcp_port = 112
 			ensure => 'stopped',
 		}
 
-		->
-
 		package { 'memcached':
 			ensure  => 'purged',
 			require => Service['memcached'],
 		}
-
-		->
 
 		exec { 'memcached-removed':
 			command     => '/usr/bin/apt-get autoremove --purge -y',

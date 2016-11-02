@@ -6,14 +6,10 @@ class phalconvm::mongodb( $enabled = false ) {
 			ensure => 'stopped',
 		}
 
-		->
-
 		package { 'mongodb-server':
 			ensure  => 'purged',
 			require => Service['mongodb'],
 		}
-
-		->
 
 		exec { 'mongodb-remove':
 			command     => '/usr/bin/apt-get autoremove --purge -y',

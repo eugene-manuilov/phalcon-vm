@@ -10,8 +10,6 @@ class phalconvm::elasticsearch( $enabled = false ) {
 			api_port          => 9200,
 		}
 
-		->
-
 		elasticsearch::instance { 'es-01': }
 	} else {
 	}

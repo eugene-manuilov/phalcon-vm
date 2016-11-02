@@ -1,16 +1,20 @@
 class phalconvm::redis( $enabled = false ) {
 	if $enabled == true {
-		class { 'redis':
-		}
+		class { 'redis': }
 	} else {
-		service { 'redis-server': ensure => 'stopped' }
+		service { 'redis-server':
+			ensure => 'stopped',
+		}
 
-		->
+		package { 'redis-server':
+			ensure  => 'purged',
+			require => Service['redis-server'],
+		}
 
-		package { 'redis-server': ensure  => 'purged' }
-
-		->
-
-		exec { 'redis-remove': command => '/usr/bin/apt-get autoremove --purge -y' }
+		exec { 'redis-remove': 
+			command     => '/usr/bin/apt-get autoremove --purge -y',
+			refreshonly => true,
+			subscribe   => Package['redis-server'],
+		}
 	}
 }

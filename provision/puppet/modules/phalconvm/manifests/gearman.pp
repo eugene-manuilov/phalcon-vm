@@ -14,7 +14,8 @@ class phalconvm::gearman( $enabled = false ) {
 		}
 
 		package { 'gearman-job-server': 
-			ensure => 'purged',
+			ensure  => 'purged',
+			require => Service['gearman-job-server'],
 		}
 
 		exec { 'gearman-remove':

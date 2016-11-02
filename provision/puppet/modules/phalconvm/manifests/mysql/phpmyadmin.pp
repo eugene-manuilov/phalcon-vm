@@ -19,18 +19,16 @@ class phalconvm::mysql::phpmyadmin(
 			cleanup      => true,
 		}
 
-		->
-
 		exec { 'move-phpmyadmin':
 			command => '/bin/mv /tmp/phpmyadmin-RELEASE_4_6_4 /srv/www/default/public/phpmyadmin',
 			creates => '/srv/www/default/public/phpmyadmin/index.php',
+			require => Archive['/tmp/phpmyadmin.tar.gz']
 		}
-
-		->
 
 		file { '/srv/www/default/public/phpmyadmin/config.inc.php':
 			ensure  => 'present',
 			content => template( 'phalconvm/phpmyadmin/config.inc.php.erb' ),
+			require => Exec['move-phpmyadmin'],
 		}
 	} else {
 		file { '/srv/www/default/public/phpmyadmin/':

@@ -9,14 +9,10 @@ class phalconvm::mysql( $enabled = false ) {
 			ensure => 'stopped',
 		}
 
-		->
-
 		package { 'mysql-server':
 			ensure  => 'purged',
 			require => Service['mysql'],
 		}
-
-		->
 
 		exec { 'mysql-remove':
 			command     => '/usr/bin/apt-get autoremove --purge -y',
