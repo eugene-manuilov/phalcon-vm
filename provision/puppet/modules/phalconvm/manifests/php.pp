@@ -2,7 +2,7 @@ class phalconvm::php {
 	$packages = [
 		'php7.0', 'php7.0-fpm', 'php7.0-common', 'php7.0-dev', 'php7.0-mbstring',
 		'php7.0-mcrypt', 'php7.0-mysql', 'php7.0-imap', 'php7.0-curl', 'php7.0-gd',
-		'php7.0-json', 'php-memcache', 'php-imagick', 'php-xdebug',
+		'php7.0-json', 'php-memcache', 'php-imagick', 'php-xdebug', 'php7.0-pgsql',
 	]
 
 	package { $packages: ensure => 'installed' }

@@ -75,6 +75,10 @@ $di->setShared( 'phalconvmConfig', function() {
 		$phalconvm['menu']['tools'][0]['items']['/phpmyadmin'] = 'phpMyAdmin';
 	}
 
+	if ( ! empty( $phalconvm['data']['phpPgAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phppgadmin/index.php' ) ) {
+		$phalconvm['menu']['tools'][0]['items']['/phppgadmin'] = 'phpPgAdmin';
+	}
+
 	if ( ! empty( $phalconvm['data']['phpMemcacheAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phpmemcachedadmin/index.php' ) ) {
 		$phalconvm['menu']['tools'][0]['items']['/phpmemcachedadmin'] = 'phpMemcacheAdmin';
 	}
