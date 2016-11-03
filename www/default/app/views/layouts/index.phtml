@@ -8,37 +8,20 @@
 	<md-divider></md-divider>
 
 	<md-content id="sidebar-menu">
-		<span class="section-title">Server Environment</span>
-		<ul>
-			<li ng-repeat="group in app.menu.environment">
-				<span class="group-title">{{group.label}}</span>
-				<ul>
-					<li class="menu-item" ng-repeat="(key, label) in group.items">
-						<a ng-href="#env={{key}}">{{label}}</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
+		<div ng-repeat="(label, block) in app.menu">
+			<span class="section-title">{{label}}</span>
+			<ul>
+				<li>
+					<ul>
+						<li class="menu-item" ng-repeat="(key, group) in block">
+							<a ng-href="{{key}}">{{group.label}}</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
 
-		<md-divider></md-divider>
-
-		<span class="section-title">Web Sites</span>
-		<ul>
-		</ul>
-
-		<md-divider></md-divider>
-
-		<span class="section-title">Tools</span>
-		<ul>
-			<li ng-repeat="group in app.menu.tools | filter: app.notEmptyGroup">
-				<span class="group-title">{{group.label}}</span>
-				<ul>
-					<li class="menu-item" ng-repeat="(key, label) in group.items">
-						<a ng-href="#iframe={{key}}">{{label}}</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
+			<md-divider ng-hide="$last"></md-divider>
+		</div>
 	</md-content>
 </md-sidenav>
 

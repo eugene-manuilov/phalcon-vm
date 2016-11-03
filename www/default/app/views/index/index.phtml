@@ -1,41 +1,29 @@
 <?php
 
-foreach ( $groups as $group => $groupData ) :
-
-	?><script id="tmpl-<?php echo $group; ?>" type="text/html">
+foreach ( $phalconvm['menu']['environment'] as $env ) :
+	?><script id="tmpl-<?php echo $env['key']; ?>" type="text/html">
 		<div class="content-container">
 			<header class="header">
-				<h2 class="md-display-1"><?php echo $groupData['label']; ?></h2>
-			</header><?php
+				<h2 class="md-display-1"><?php echo $env['label']; ?></h2>
+			</header>
 
-			if ( is_array( $groupData['description'] ) ) :
-				?><p><?php echo implode( '</p><p>', $groupData['description'] ); ?></p><?php
-			else :
-				?><p><?php echo $groupData['description']; ?></p><?php
-			endif;
+			<md-tabs md-stretch-tabs="auto" md-dynamic-height="true">
+				<?php foreach ( $env['items'] as $tab => $tabLabel ) : ?>
+					<md-tab label="<?php echo $tabLabel; ?>">
+						<md-tab-body><?php
 
-			if ( count( $groupData['tabs'] ) > 1 ) :
-				?><md-tabs md-stretch-tabs="auto" md-dynamic-height="true">
-					<?php foreach ( $groupData['tabs'] as $tab => $tabData ) : ?>
-						<md-tab label="<?php echo $tab; ?>">
-							<md-tab-body><?php
+							foreach ( $phalconvm['fields'][ $tab ] as $blockLabel => $tabData ) :
+								?><h2 class="md-subhead"><?php echo $blockLabel; ?></h2><?php
+
 								$this->partial( "index/_list", array(
 									'key'    => $tabData['key'],
 									'fields' => $tabData['fields'],
 								) );
-							?></md-tab-body>
-						</md-tab>
-					<?php endforeach; ?>
-				</md-tabs><?php
-			else :
-				foreach ( $groupData['tabs'] as $tab => $tabData ) :
-					$this->partial( "index/_list", array(
-						'key'    => $tabData['key'],
-						'fields' => $tabData['fields'],
-					) );
-				endforeach;
-			endif;
-		?></div>
+							endforeach;
+						?></md-tab-body>
+					</md-tab>
+				<?php endforeach; ?>
+			</md-tabs>
+		</div>
 	</script><?php
-
 endforeach;

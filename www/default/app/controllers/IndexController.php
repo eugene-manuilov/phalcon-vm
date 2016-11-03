@@ -16,8 +16,8 @@ class IndexController extends \Phalcon\Mvc\Controller {
 		$this->assets->addInlineJs( sprintf( 'var phalconvm = %s;', json_encode( $phalconvm ) ) );
 		$this->assets->addJs( 'js/app.js' );
 
+		$phalconvm['fields'] = $fields;
 		$this->view->phalconvm = $phalconvm;
-		$this->view->groups = $fields;
 	}
 
 	public function saveAction() {

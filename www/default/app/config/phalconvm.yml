@@ -1,37 +1,49 @@
 app: null
 menu:
     environment:
-        - label: "Web Sevices"
-          items:
-              nginx: "Nginx"
+        "#env=web":
+            key: web
+            label: "Web Sevices"
+            items:
+                nginx: "Nginx"
 
-        - label: "Databases"
-          items:
-              mysql: "MySQL"
-              postgres: "PostgreSQL"
-              mongodb: "MongoDB"
+        "#env=db":
+            key: db
+            label: "Databases"
+            items:
+                mysql: "MySQL"
+                postgres: "PostgreSQL"
+                mongodb: "MongoDB"
 
-        - label: "Caching Systems"
-          items:
-              redis: "Redis"
-              memcached: "Memcached"
+        "#env=cache":
+            key: cache
+            label: "Caching Systems"
+            items:
+                redis: "Redis"
+                memcached: "Memcached"
 
-        - label: "Queue Systems"
-          items:
-              gearman: "Gearman"
-              rabbitmq: "RabbitMQ"
+        "#env=queue":
+            key: queue
+            label: "Queue Systems"
+            items:
+                gearman: "Gearman"
+                rabbitmq: "RabbitMQ"
 
-        - label: "Search Engines"
-          items:
-              elasticsearch: "Elasticsearch"
-              sphinx: "Sphinxsearch"
-    tools:
-        - label: "Services"
-          items: []
+        "#env=search":
+            key: search
+            label: "Search Engines"
+            items:
+                elasticsearch: "Elasticsearch"
+                sphinx: "Sphinxsearch"
 
-        - label: "Miscellaneous"
-          items:
-            "/opcache-status/opcache.php": "Opcache Status"
-            "/webgrind": "Webgrind"
-            "/php-info.php": "PHP Info"
-            "/php-status%3Fhtml%26full": "PHP Status"
+    tools: []
+
+    miscellaneous:
+        "#iframe=/opcache-status/opcache.php":
+            label: "Opcache Status"
+        "#iframe=/webgrind":
+            label: "Webgrind"
+        "#iframe=/php-info.php":
+            label: "PHP Info"
+        "#iframe=/php-status%3Fhtml%26full":
+            label: "PHP Status"

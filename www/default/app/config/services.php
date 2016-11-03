@@ -72,22 +72,22 @@ $di->setShared( 'phalconvmConfig', function() {
 	$phalconvm['data'] = array_replace_recursive( $defaults, $settings );
 
 	if ( ! empty( $phalconvm['data']['phpMyAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phpmyadmin/index.php' ) ) {
-		$phalconvm['menu']['tools'][0]['items']['/phpmyadmin'] = 'phpMyAdmin';
+		$phalconvm['menu']['tools']['#iframe=/phpmyadmin'] = array( 'label' => 'phpMyAdmin' );
 	}
 
 	if ( ! empty( $phalconvm['data']['phpPgAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phppgadmin/index.php' ) ) {
-		$phalconvm['menu']['tools'][0]['items']['/phppgadmin'] = 'phpPgAdmin';
+		$phalconvm['menu']['tools']['#iframe=/phppgadmin'] = array( 'label' => 'phpPgAdmin' );
 	}
 
 	if ( ! empty( $phalconvm['data']['phpMemcacheAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phpmemcachedadmin/index.php' ) ) {
-		$phalconvm['menu']['tools'][0]['items']['/phpmemcachedadmin'] = 'phpMemcacheAdmin';
+		$phalconvm['menu']['tools']['#iframe=/phpmemcachedadmin'] = array( 'label' => 'phpMemcacheAdmin' );
 	}
 
 	return $phalconvm;
 } );
 
 $di->setShared( 'fieldsConfig', function() {
-	$fields = new Yaml( APP_PATH . '/config/groups.yml' );
+	$fields = new Yaml( APP_PATH . '/config/fields.yml' );
 	$fields = $fields->toArray();
 
 	return $fields;
