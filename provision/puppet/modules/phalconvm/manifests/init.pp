@@ -27,7 +27,7 @@ class phalconvm ( $settings ) {
 	class { 'phalconvm::memcached':                   * => $settings[memcached] }
 	class { 'phalconvm::memcached::phpmemcacheadmin': * => $settings[phpMemcacheAdmin] }
 	class { 'phalconvm::gearman':                     * => $settings[gearman] }
-#	class { 'phalconvm::rabbitmq':                    * => $settings[rabbitmq] }
+	class { 'phalconvm::rabbitmq':                    * => $settings[rabbitmq] }
 	class { 'phalconvm::elasticsearch':               * => $settings[elasticsearch] }
 	class { 'phalconvm::sphinxsearch':                * => $settings[sphinx] }
 }
