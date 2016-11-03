@@ -2,7 +2,7 @@
 	phalconvm.app = angular.module('PhalconVM', ['ngMaterial', 'ngRoute', 'ngSanitize']);
 
 	phalconvm.app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-		$routeProvider.when('/env=:service*', {
+		$routeProvider.when('/env/:service', {
 			controller: 'EnvCtrl',
 			controllerAs: 'env',
 			template: function(params) {
@@ -16,7 +16,7 @@
 			}
 		});
 
-		$routeProvider.when('/iframe=:href*', {
+		$routeProvider.when('/iframe:href*', {
 			controller: 'FrameCtrl',
 			controllerAs: 'frm',
 			template: function(params) {
@@ -24,9 +24,7 @@
 			}
 		});
 
-		$routeProvider.otherwise({redirectTo: ''});
-
-		$locationProvider.html5Mode(false);
+		$locationProvider.html5Mode(true);
 	}]);
 
 	phalconvm.app.controller('AppCtrl', ['$mdSidenav', '$mdDialog', '$http', function ($mdSidenav, $mdDialog, $http) {

@@ -1,13 +1,13 @@
 app: null
 menu:
     environment:
-        "#env=web":
+        "/env/web":
             key: web
             label: "Web Sevices"
             items:
                 nginx: "Nginx"
 
-        "#env=db":
+        "/env/db":
             key: db
             label: "Databases"
             items:
@@ -15,21 +15,21 @@ menu:
                 postgres: "PostgreSQL"
                 mongodb: "MongoDB"
 
-        "#env=cache":
+        "/env/cache":
             key: cache
             label: "Caching Systems"
             items:
                 redis: "Redis"
                 memcached: "Memcached"
 
-        "#env=queue":
+        "/env/queue":
             key: queue
             label: "Queue Systems"
             items:
                 gearman: "Gearman"
                 rabbitmq: "RabbitMQ"
 
-        "#env=search":
+        "/env/search":
             key: search
             label: "Search Engines"
             items:
@@ -39,11 +39,11 @@ menu:
     tools: []
 
     miscellaneous:
-        "#iframe=/opcache-status/opcache.php":
+        "/iframe/opcache-status/opcache.php":
             label: "Opcache Status"
-        "#iframe=/webgrind":
+        "/iframe/webgrind":
             label: "Webgrind"
-        "#iframe=/php-info.php":
+        "/iframe/php-info.php":
             label: "PHP Info"
-        "#iframe=/php-status%3Fhtml%26full":
+        "/iframe/php-status%3Fhtml%26full":
             label: "PHP Status"

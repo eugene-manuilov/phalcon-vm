@@ -1,7 +1,12 @@
 <?php
 
 use Phalcon\Config\Adapter\Yaml;
+use Phalcon\Dispatcher;
+use Phalcon\Events\Event;
+use Phalcon\Events\Manager as EventsManager;
 use Phalcon\Mvc\Router;
+use Phalcon\Mvc\Dispatcher as MvcDispatcher;
+use Phalcon\Mvc\Dispatcher\Exception as DispatchException;
 
 $di->setShared( 'config', function () {
 	return new \Phalcon\Config( array(
@@ -54,6 +59,30 @@ $di->setShared( 'router', function() {
 	return $router;
 } );
 
+$di->setShared( 'dispatcher', function () {
+	$eventsManager = new EventsManager();
+	$eventsManager->attach( 'dispatch:beforeException', function( Event $event, $dispatcher, Exception $exception ) {
+		$index = array( "controller" => "index", "action" => "index" );
+
+		if ( $exception instanceof DispatchException ) {
+			$dispatcher->forward( $index );
+			return false;
+		}
+
+		switch ( $exception->getCode() ) {
+			case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
+			case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
+				$dispatcher->forward( $index );
+				return false;
+		}
+	} );
+
+	$dispatcher = new MvcDispatcher();
+	$dispatcher->setEventsManager($eventsManager);
+
+	return $dispatcher;
+} );
+
 $di->setShared( 'phalconvmConfig', function() {
 	$defaults = file_get_contents( BASE_PATH . '/data/defaults.json' );
 	$defaults = json_decode( $defaults, true );
@@ -72,15 +101,15 @@ $di->setShared( 'phalconvmConfig', function() {
 	$phalconvm['data'] = array_replace_recursive( $defaults, $settings );
 
 	if ( ! empty( $phalconvm['data']['phpMyAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phpmyadmin/index.php' ) ) {
-		$phalconvm['menu']['tools']['#iframe=/phpmyadmin'] = array( 'label' => 'phpMyAdmin' );
+		$phalconvm['menu']['tools']['/iframe/phpmyadmin'] = array( 'label' => 'phpMyAdmin' );
 	}
 
 	if ( ! empty( $phalconvm['data']['phpPgAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phppgadmin/index.php' ) ) {
-		$phalconvm['menu']['tools']['#iframe=/phppgadmin'] = array( 'label' => 'phpPgAdmin' );
+		$phalconvm['menu']['tools']['/iframe/phppgadmin'] = array( 'label' => 'phpPgAdmin' );
 	}
 
 	if ( ! empty( $phalconvm['data']['phpMemcacheAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phpmemcachedadmin/index.php' ) ) {
-		$phalconvm['menu']['tools']['#iframe=/phpmemcachedadmin'] = array( 'label' => 'phpMemcacheAdmin' );
+		$phalconvm['menu']['tools']['/iframe/phpmemcachedadmin'] = array( 'label' => 'phpMemcacheAdmin' );
 	}
 
 	return $phalconvm;
