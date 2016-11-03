@@ -14,4 +14,5 @@ restart mongodb
 restart redis-server
 restart memcached
 restart gearman-job-server
+restart rabbitmq-server
 restart sphinxsearch
