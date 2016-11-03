@@ -9,6 +9,7 @@ class phalconvm ( $settings ) {
 	package { $packages: ensure => 'installed' }
 
 	class { 'phalconvm::php': }
+    class { 'phalconvm::php::zephir': }
 	class { 'phalconvm::php::phalcon': }
 	class { 'phalconvm::php::pecl': }
 
