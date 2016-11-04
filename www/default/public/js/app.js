@@ -71870,11 +71870,13 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 	}]);
 
 	phalconvm.app.controller('EnvCtrl', ['$scope', '$rootScope', '$routeParams', function($scope, $rootScope, $routeParams) {
+		$rootScope.title = phalconvm.menu.environment['/env/' + $routeParams.service].label;
 		$rootScope.saveButton = true;
 		$scope.data = phalconvm.data;
 	}]);
 
 	phalconvm.app.controller('FrameCtrl', ['$scope', '$rootScope', '$routeParams', function($scope, $rootScope, $routeParams) {
+		$rootScope.title = phalconvm.menu.environment['/iframe/' + $routeParams.href].label;
 		$rootScope.saveButton = false;
 	}]);
 })(angular, phalconvm);

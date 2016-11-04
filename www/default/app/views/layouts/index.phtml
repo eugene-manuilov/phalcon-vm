@@ -32,7 +32,10 @@
 				<md-icon md-svg-src="/svg/ic_menu_black_24px.svg" aria-label="menu" style="color:white"></md-icon>
 			</md-button>
 
-			<!-- fill up the space between left and right area -->
+			<h2 class="md-toolbar-item md-breadcrumb md-headline" ng-show="$root.title">
+				<span class="md-breadcrumb-page">{{$root.title}}</span>
+			</h2>
+
 			<span flex></span>
 
 			<md-button class="md-primary" ng-disabled="!app.nasty" ng-click="app.saveChanges()" ng-show="$root.saveButton">
