@@ -11,7 +11,7 @@
 			<?php endif; ?>
 
 			<div class="md-list-item-text">
-				<h3><?php echo ! empty( $field['label'] ) ? $field['label'] : ucfirst( $id ); ?></h3>
+				<h3><?php echo ! empty( $field['label'] ) ? $field['label'] : ucwords( str_replace( '_', ' ', $id ) ); ?></h3>
 				<p><?php echo $field['description']; ?></p>
 			</div>
 		</md-list-item>

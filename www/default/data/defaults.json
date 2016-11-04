@@ -1,6 +1,11 @@
 {
 	"mysql": {
-		"enabled": false
+		"enabled": false,
+		"password": "root",
+		"general_log": false,
+		"slow_query_log": true,
+		"log_queries_not_using_indexes": true,
+		"long_query_time": 1
 	},
 	"phpMyAdmin": {
 		"enabled": false,

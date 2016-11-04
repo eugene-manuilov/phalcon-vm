@@ -13,6 +13,21 @@ mysql:
             enabled:
                 type: switch
                 description: Defines whether MySQL should be activated on provision or disabled.
+            password:
+                type: text
+                description: The password for root user.
+            general_log:
+                type: checkbox
+                description: Whether the general query log is enabled.
+            slow_query_log:
+                type: checkbox
+                description: Whether the slow query log is enabled.
+            log_queries_not_using_indexes:
+                type: checkbox
+                description: Whether queries that do not use indexes are logged to the slow query log.
+            long_query_time:
+                type: text
+                description: If a query takes longer than this many seconds, the server writes the query to the slow query log file.
     phpMyAdmin:
         key: phpMyAdmin
         fields:
