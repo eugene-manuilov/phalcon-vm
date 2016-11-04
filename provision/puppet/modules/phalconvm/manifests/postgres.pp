@@ -1,7 +1,10 @@
-class phalconvm::postgres( $enabled = true ) {
+class phalconvm::postgres(
+	$enabled  = true,
+    $password = 'postgres',
+) {
 	if $enabled == true {
 		class { 'postgresql::server':
-			postgres_password => 'postgres',
+			postgres_password => $password,
 		}
 	} else {
 		service { 'postgresql':

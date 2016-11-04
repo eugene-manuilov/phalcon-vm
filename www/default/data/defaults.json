@@ -25,7 +25,8 @@
 		"enabled": false
 	},
 	"postgres": {
-		"enabled": false
+		"enabled": false,
+		"password": "postgres"
 	},
 	"phpPgAdmin": {
 		"enabled": false

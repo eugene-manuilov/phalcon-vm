@@ -66,6 +66,9 @@ postgres:
             enabled:
                 type: switch
                 description: Defines whether PostgreSQL should be activated on provision or disabled.
+            password:
+                type: text
+                description: The password for postgres user.
     phpPgAdmin:
         key: phpPgAdmin
         fields:
