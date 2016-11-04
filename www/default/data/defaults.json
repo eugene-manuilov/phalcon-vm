@@ -26,7 +26,8 @@
 	},
 	"postgres": {
 		"enabled": false,
-		"password": "postgres"
+		"password": "postgres",
+		"log_min_duration_statement": "250"
 	},
 	"phpPgAdmin": {
 		"enabled": false

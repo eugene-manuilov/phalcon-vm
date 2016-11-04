@@ -27,7 +27,7 @@ mysql:
                 description: Whether queries that do not use indexes are logged to the slow query log.
             long_query_time:
                 type: text
-                description: If a query takes longer than this many seconds, the server writes the query to the slow query log file.
+                description: If a query takes longer than this many seconds, then server writes the query to the slow query log file.
     phpMyAdmin:
         key: phpMyAdmin
         fields:
@@ -69,6 +69,9 @@ postgres:
             password:
                 type: text
                 description: The password for postgres user.
+            log_min_duration_statement:
+                type: text
+                description: If a query takes longer than this many milliseconds, then server writes the query to the slow query log file.
     phpPgAdmin:
         key: phpPgAdmin
         fields:

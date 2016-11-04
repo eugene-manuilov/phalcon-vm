@@ -1,10 +1,29 @@
 class phalconvm::postgres(
-	$enabled  = true,
-    $password = 'postgres',
+	$enabled                    = true,
+	$password                   = 'postgres',
+    $log_min_duration_statement = 250,
 ) {
 	if $enabled == true {
 		class { 'postgresql::server':
 			postgres_password => $password,
+		}
+
+		postgresql::server::config_entry { 'logging_collector':
+			ensure  => 'present',
+			value   => 'on',
+			require => Class['postgresql::server'],
+		}
+
+		postgresql::server::config_entry { 'log_min_duration_statement':
+			ensure  => 'present',
+			value   => $log_min_duration_statement,
+			require => Class['postgresql::server'],
+		}
+
+		postgresql::server::config_entry { 'log_statement':
+			ensure  => 'present',
+			value   => 'none',
+			require => Class['postgresql::server'],
 		}
 	} else {
 		service { 'postgresql':
