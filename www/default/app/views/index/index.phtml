@@ -3,10 +3,6 @@
 foreach ( $phalconvm['menu']['environment'] as $env ) :
 	?><script id="tmpl-<?php echo $env['key']; ?>" type="text/html">
 		<div class="content-container">
-			<header class="header">
-				<h2 class="md-display-1"><?php echo $env['label']; ?></h2>
-			</header>
-
 			<md-tabs md-stretch-tabs="auto" md-dynamic-height="true">
 				<?php foreach ( $env['items'] as $tab => $tabLabel ) : ?>
 					<md-tab label="<?php echo $tabLabel; ?>">

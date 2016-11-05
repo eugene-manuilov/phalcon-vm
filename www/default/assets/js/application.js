@@ -63,7 +63,15 @@
 	}]);
 
 	phalconvm.app.controller('FrameCtrl', ['$scope', '$rootScope', '$routeParams', function($scope, $rootScope, $routeParams) {
-		$rootScope.title = phalconvm.menu.environment['/iframe/' + $routeParams.href].label;
+		var key = '/iframe' + encodeURIComponent($routeParams.href).split('%2F').join('/');
+
 		$rootScope.saveButton = false;
+		$rootScope.title = false;
+
+		if (phalconvm.menu.miscellaneous[key]) {
+			$rootScope.title = phalconvm.menu.miscellaneous[key].label;
+		} else if (phalconvm.menu.tools[key]) {
+			$rootScope.title = phalconvm.menu.tools[key].label;
+		}
 	}]);
 })(angular, phalconvm);

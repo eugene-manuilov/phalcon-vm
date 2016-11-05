@@ -7,4 +7,17 @@
 		max-width: $content-width;
 		margin: 0 24px;
 	}
+
+	.md-breadcrumb {
+		margin: 0;
+		padding: 0;
+		color: black;
+		font-size: 24px !important;
+		font-weight: 400 !important;
+
+		.md-breadcrumb-page {
+			display: inline-block;
+			word-wrap: break-word;
+		}
+	}
 }
