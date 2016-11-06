@@ -6,6 +6,8 @@ menu:
             label: "Web Sevices"
             items:
                 nginx: "Nginx"
+                php: "PHP"
+                varnish: "Varnish"
 
         "/env/db":
             key: db

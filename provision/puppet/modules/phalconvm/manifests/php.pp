@@ -1,4 +1,17 @@
-class phalconvm::php {
+class phalconvm::php(
+	$max_execution_time     = 30,
+	$memory_limit           = '128M',
+    $post_max_size          = '1024M',
+    $upload_max_filesize    = '1024M',
+    $max_file_uploads       = 20,
+    $display_errors         = true,
+    $display_startup_errors = true,
+    $log_errors             = true,
+    $ignore_repeated_errors = false,
+    $ignore_repeated_source = false,
+    $track_errors           = false,
+    $html_errors            = true,
+) {
 	$packages = [
 		'php7.0', 'php7.0-fpm', 'php7.0-common', 'php7.0-dev', 'php7.0-mbstring',
 		'php7.0-mcrypt', 'php7.0-mysql', 'php7.0-imap', 'php7.0-curl', 'php7.0-gd',
@@ -27,21 +40,21 @@ class phalconvm::php {
 		'PHP' => {
 			'short_open_tag'                 => 'Off',
 			'allow_call_time_pass_reference' => 'Off',
-			'max_execution_time'             => 30,
-			'memory_limit'                   => '256M',
+			'max_execution_time'             => $max_execution_time,
+			'memory_limit'                   => $memory_limit,
 			'error_reporting'                => 'E_ALL | E_STRICT',
-			'display_errors'                 => 'On',
-			'display_startup_errors'         => 'On',
-			'log_errors'                     => 'On',
+			'display_errors'                 => $display_errors         ? { true => 'On', default => 'Off' }
+			'display_startup_errors'         => $display_startup_errors ? { true => 'On', default => 'Off' },
+			'log_errors'                     => $log_errors             ? { true => 'On', default => 'Off' },
 			'log_errors_max_len'             => '1024',
-			'ignore_repeated_errors'         => 'Off',
-			'ignore_repeated_source'         => 'Off',
-			'track_errors'                   => 'Off',
-			'html_errors'                    => 1,
+			'ignore_repeated_errors'         => $ignore_repeated_errors ? { true => 'On', default => 'Off' },
+			'ignore_repeated_source'         => $ignore_repeated_source ? { true => 'On', default => 'Off' },
+			'track_errors'                   => $track_errors           ? { true => 'On', default => 'Off' },
+			'html_errors'                    => $html_errors            ? { true => 'On', default => 'Off' },
 			'error_log'                      => '/srv/log/php_errors.log',
-			'post_max_size'                  => '1024M',
-			'upload_max_filesize'            => '1024M',
-			'max_file_uploads'               => 20,
+			'post_max_size'                  => $post_max_size,
+			'upload_max_filesize'            => $upload_max_filesize,
+			'max_file_uploads'               => $max_file_uploads,
 			'default_socket_timeout'         => 60,
 		}
 	}

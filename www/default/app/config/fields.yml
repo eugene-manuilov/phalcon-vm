@@ -6,6 +6,61 @@ nginx:
                 type: switch
                 description: Defines whether Nginx should be activated on provision or disabled.
 
+php:
+    General Settings:
+        key: php
+        fields:
+            max_execution_time:
+                type: text
+                description: The maximum time in seconds a script is allowed to run before it is terminated by the parser.
+            memory_limit:
+                type: text
+                description: The maximum amount of memory in bytes that a script is allowed to allocate.
+            post_max_size:
+                type: text
+                description: The maximum size of post data allowed. This setting also affects file upload. To upload large files, this value must be larger than upload max filesize.
+            upload_max_filesize:
+                type: text
+                description: The maximum size of an uploaded file.
+            max_file_uploads:
+                type: text
+                description: The maximum number of files allowed to be uploaded simultaneously.
+    Errors Tracking:
+        key: php
+        fields:
+            display_errors:
+                type: checkbox
+                description: Whether errors should be printed to the screen as part of the output or if they should be hidden from the user.
+            display_startup_errors:
+                type: checkbox
+                description: Whether errors that occur during PHP's startup sequence should be displayed.
+            log_errors:
+                type: checkbox
+                description: Whether script error messages should be logged to the server's error log.
+            ignore_repeated_errors:
+                type: checkbox
+                description: Do not log repeated messages. Repeated errors must occur in the same file on the same line unless ignore_repeated_source is set true.
+            ignore_repeated_source:
+                type: checkbox
+                description: Ignore source of message when ignoring repeated messages. When this setting is On you will not log errors with repeated messages from different files or sourcelines.
+            track_errors:
+                type: checkbox
+                description: If enabled, the last error message will always be present in the variable $php_errormsg.
+            html_errors:
+                type: checkbox
+                description: If enabled, error messages will include HTML tags.
+
+varnish:
+    Varnish Server:
+        key: varnish
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether Varnish should be activated on provision or disabled.
+            port:
+                type: text
+                description: The port to listen on for TCP connections.
+
 mysql:
     MySQL Server:
         key: mysql

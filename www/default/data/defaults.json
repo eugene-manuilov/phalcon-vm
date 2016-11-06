@@ -5,7 +5,25 @@
 		"general_log": false,
 		"slow_query_log": true,
 		"log_queries_not_using_indexes": true,
-		"long_query_time": 1
+		"long_query_time": "1"
+	},
+	"php": {
+		"max_execution_time": "30",
+		"memory_limit": "128M",
+		"post_max_size": "1024M",
+		"upload_max_filesize": "1024M",
+		"max_file_uploads": "20",
+		"display_errors": true,
+		"display_startup_errors": true,
+		"log_errors": true,
+		"ignore_repeated_errors": false,
+		"ignore_repeated_source": false,
+		"track_errors": false,
+		"html_errors": true
+	},
+	"varnish": {
+		"enabled": false,
+		"port": "81"
 	},
 	"phpMyAdmin": {
 		"enabled": false,
