@@ -112,6 +112,10 @@ $di->setShared( 'phalconvmConfig', function() {
 		$phalconvm['menu']['tools']['/iframe/phpmemcachedadmin'] = array( 'label' => 'phpMemcacheAdmin' );
 	}
 
+	if ( empty( $phalconvm['menu']['tools'] ) ) {
+		unset( $phalconvm['menu']['tools'] );
+	}
+
 	return $phalconvm;
 } );
 
