@@ -19,7 +19,11 @@
 		"ignore_repeated_errors": false,
 		"ignore_repeated_source": false,
 		"track_errors": false,
-		"html_errors": true
+		"html_errors": true,
+		"xdebug_idekey": "PVMDBG",
+		"xdebug_var_display_max_children": "-1",
+		"xdebug_var_display_max_data": "-1",
+		"xdebug_var_display_max_depth": "-1"
 	},
 	"varnish": {
 		"enabled": false,

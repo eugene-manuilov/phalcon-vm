@@ -1,16 +1,20 @@
 class phalconvm::php(
-	$max_execution_time     = 30,
-	$memory_limit           = '128M',
-    $post_max_size          = '1024M',
-    $upload_max_filesize    = '1024M',
-    $max_file_uploads       = 20,
-    $display_errors         = true,
-    $display_startup_errors = true,
-    $log_errors             = true,
-    $ignore_repeated_errors = false,
-    $ignore_repeated_source = false,
-    $track_errors           = false,
-    $html_errors            = true,
+	$max_execution_time              = '30',
+	$memory_limit                    = '128M',
+	$post_max_size                   = '1024M',
+	$upload_max_filesize             = '1024M',
+	$max_file_uploads                = '20',
+	$display_errors                  = true,
+	$display_startup_errors          = true,
+	$log_errors                      = true,
+	$ignore_repeated_errors          = false,
+	$ignore_repeated_source          = false,
+	$track_errors                    = false,
+	$html_errors                     = true,
+	$xdebug_idekey                   = 'PVMDBG',
+	$xdebug_var_display_max_children = '-1',
+	$xdebug_var_display_max_data     = '-1',
+	$xdebug_var_display_max_depth    = '-1',
 ) {
 	$packages = [
 		'php7.0', 'php7.0-fpm', 'php7.0-common', 'php7.0-dev', 'php7.0-mbstring',
@@ -74,15 +78,15 @@ class phalconvm::php(
 	$xdebug = {
 		'XDebug' => {
 			'xdebug.collect_params'           => 1,
-			'xdebug.idekey'                   => 'PHALCONVMDEBUG',
+			'xdebug.idekey'                   => $xdebug_idekey,
 			'xdebug.profiler_enable_trigger'  => 1,
 			'xdebug.profiler_output_name'     => 'cachegrind.out.%t-%s',
 			'xdebug.remote_enable'            => 1,
 			'xdebug.remote_host'              => '192.168.50.99',
 			'xdebug.remote_log'               => '/srv/log/xdebug-remote.log',
-			'xdebug.var_display_max_children' => -1,
-			'xdebug.var_display_max_data'     => -1,
-			'xdebug.var_display_max_depth'    => -1,
+			'xdebug.var_display_max_children' => $xdebug_var_display_max_children,
+			'xdebug.var_display_max_data'     => $xdebug_var_display_max_data,
+			'xdebug.var_display_max_depth'    => $xdebug_var_display_max_depth,
 		}
 	}
 

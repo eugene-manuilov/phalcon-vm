@@ -49,6 +49,25 @@ php:
             html_errors:
                 type: checkbox
                 description: If enabled, error messages will include HTML tags.
+    Xdebug:
+        key: php
+        fields:
+            xdebug_idekey:
+                label: IDE Key
+                type: text
+                description: Controls which IDE Key Xdebug should pass on to the DBGp debugger handler.
+            xdebug_var_display_max_children:
+                label: Var Display Max Children
+                type: text
+                description: Controls the amount of array children and object's properties are shown when variables are displayed. To disable any limitation, use -1 as value.
+            xdebug_var_display_max_data:
+                label: Var Display Max Data
+                type: text
+                description: Controls the maximum string length that is shown when variables are displayed. To disable any limitation, use -1 as value.
+            xdebug_var_display_max_depth:
+                label: Var Display Max Depth
+                type: text
+                description: Controls how many nested levels of array elements and object properties are when variables are displayed. To disable any limitation, use -1 as value.
 
 varnish:
     Varnish Server:
