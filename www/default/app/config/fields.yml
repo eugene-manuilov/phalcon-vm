@@ -94,6 +94,20 @@ redis:
             enabled:
                 type: switch
                 description: Defines whether Redis should be activated on provision or disabled.
+            port:
+                type: text
+                description: The port to listen on for TCP connections.
+            maxmemory:
+                label: Max Memory
+                type: text
+                description: How much RAM memory to use for item storage (in megabytes).
+            slowlog_log_slower_than:
+                type: text
+                description: If a query takes longer than this many milliseconds, then server writes the query to the log file.
+            save_db_to_disk:
+                label: Save To Disk
+                type: checkbox
+                description: Defines if Redis has to save database to disk.
 
 memcached:
     Memcached Server:

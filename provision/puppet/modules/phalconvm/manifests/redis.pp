@@ -1,6 +1,19 @@
-class phalconvm::redis( $enabled = false ) {
+class phalconvm::redis(
+	$enabled                 = false,
+	$port                    = 6379,
+	$maxmemory               = 64,
+	$save_db_to_disk         = true,
+	$slowlog_log_slower_than = 100,
+) {
 	if $enabled == true {
-		class { 'redis': }
+		class { 'redis':
+			port                    => $port,
+			maxmemory               => $maxmemory << 20,
+			maxmemory_policy        => 'volatile-lru',
+			save_db_to_disk         => $save_db_to_disk,
+			daemonize               => true,
+			slowlog_log_slower_than => $slowlog_log_slower_than * 1000,
+		}
 	} else {
 		service { 'redis-server':
 			ensure => 'stopped',
@@ -11,7 +24,7 @@ class phalconvm::redis( $enabled = false ) {
 			require => Service['redis-server'],
 		}
 
-		exec { 'redis-remove': 
+		exec { 'redis-remove':
 			command     => '/usr/bin/apt-get autoremove --purge -y',
 			refreshonly => true,
 			subscribe   => Package['redis-server'],

@@ -1,18 +1,15 @@
-class phalconvm::memcached( $enabled = false, $max_memory = 128, $tcp_port = 11211 ) {
+class phalconvm::memcached(
+	$enabled = false,
+	$max_memory = 64,
+	$tcp_port = 11211
+) {
 	if $enabled == true {
-		file { '/srv/log/memcached.log':
-			ensure => 'present',
-		}
-
-		->
-
 		class { 'memcached':
 			package_ensure => 'present',
-			listen_ip  => '127.0.0.1',
-			tcp_port   => $tcp_port,
-			max_memory => $max_memory,
-			user       => 'memcache',
-			logfile    => '/srv/log/memcached.log',
+			listen_ip      => '127.0.0.1',
+			tcp_port       => $tcp_port,
+			max_memory     => $max_memory,
+			user           => 'memcache',
 		}
 	} else {
 		file { '/srv/log/memcached.log':

@@ -22,7 +22,11 @@
 		"enabled": true
 	},
 	"redis": {
-		"enabled": false
+		"enabled": false,
+		"port": "6379",
+		"maxmemory": "64",
+		"save_db_to_disk": true,
+		"slowlog_log_slower_than": "100"
 	},
 	"postgres": {
 		"enabled": false,
@@ -37,7 +41,7 @@
 	},
 	"memcached": {
 		"enabled": false,
-		"max_memory": "128",
+		"max_memory": "64",
 		"tcp_port": "11211"
 	},
 	"phpMemcacheAdmin": {
