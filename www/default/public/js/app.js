@@ -71811,10 +71811,19 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-(function(angular, phalconvm) {
+(function(angular, phalconvm, document) {
 	phalconvm.app = angular.module('PhalconVM', ['ngMaterial', 'ngRoute', 'ngSanitize']);
 
 	phalconvm.app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+		$routeProvider.when('/', {
+			controller: 'HomeCtrl',
+			controllerAs: 'home',
+			template: function() {
+				var template = document.getElementById('tmpl-homepage');
+				return template.innerHTML;
+			}
+		});
+
 		$routeProvider.when('/env/:service', {
 			controller: 'EnvCtrl',
 			controllerAs: 'env',
@@ -71869,6 +71878,11 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 		};
 	}]);
 
+	phalconvm.app.controller('HomeCtrl', ['$rootScope', function($rootScope) {
+		$rootScope.saveButton = false;
+		$rootScope.title = 'Introduction';
+	}]);
+
 	phalconvm.app.controller('EnvCtrl', ['$scope', '$rootScope', '$routeParams', function($scope, $rootScope, $routeParams) {
 		$rootScope.title = phalconvm.menu.environment['/env/' + $routeParams.service].label;
 		$rootScope.saveButton = true;
@@ -71887,4 +71901,4 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 			$rootScope.title = phalconvm.menu.tools[key].label;
 		}
 	}]);
-})(angular, phalconvm);
+})(angular, phalconvm, document);
