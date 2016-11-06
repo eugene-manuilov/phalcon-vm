@@ -47,7 +47,7 @@ class phalconvm::php(
 			'max_execution_time'             => $max_execution_time,
 			'memory_limit'                   => $memory_limit,
 			'error_reporting'                => 'E_ALL | E_STRICT',
-			'display_errors'                 => $display_errors         ? { true => 'On', default => 'Off' }
+			'display_errors'                 => $display_errors         ? { true => 'On', default => 'Off' },
 			'display_startup_errors'         => $display_startup_errors ? { true => 'On', default => 'Off' },
 			'log_errors'                     => $log_errors             ? { true => 'On', default => 'Off' },
 			'log_errors_max_len'             => '1024',

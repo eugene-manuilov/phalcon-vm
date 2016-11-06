@@ -9,21 +9,18 @@ class phalconvm::postgres(
 		}
 
 		postgresql::server::config_entry { 'logging_collector':
-			ensure  => 'present',
-			value   => 'on',
-			require => Class['postgresql::server'],
+			ensure => 'present',
+			value  => 'on',
 		}
 
 		postgresql::server::config_entry { 'log_min_duration_statement':
-			ensure  => 'present',
-			value   => $log_min_duration_statement,
-			require => Class['postgresql::server'],
+			ensure => 'present',
+			value  => $log_min_duration_statement,
 		}
 
 		postgresql::server::config_entry { 'log_statement':
-			ensure  => 'present',
-			value   => 'none',
-			require => Class['postgresql::server'],
+			ensure => 'present',
+			value  => 'none',
 		}
 	} else {
 		service { 'postgresql':
