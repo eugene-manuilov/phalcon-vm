@@ -100,16 +100,18 @@ $di->setShared( 'phalconvmConfig', function() {
 	$phalconvm = $phalconvm->toArray();
 	$phalconvm['data'] = array_replace_recursive( $defaults, $settings );
 
-	if ( ! empty( $phalconvm['data']['phpMyAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phpmyadmin/index.php' ) ) {
-		$phalconvm['menu']['tools']['/iframe/phpmyadmin'] = array( 'label' => 'phpMyAdmin' );
-	}
+	$tools = array(
+		'phpmyadmin'        => 'phpMyAdmin',
+		'phppgadmin'        => 'phpPgAdmin',
+		'phpmemcachedadmin' => 'phpMemcacheAdmin',
+	);
 
-	if ( ! empty( $phalconvm['data']['phpPgAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phppgadmin/index.php' ) ) {
-		$phalconvm['menu']['tools']['/iframe/phppgadmin'] = array( 'label' => 'phpPgAdmin' );
-	}
-
-	if ( ! empty( $phalconvm['data']['phpMemcacheAdmin']['enabled'] ) && file_exists( BASE_PATH . '/public/phpmemcachedadmin/index.php' ) ) {
-		$phalconvm['menu']['tools']['/iframe/phpmemcachedadmin'] = array( 'label' => 'phpMemcacheAdmin' );
+	foreach ( $tools as $key => $label ) {
+		$filename = sprintf( '%s/public/%s/index.php', BASE_PATH, $key );
+		if ( ! empty( $phalconvm['data'][ $label ]['enabled'] ) && file_exists( $filename ) ) {
+			$iframe = '/iframe/' . $key;
+			$phalconvm['menu']['tools'][ $iframe ] = array( 'label' => $label );
+		}
 	}
 
 	if ( empty( $phalconvm['menu']['tools'] ) ) {
