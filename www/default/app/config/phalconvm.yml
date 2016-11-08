@@ -3,48 +3,51 @@ menu:
     environment:
         "/env/web":
             key: web
-            label: "Web Sevices"
+            label: Web Sevices
             items:
-                nginx: "Nginx"
-                php: "PHP"
-                varnish: "Varnish"
+                nginx: Nginx
+                php: PHP
+                varnish: Varnish
 
         "/env/db":
             key: db
-            label: "Databases"
+            label: Databases
             items:
-                mysql: "MySQL"
-                postgres: "PostgreSQL"
-                mongodb: "MongoDB"
+                mysql: MySQL
+                postgres: PostgreSQL
+                mongodb: MongoDB
 
         "/env/cache":
             key: cache
-            label: "Caching Systems"
+            label: Caching Systems
             items:
-                redis: "Redis"
-                memcached: "Memcached"
+                redis: Redis
+                memcached: Memcached
 
         "/env/queue":
             key: queue
-            label: "Queue Systems"
+            label: Queue Systems
             items:
-                gearman: "Gearman"
-                rabbitmq: "RabbitMQ"
+                gearman: Gearman
+                rabbitmq: RabbitMQ
 
         "/env/search":
             key: search
-            label: "Search Engines"
+            label: Search Engines
             items:
-                elasticsearch: "Elasticsearch"
-                sphinx: "Sphinxsearch"
-    sites: []
+                elasticsearch: Elasticsearch
+                sphinx: Sphinxsearch
+    sites:
+        "/new-site":
+            label: Add New Site
+            icon: add
     tools: []
     miscellaneous:
         "/iframe/opcache-status/opcache.php":
-            label: "Opcache Status"
+            label: Opcache Status
         "/iframe/webgrind":
-            label: "Webgrind"
+            label: Webgrind
         "/iframe/php-info.php":
-            label: "PHP Info"
+            label: PHP Info
         "/iframe/php-status%3Fhtml%26full":
-            label: "PHP Status"
+            label: PHP Status

@@ -8,15 +8,13 @@
 	<md-divider></md-divider>
 
 	<md-content id="sidebar-menu">
-		<div ng-repeat="(label, block) in app.menu">
+		<div ng-repeat="(label, group) in app.menu">
 			<span class="section-title">{{label}}</span>
 			<ul>
-				<li>
-					<ul>
-						<li class="menu-item" ng-repeat="(key, group) in block">
-							<a ng-href="{{key}}">{{group.label}}</a>
-						</li>
-					</ul>
+				<li class="menu-item" ng-repeat="(key, item) in group">
+					<a ng-href="{{key}}">
+						<i class="material-icons" ng-show="item.icon">{{item.icon}}</i> {{item.label}}
+					</a>
 				</li>
 			</ul>
 
@@ -29,7 +27,7 @@
 	<md-toolbar id="toolbar">
 		<div class="md-toolbar-tools">
 			<md-button class="md-icon-button" ng-click="app.toggleSidenav()" hide-gt-sm>
-				<md-icon md-svg-src="/svg/ic_menu_black_24px.svg" aria-label="menu" style="color:white"></md-icon>
+				<i class="material-icons">menu</i>
 			</md-button>
 
 			<h2 class="md-toolbar-item md-breadcrumb md-headline" ng-show="$root.title">
