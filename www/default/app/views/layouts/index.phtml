@@ -8,17 +8,48 @@
 	<md-divider></md-divider>
 
 	<md-content id="sidebar-menu">
-		<div ng-repeat="(label, group) in app.menu">
-			<span class="section-title">{{label}}</span>
+		<div ng-show="app.menu.environment">
+			<span class="section-title">Environment</span>
 			<ul>
-				<li class="menu-item" ng-repeat="(key, item) in group">
-					<a ng-href="{{key}}">
-						<i class="material-icons" ng-show="item.icon">{{item.icon}}</i> {{item.label}}
+				<li class="menu-item" ng-repeat="(key, item) in app.menu.environment">
+					<a ng-href="{{key}}">{{item.label}}</a>
+				</li>
+			</ul>
+			<md-divider></md-divider>
+		</div>
+
+		<div ng-show="app.menu.sites">
+			<span class="section-title">Sites</span>
+			<ul>
+				<li class="menu-item" ng-repeat="(key, item) in app.menu.sites">
+					<a ng-href="{{key}}">{{item.label}}</a>
+				</li>
+				<li class="menu-item">
+					<a href="#" ng-click="app.newSiteDialog()">
+						<i class="material-icons">plus</i> Add New Site
 					</a>
 				</li>
 			</ul>
+			<md-divider></md-divider>
+		</div>
 
-			<md-divider ng-hide="$last"></md-divider>
+		<div ng-show="app.menu.tools">
+			<span class="section-title">Tools</span>
+			<ul>
+				<li class="menu-item" ng-repeat="(key, item) in app.menu.tools">
+					<a ng-href="{{key}}">{{item.label}}</a>
+				</li>
+			</ul>
+			<md-divider></md-divider>
+		</div>
+
+		<div ng-show="app.menu.miscellaneous">
+			<span class="section-title">Miscellaneous</span>
+			<ul>
+				<li class="menu-item" ng-repeat="(key, item) in app.menu.miscellaneous">
+					<a ng-href="{{key}}">{{item.label}}</a>
+				</li>
+			</ul>
 		</div>
 	</md-content>
 </md-sidenav>

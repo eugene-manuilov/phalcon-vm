@@ -71823,14 +71823,6 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 			}
 		});
 
-		$routeProvider.when('/new-site', {
-			controller: 'SiteCtrl',
-			controllerAs: 'site',
-			template: function() {
-				return document.getElementById('tmpl-new-site').innerHTML;
-			}
-		});
-
 		$routeProvider.when('/env/:service', {
 			controller: 'EnvCtrl',
 			controllerAs: 'env',
@@ -71883,6 +71875,14 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 		self.toggleSidenav = function() {
 			$mdSidenav('left').toggle();
 		};
+
+		self.newSiteDialog = function() {
+			$mdDialog.show({
+				controller: 'SiteCtrl',
+				controllerAs: 'site',
+				template: document.getElementById('tmpl-new-site').innerHTML
+			});
+		};
 	}]);
 
 	phalconvm.app.controller('HomeCtrl', ['$rootScope', function($rootScope) {
@@ -71890,15 +71890,15 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 		$rootScope.title = 'Introduction';
 	}]);
 
-	phalconvm.app.controller('SiteCtrl', ['$rootScope', function($rootScope) {
+	phalconvm.app.controller('SiteCtrl', ['$mdDialog', function($mdDialog) {
 		var self = this;
 
 		self.name = '';
 		self.directory = '';
-		self.domains = [''];
+		self.domains = '';
 		self.repository = '';
 		self.provider = '';
-		
+
 		self.providers = [
 			{key: 'git', label: 'Git'},
 			{key: 'bzr', label: 'Bazaar'},
@@ -71908,8 +71908,13 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 			{key: 'svn', label: 'Subversion'}
 		];
 
-		$rootScope.saveButton = false;
-		$rootScope.title = 'New Site';
+		self.create = function() {
+			$mdDialog.hide();
+		};
+
+		self.cancel = function() {
+			$mdDialog.cancel();
+		};
 	}]);
 
 	phalconvm.app.controller('EnvCtrl', ['$scope', '$rootScope', '$routeParams', function($scope, $rootScope, $routeParams) {

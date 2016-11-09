@@ -37,10 +37,7 @@ menu:
             items:
                 elasticsearch: Elasticsearch
                 sphinx: Sphinxsearch
-    sites:
-        "/new-site":
-            label: Add New Site
-            icon: add
+    sites: []
     tools: []
     miscellaneous:
         "/iframe/opcache-status/opcache.php":
