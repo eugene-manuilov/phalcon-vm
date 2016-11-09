@@ -71812,15 +71812,22 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 })(window, window.angular);
 
 (function(angular, phalconvm, document) {
-	phalconvm.app = angular.module('PhalconVM', ['ngMaterial', 'ngRoute', 'ngSanitize']);
+	phalconvm.app = angular.module('PhalconVM', ['ngMaterial', 'ngRoute', 'ngSanitize', 'ngMessages']);
 
 	phalconvm.app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 		$routeProvider.when('/', {
 			controller: 'HomeCtrl',
 			controllerAs: 'home',
 			template: function() {
-				var template = document.getElementById('tmpl-homepage');
-				return template.innerHTML;
+				return document.getElementById('tmpl-homepage').innerHTML;
+			}
+		});
+
+		$routeProvider.when('/new-site', {
+			controller: 'SiteCtrl',
+			controllerAs: 'site',
+			template: function() {
+				return document.getElementById('tmpl-new-site').innerHTML;
 			}
 		});
 
@@ -71831,7 +71838,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 				var template = document.getElementById('tmpl-' + params.service);
 
 				if (template) {
-					return '<md-content layout-padding>' + template.innerHTML + '</md-content>';
+					return template.innerHTML;
 				}
 
 				return ' ';
@@ -71883,9 +71890,32 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 		$rootScope.title = 'Introduction';
 	}]);
 
+	phalconvm.app.controller('SiteCtrl', ['$rootScope', function($rootScope) {
+		var self = this;
+
+		self.name = '';
+		self.directory = '';
+		self.domains = [''];
+		self.repository = '';
+		self.provider = '';
+		
+		self.providers = [
+			{key: 'git', label: 'Git'},
+			{key: 'bzr', label: 'Bazaar'},
+			{key: 'cvs', label: 'CVS'},
+			{key: 'hg',  label: 'Mercurial'},
+			{key: 'p4',  label: 'Perforce'},
+			{key: 'svn', label: 'Subversion'}
+		];
+
+		$rootScope.saveButton = false;
+		$rootScope.title = 'New Site';
+	}]);
+
 	phalconvm.app.controller('EnvCtrl', ['$scope', '$rootScope', '$routeParams', function($scope, $rootScope, $routeParams) {
 		$rootScope.title = phalconvm.menu.environment['/env/' + $routeParams.service].label;
 		$rootScope.saveButton = true;
+
 		$scope.data = phalconvm.data;
 	}]);
 
