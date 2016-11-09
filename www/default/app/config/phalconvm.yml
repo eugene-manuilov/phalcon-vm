@@ -37,7 +37,7 @@ menu:
             items:
                 elasticsearch: Elasticsearch
                 sphinx: Sphinxsearch
-    sites: []
+    sites: {}
     tools: []
     miscellaneous:
         "/iframe/opcache-status/opcache.php":

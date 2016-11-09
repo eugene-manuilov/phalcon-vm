@@ -71909,6 +71909,18 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 		];
 
 		self.create = function() {
+			if (angular.isArray(phalconvm.menu.sites)) {
+				phalconvm.menu.sites = {};
+			}
+
+			phalconvm.menu.sites['/site/' + self.directory] = {
+				label: self.name,
+				directory: self.directory,
+				domains: self.domains,
+				repository: self.repository,
+				provider: self.provider
+			};
+
 			$mdDialog.hide();
 		};
 

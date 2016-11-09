@@ -17,21 +17,27 @@
 				</div>
 			</md-input-container>
 
-			<div layout-gt-sm="row">
-				<md-input-container class="md-block" flex-gt-sm>
-					<label>Repository</label>
-					<input ng-model="site.repository">
-				</md-input-container>
+			<md-input-container class="md-block">
+				<label>Domains (space-separated)</label>
+				<input type="text" name="domains" ng-model="site.domains" md-no-asterisk required>
+				<div ng-messages="siteForm.domains.$error">
+					<div ng-message="required">This field is required.</div>
+				</div>
+			</md-input-container>
 
-				<md-input-container class="md-block" flex-gt-sm>
-					<label>Repository Provider</label>
-					<md-select ng-model="site.provider">
-						<md-option ng-repeat="pvd in site.providers" ng-value="pvd.key">
-							{{pvd.label}}
-						</md-option>
-					</md-select>
-				</md-input-container>
-			</div>
+			<md-input-container class="md-block">
+				<label>Repository</label>
+				<input ng-model="site.repository">
+			</md-input-container>
+
+			<md-input-container class="md-block">
+				<label>Repository Provider</label>
+				<md-select ng-model="site.provider">
+					<md-option ng-repeat="pvd in site.providers" ng-value="pvd.key">
+						{{pvd.label}}
+					</md-option>
+				</md-select>
+			</md-input-container>
 
 			<div layout="row">
 				<md-button class="md-warn" ng-click="site.cancel()">Cancel</md-button>
