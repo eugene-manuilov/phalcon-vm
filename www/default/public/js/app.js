@@ -71813,7 +71813,6 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 (function(angular, phalconvm, document) {
 	phalconvm.app = angular.module('PhalconVM', ['ngMaterial', 'ngRoute', 'ngSanitize', 'ngMessages']);
-
 	phalconvm.app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 		$routeProvider.when('/', {
 			controller: 'HomeCtrl',
@@ -71847,7 +71846,9 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 		$locationProvider.html5Mode(true);
 	}]);
+})(angular, phalconvm, document);
 
+(function(phalconvm) {
 	phalconvm.app.controller('AppCtrl', ['$mdSidenav', '$mdDialog', '$http', function ($mdSidenav, $mdDialog, $http) {
 		var self = this;
 
@@ -71884,12 +71885,36 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 			});
 		};
 	}]);
+})(phalconvm);
+(function(phalconvm) {
+	phalconvm.app.controller('EnvCtrl', ['$scope', '$rootScope', '$routeParams', function($scope, $rootScope, $routeParams) {
+		$rootScope.title = phalconvm.menu.environment['/env/' + $routeParams.service].label;
+		$rootScope.saveButton = true;
 
+		$scope.data = phalconvm.data;
+	}]);
+})(phalconvm);
+(function(phalconvm) {
+	phalconvm.app.controller('FrameCtrl', ['$rootScope', '$routeParams', function($rootScope, $routeParams) {
+		var key = '/iframe' + encodeURIComponent($routeParams.href).split('%2F').join('/');
+
+		$rootScope.saveButton = false;
+		$rootScope.title = false;
+
+		if (phalconvm.menu.miscellaneous[key]) {
+			$rootScope.title = phalconvm.menu.miscellaneous[key].label;
+		} else if (phalconvm.menu.tools[key]) {
+			$rootScope.title = phalconvm.menu.tools[key].label;
+		}
+	}]);
+})(phalconvm);
+(function(phalconvm) {
 	phalconvm.app.controller('HomeCtrl', ['$rootScope', function($rootScope) {
 		$rootScope.saveButton = false;
 		$rootScope.title = 'Introduction';
 	}]);
-
+})(phalconvm);
+(function(phalconvm) {
 	phalconvm.app.controller('SiteCtrl', ['$mdDialog', function($mdDialog) {
 		var self = this;
 
@@ -71928,24 +71953,4 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 			$mdDialog.cancel();
 		};
 	}]);
-
-	phalconvm.app.controller('EnvCtrl', ['$scope', '$rootScope', '$routeParams', function($scope, $rootScope, $routeParams) {
-		$rootScope.title = phalconvm.menu.environment['/env/' + $routeParams.service].label;
-		$rootScope.saveButton = true;
-
-		$scope.data = phalconvm.data;
-	}]);
-
-	phalconvm.app.controller('FrameCtrl', ['$scope', '$rootScope', '$routeParams', function($scope, $rootScope, $routeParams) {
-		var key = '/iframe' + encodeURIComponent($routeParams.href).split('%2F').join('/');
-
-		$rootScope.saveButton = false;
-		$rootScope.title = false;
-
-		if (phalconvm.menu.miscellaneous[key]) {
-			$rootScope.title = phalconvm.menu.miscellaneous[key].label;
-		} else if (phalconvm.menu.tools[key]) {
-			$rootScope.title = phalconvm.menu.tools[key].label;
-		}
-	}]);
-})(angular, phalconvm, document);
+})(phalconvm);
