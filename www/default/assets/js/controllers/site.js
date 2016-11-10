@@ -1,5 +1,5 @@
 (function(phalconvm) {
-	phalconvm.app.controller('SiteCtrl', ['$mdDialog', function($mdDialog) {
+	phalconvm.app.controller('SiteCtrl', ['$mdDialog', '$http', function($mdDialog, $http) {
 		var self = this;
 
 		self.name = '';
@@ -18,17 +18,20 @@
 		];
 
 		self.create = function() {
+			var data = {
+					label: self.name,
+					directory: self.directory,
+					domains: self.domains,
+					repository: self.repository,
+					provider: self.provider
+				};
+
 			if (angular.isArray(phalconvm.menu.sites)) {
 				phalconvm.menu.sites = {};
 			}
 
-			phalconvm.menu.sites['/site/' + self.directory] = {
-				label: self.name,
-				directory: self.directory,
-				domains: self.domains,
-				repository: self.repository,
-				provider: self.provider
-			};
+			phalconvm.menu.sites['/site/' + self.directory] = data;
+			$http.post('/save/site', data);
 
 			$mdDialog.hide();
 		};

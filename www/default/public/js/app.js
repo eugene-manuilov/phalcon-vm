@@ -71860,17 +71860,18 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 		};
 
 		self.saveChanges = function() {
+			var alert;
+
+			alert = $mdDialog.alert()
+				.clickOutsideToClose(true)
+				.title('Saved changes')
+				.htmlContent('Changes have been saved. Please, do not forget to halt your vagrant box<br>and up it again with <b>--provision</b> mode.')
+				.ok('Got it!');
+
 			self.nasty = false;
 
-			$http.post('/save', phalconvm.data);
-
-			$mdDialog.show(
-				$mdDialog.alert()
-					.clickOutsideToClose(true)
-					.title('Saved changes')
-					.htmlContent('Changes have been saved. Please, do not forget to halt your vagrant box<br>and up it again with <b>--provision</b> mode.')
-					.ok('Got it!')
-			);
+			$http.post('/save/env', phalconvm.data);
+			$mdDialog.show(alert);
 		};
 
 		self.toggleSidenav = function() {
@@ -71915,7 +71916,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 	}]);
 })(phalconvm);
 (function(phalconvm) {
-	phalconvm.app.controller('SiteCtrl', ['$mdDialog', function($mdDialog) {
+	phalconvm.app.controller('SiteCtrl', ['$mdDialog', '$http', function($mdDialog, $http) {
 		var self = this;
 
 		self.name = '';
@@ -71934,17 +71935,20 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 		];
 
 		self.create = function() {
+			var data = {
+					label: self.name,
+					directory: self.directory,
+					domains: self.domains,
+					repository: self.repository,
+					provider: self.provider
+				};
+
 			if (angular.isArray(phalconvm.menu.sites)) {
 				phalconvm.menu.sites = {};
 			}
 
-			phalconvm.menu.sites['/site/' + self.directory] = {
-				label: self.name,
-				directory: self.directory,
-				domains: self.domains,
-				repository: self.repository,
-				provider: self.provider
-			};
+			phalconvm.menu.sites['/site/' + self.directory] = data;
+			$http.post('/save/site', data);
 
 			$mdDialog.hide();
 		};

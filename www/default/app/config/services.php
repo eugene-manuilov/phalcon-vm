@@ -51,9 +51,14 @@ $di->setShared( 'router', function() {
 		'action'     => 'index',
 	) );
 
-	$router->add( '/save', array(
+	$router->add( '/save/env', array(
 		'controller' => 'index',
-		'action'     => 'save',
+		'action'     => 'saveEnv',
+	) );
+
+	$router->add( '/save/site', array(
+		'controller' => 'index',
+		'action'     => 'saveSite',
 	) );
 
 	return $router;

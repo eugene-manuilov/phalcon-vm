@@ -10,17 +10,18 @@
 		};
 
 		self.saveChanges = function() {
+			var alert;
+
+			alert = $mdDialog.alert()
+				.clickOutsideToClose(true)
+				.title('Saved changes')
+				.htmlContent('Changes have been saved. Please, do not forget to halt your vagrant box<br>and up it again with <b>--provision</b> mode.')
+				.ok('Got it!');
+
 			self.nasty = false;
 
-			$http.post('/save', phalconvm.data);
-
-			$mdDialog.show(
-				$mdDialog.alert()
-					.clickOutsideToClose(true)
-					.title('Saved changes')
-					.htmlContent('Changes have been saved. Please, do not forget to halt your vagrant box<br>and up it again with <b>--provision</b> mode.')
-					.ok('Got it!')
-			);
+			$http.post('/save/env', phalconvm.data);
+			$mdDialog.show(alert);
 		};
 
 		self.toggleSidenav = function() {

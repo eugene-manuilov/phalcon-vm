@@ -21,14 +21,28 @@ class IndexController extends \Phalcon\Mvc\Controller {
 		$this->view->phalconvm = $phalconvm;
 	}
 
-	public function saveAction() {
+	public function saveEnvAction() {
 		if ( ! $this->request->isPost() ) {
 			$this->response->redirect( '/', false );
-			return false;
+		} else {
+			$postdata = trim( file_get_contents( "php://input" ) );
+			file_put_contents( BASE_PATH . '/data/settings.json', $postdata );
 		}
 
-		$postdata = trim( file_get_contents( "php://input" ) );
-		file_put_contents( BASE_PATH . '/data/settings.json', $postdata );
+		return false;
+	}
+
+	public function saveSiteAction() {
+		if ( ! $this->request->isPost() ) {
+			$this->response->redirect( '/', false );
+		} else {
+			$postdata = trim( file_get_contents( "php://input" ) );
+			$json = json_decode( $postdata );
+			if ( ! empty( $json->directory ) ) {
+				$filename = sprintf( '%s/data/sites/%s.json', BASE_PATH, $json->directory );
+				file_put_contents( $filename, $postdata );
+			}
+		}
 
 		return false;
 	}
