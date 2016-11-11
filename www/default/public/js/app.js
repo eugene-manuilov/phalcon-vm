@@ -71822,6 +71822,14 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 			}
 		});
 
+		$routeProvider.when('/site/:site', {
+			controller: 'SiteCtrl',
+			controllerAs: 'site',
+			template: function() {
+				return document.getElementById('tmpl-new-site').innerHTML;
+			}
+		});
+
 		$routeProvider.when('/env/:service', {
 			controller: 'EnvCtrl',
 			controllerAs: 'env',
@@ -71849,7 +71857,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 })(angular, phalconvm, document);
 
 (function(phalconvm) {
-	phalconvm.app.controller('AppCtrl', ['$mdSidenav', '$mdDialog', '$http', function ($mdSidenav, $mdDialog, $http) {
+	var controller = function ($rootScope, $mdSidenav, $mdDialog, $http) {
 		var self = this;
 
 		self.nasty = false;
@@ -71879,14 +71887,19 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 		};
 
 		self.newSiteDialog = function() {
+			$rootScope.newSite = true;
+			
 			$mdDialog.show({
 				controller: 'SiteCtrl',
 				controllerAs: 'site',
 				template: document.getElementById('tmpl-new-site').innerHTML
 			});
 		};
-	}]);
+	};
+
+	phalconvm.app.controller('AppCtrl', ['$rootScope', '$mdSidenav', '$mdDialog', '$http', controller]);
 })(phalconvm);
+
 (function(phalconvm) {
 	phalconvm.app.controller('EnvCtrl', ['$scope', '$rootScope', '$routeParams', function($scope, $rootScope, $routeParams) {
 		$rootScope.title = phalconvm.menu.environment['/env/' + $routeParams.service].label;
@@ -71916,15 +71929,24 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 	}]);
 })(phalconvm);
 (function(phalconvm) {
-	phalconvm.app.controller('SiteCtrl', ['$mdDialog', '$http', function($mdDialog, $http) {
-		var self = this;
+	var controller = function($rootScope, $routeParams, $mdDialog, $http) {
+		var self = this,
+			data = phalconvm.menu.sites['/site/' + $routeParams.site] || false;
 
-		self.name = '';
-		self.directory = '';
-		self.domains = '';
-		self.repository = '';
-		self.provider = '';
+		if (!data || $rootScope.newSite) {
+			data = {
+				label: '',
+				directory: '',
+				domains: '',
+				repository: '',
+				provider: ''
+			};
+		}
 
+		$rootScope.title = data.label;
+		$rootScope.saveButton = false;
+
+		self.data = data;
 		self.providers = [
 			{key: 'git', label: 'Git'},
 			{key: 'bzr', label: 'Bazaar'},
@@ -71934,27 +71956,24 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 			{key: 'svn', label: 'Subversion'}
 		];
 
-		self.create = function() {
-			var data = {
-					label: self.name,
-					directory: self.directory,
-					domains: self.domains,
-					repository: self.repository,
-					provider: self.provider
-				};
+		self.save = function() {
+			$rootScope.newSite = false;
 
 			if (angular.isArray(phalconvm.menu.sites)) {
 				phalconvm.menu.sites = {};
 			}
 
-			phalconvm.menu.sites['/site/' + self.directory] = data;
-			$http.post('/save/site', data);
+			phalconvm.menu.sites['/site/' + self.data.directory] = self.data;
+			$http.post('/save/site', self.data);
 
 			$mdDialog.hide();
 		};
 
 		self.cancel = function() {
+			$rootScope.newSite = false;
 			$mdDialog.cancel();
 		};
-	}]);
+	};
+
+	phalconvm.app.controller('SiteCtrl', ['$rootScope', '$routeParams', '$mdDialog', '$http', controller]);
 })(phalconvm);

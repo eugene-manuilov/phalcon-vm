@@ -1,5 +1,5 @@
 (function(phalconvm) {
-	phalconvm.app.controller('AppCtrl', ['$mdSidenav', '$mdDialog', '$http', function ($mdSidenav, $mdDialog, $http) {
+	var controller = function ($rootScope, $mdSidenav, $mdDialog, $http) {
 		var self = this;
 
 		self.nasty = false;
@@ -29,11 +29,15 @@
 		};
 
 		self.newSiteDialog = function() {
+			$rootScope.newSite = true;
+			
 			$mdDialog.show({
 				controller: 'SiteCtrl',
 				controllerAs: 'site',
 				template: document.getElementById('tmpl-new-site').innerHTML
 			});
 		};
-	}]);
+	};
+
+	phalconvm.app.controller('AppCtrl', ['$rootScope', '$mdSidenav', '$mdDialog', '$http', controller]);
 })(phalconvm);

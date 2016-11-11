@@ -1,13 +1,22 @@
 (function(phalconvm) {
-	phalconvm.app.controller('SiteCtrl', ['$mdDialog', '$http', function($mdDialog, $http) {
-		var self = this;
+	var controller = function($rootScope, $routeParams, $mdDialog, $http) {
+		var self = this,
+			data = phalconvm.menu.sites['/site/' + $routeParams.site] || false;
 
-		self.name = '';
-		self.directory = '';
-		self.domains = '';
-		self.repository = '';
-		self.provider = '';
+		if (!data || $rootScope.newSite) {
+			data = {
+				label: '',
+				directory: '',
+				domains: '',
+				repository: '',
+				provider: ''
+			};
+		}
 
+		$rootScope.title = data.label;
+		$rootScope.saveButton = false;
+
+		self.data = data;
 		self.providers = [
 			{key: 'git', label: 'Git'},
 			{key: 'bzr', label: 'Bazaar'},
@@ -17,27 +26,24 @@
 			{key: 'svn', label: 'Subversion'}
 		];
 
-		self.create = function() {
-			var data = {
-					label: self.name,
-					directory: self.directory,
-					domains: self.domains,
-					repository: self.repository,
-					provider: self.provider
-				};
+		self.save = function() {
+			$rootScope.newSite = false;
 
 			if (angular.isArray(phalconvm.menu.sites)) {
 				phalconvm.menu.sites = {};
 			}
 
-			phalconvm.menu.sites['/site/' + self.directory] = data;
-			$http.post('/save/site', data);
+			phalconvm.menu.sites['/site/' + self.data.directory] = self.data;
+			$http.post('/save/site', self.data);
 
 			$mdDialog.hide();
 		};
 
 		self.cancel = function() {
+			$rootScope.newSite = false;
 			$mdDialog.cancel();
 		};
-	}]);
+	};
+
+	phalconvm.app.controller('SiteCtrl', ['$rootScope', '$routeParams', '$mdDialog', '$http', controller]);
 })(phalconvm);

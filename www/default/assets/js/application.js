@@ -9,6 +9,14 @@
 			}
 		});
 
+		$routeProvider.when('/site/:site', {
+			controller: 'SiteCtrl',
+			controllerAs: 'site',
+			template: function() {
+				return document.getElementById('tmpl-new-site').innerHTML;
+			}
+		});
+
 		$routeProvider.when('/env/:service', {
 			controller: 'EnvCtrl',
 			controllerAs: 'env',
