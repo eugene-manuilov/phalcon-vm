@@ -4,6 +4,7 @@
 
 		self.nasty = false;
 		self.menu = phalconvm.menu;
+		self.data = phalconvm.data;
 
 		self.setNasty = function() {
 			self.nasty = true;
@@ -30,11 +31,13 @@
 
 		self.newSiteDialog = function() {
 			$rootScope.newSite = true;
-			
+
 			$mdDialog.show({
 				controller: 'SiteCtrl',
 				controllerAs: 'site',
 				template: document.getElementById('tmpl-new-site').innerHTML
+			}).then(function() {
+				self.setNasty();
 			});
 		};
 	};

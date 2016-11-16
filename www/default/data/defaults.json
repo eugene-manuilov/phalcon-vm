@@ -80,5 +80,8 @@
 	},
 	"sphinx": {
 		"enabled": false
+	},
+	"sites": {
+		
 	}
 }

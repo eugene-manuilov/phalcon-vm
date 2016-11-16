@@ -123,26 +123,6 @@ $di->setShared( 'phalconvmConfig', function() {
 		unset( $phalconvm['menu']['tools'] );
 	}
 
-	$sites = new \FilesystemIterator( BASE_PATH . '/data/sites/' );
-	foreach ( $sites as $site ) {
-		$info = $site->getFileInfo();
-		if ( 'json' != $info->getExtension() ) {
-			continue;
-		}
-
-		$filename = $info->getFilename();
-		$basename = current( explode( '.', $filename ) );
-		$path = $info->getPath() . DIRECTORY_SEPARATOR . $filename;
-
-		$json = file_get_contents( $path );
-		$json = json_decode( $json, true );
-		if ( empty( $json ) ) {
-			continue;
-		}
-
-		$phalconvm['menu']['sites'][ '/site/' . $basename ] = $json;
-	}
-
 	return $phalconvm;
 } );
 

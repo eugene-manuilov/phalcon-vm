@@ -2,6 +2,7 @@
 
 $this->partial( 'index/_homepage' );
 $this->partial( 'index/_new-site' );
+$this->partial( 'index/_edit-site' );
 
 foreach ( $phalconvm['menu']['environment'] as $env ) :
 	?><script id="tmpl-<?php echo $env['key']; ?>" type="text/html">

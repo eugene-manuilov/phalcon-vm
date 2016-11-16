@@ -1,9 +1,11 @@
 (function(phalconvm) {
-	var controller = function($rootScope, $routeParams, $mdDialog, $http) {
+	var controller = function($rootScope, $routeParams, $mdDialog) {
 		var self = this,
-			data = phalconvm.menu.sites['/site/' + $routeParams.site] || false;
+			data = {};
 
-		if (!data || $rootScope.newSite) {
+		$rootScope.saveButton = true;
+
+		if ($rootScope.newSite) {
 			data = {
 				label: '',
 				directory: '',
@@ -11,10 +13,15 @@
 				repository: '',
 				provider: ''
 			};
-		}
+		} else {
+			angular.forEach(phalconvm.data.sites, function(site) {
+				if (site.directory == $routeParams.site) {
+					data = site;
+				}
+			});
 
-		$rootScope.title = data.label;
-		$rootScope.saveButton = false;
+			$rootScope.title = data.label;
+		}
 
 		self.data = data;
 		self.providers = [
@@ -26,16 +33,20 @@
 			{key: 'svn', label: 'Subversion'}
 		];
 
-		self.save = function() {
-			$rootScope.newSite = false;
-
-			if (angular.isArray(phalconvm.menu.sites)) {
-				phalconvm.menu.sites = {};
+		self.add = function() {
+			if (!angular.isArray(phalconvm.data.sites)) {
+				phalconvm.data.sites = [];
 			}
 
-			phalconvm.menu.sites['/site/' + self.data.directory] = self.data;
-			$http.post('/save/site', self.data);
+			phalconvm.data.sites.push({
+				label: self.data.label,
+				directory: self.data.directory,
+				domains: self.data.domains,
+				repository: self.data.repository,
+				provider: self.data.provider
+			});
 
+			$rootScope.newSite = false;
 			$mdDialog.hide();
 		};
 
@@ -45,5 +56,5 @@
 		};
 	};
 
-	phalconvm.app.controller('SiteCtrl', ['$rootScope', '$routeParams', '$mdDialog', '$http', controller]);
+	phalconvm.app.controller('SiteCtrl', ['$rootScope', '$routeParams', '$mdDialog', controller]);
 })(phalconvm);

@@ -1,0 +1,45 @@
+<script id="tmpl-edit-site" type="text/html">
+	<md-content layout-padding>
+		<div class="content-container">
+			<form name="siteForm">
+				<md-input-container class="md-block">
+					<label>Site Name</label>
+					<input type="text" name="label" ng-model="site.data.label" ng-change="app.setNasty()" md-autofocus md-no-asterisk required>
+					<div ng-messages="siteForm.label.$error">
+						<div ng-message="required">This field is required.</div>
+					</div>
+				</md-input-container>
+
+				<md-input-container class="md-block">
+					<label>Directory</label>
+					<input type="text" name="direcotry" ng-model="site.data.directory" ng-change="app.setNasty()" md-no-asterisk required>
+					<div ng-messages="siteForm.direcotry.$error">
+						<div ng-message="required">This field is required.</div>
+					</div>
+				</md-input-container>
+
+				<md-input-container class="md-block">
+					<label>Domains (space-separated)</label>
+					<input type="text" name="domains" ng-model="site.data.domains" ng-change="app.setNasty()" md-no-asterisk required>
+					<div ng-messages="siteForm.domains.$error">
+						<div ng-message="required">This field is required.</div>
+					</div>
+				</md-input-container>
+
+				<md-input-container class="md-block">
+					<label>Repository</label>
+					<input type="text" name="repository" ng-model="site.data.repository" ng-change="app.setNasty()">
+				</md-input-container>
+
+				<md-input-container class="md-block">
+					<label>Repository Provider</label>
+					<md-select ng-model="site.data.provider" ng-change="app.setNasty()">
+						<md-option ng-repeat="pvd in site.providers" ng-value="pvd.key">
+							{{pvd.label}}
+						</md-option>
+					</md-select>
+				</md-input-container>
+			</form>
+		</div>
+	</md-content>
+</script>

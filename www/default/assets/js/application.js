@@ -13,7 +13,7 @@
 			controller: 'SiteCtrl',
 			controllerAs: 'site',
 			template: function() {
-				return document.getElementById('tmpl-new-site').innerHTML;
+				return document.getElementById('tmpl-edit-site').innerHTML;
 			}
 		});
 

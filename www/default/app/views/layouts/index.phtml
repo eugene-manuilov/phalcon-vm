@@ -8,7 +8,7 @@
 	<md-divider></md-divider>
 
 	<md-content id="sidebar-menu">
-		<div ng-show="app.menu.environment">
+		<div class="menu-group">
 			<span class="section-title">Environment</span>
 			<ul>
 				<li class="menu-item" ng-repeat="(key, item) in app.menu.environment">
@@ -18,11 +18,11 @@
 			<md-divider></md-divider>
 		</div>
 
-		<div ng-show="app.menu.sites">
+		<div class="menu-group">
 			<span class="section-title">Sites</span>
 			<ul>
-				<li class="menu-item" ng-repeat="(key, item) in app.menu.sites">
-					<a ng-href="{{key}}">{{item.label}}</a>
+				<li class="menu-item" ng-repeat="site in app.data.sites">
+					<a ng-href="/site/{{site.directory}}">{{site.label}}</a>
 				</li>
 				<li class="menu-item">
 					<a href="#" ng-click="app.newSiteDialog()">
@@ -33,7 +33,7 @@
 			<md-divider></md-divider>
 		</div>
 
-		<div ng-show="app.menu.tools">
+		<div class="menu-group" ng-show="app.menu.tools">
 			<span class="section-title">Tools</span>
 			<ul>
 				<li class="menu-item" ng-repeat="(key, item) in app.menu.tools">
@@ -43,7 +43,7 @@
 			<md-divider></md-divider>
 		</div>
 
-		<div ng-show="app.menu.miscellaneous">
+		<div class="menu-group">
 			<span class="section-title">Miscellaneous</span>
 			<ul>
 				<li class="menu-item" ng-repeat="(key, item) in app.menu.miscellaneous">
