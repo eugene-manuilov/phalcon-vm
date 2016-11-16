@@ -6,18 +6,22 @@ class phalconvm ( $settings ) {
 		'dos2unix', 'ntp', 'gettext', 'libyaml-dev', 'ack-grep', 'g++',
 	]
 
+	# prerequisites
 	package { $packages: ensure => 'installed' }
 
+	# php
 	class { 'phalconvm::php': * => $settings[php] }
     class { 'phalconvm::php::zephir': }
 	class { 'phalconvm::php::phalcon': }
 	class { 'phalconvm::php::pecl': }
 
+	# tools
 	class { 'phalconvm::tools::composer': }
 	class { 'phalconvm::tools::npm': }
 	class { 'phalconvm::tools::webgrind': }
 	class { 'phalconvm::tools::opcache': }
 
+	# services
 	class { 'phalconvm::nginx':                       * => $settings[nginx] }
 	class { 'phalconvm::mysql':                       * => $settings[mysql] }
 	class { 'phalconvm::mysql::phpmyadmin':           * => $settings[phpMyAdmin] }
@@ -31,4 +35,7 @@ class phalconvm ( $settings ) {
 	class { 'phalconvm::rabbitmq':                    * => $settings[rabbitmq] }
 	class { 'phalconvm::elasticsearch':               * => $settings[elasticsearch] }
 	class { 'phalconvm::sphinxsearch':                * => $settings[sphinx] }
+
+	# websites
+	class { 'phalconvm::website': sites => $settings[sites] }
 }
