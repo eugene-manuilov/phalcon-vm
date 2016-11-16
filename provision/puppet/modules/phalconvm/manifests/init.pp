@@ -11,7 +11,7 @@ class phalconvm ( $settings ) {
 
 	# php
 	class { 'phalconvm::php': * => $settings[php] }
-    class { 'phalconvm::php::zephir': }
+	class { 'phalconvm::php::zephir': }
 	class { 'phalconvm::php::phalcon': }
 	class { 'phalconvm::php::pecl': }
 

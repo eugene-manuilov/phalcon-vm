@@ -6,7 +6,7 @@ class phalconvm::website( $sites = [] ) {
 
 		file { "/srv/www/${site[directory]}/htdocs":
 			ensure  => 'directory',
-            require => File["/srv/www/${site[directory]}"],
+			require => File["/srv/www/${site[directory]}"],
 		}
 
 		nginx::resource::vhost { $site[label]:
@@ -26,6 +26,19 @@ class phalconvm::website( $sites = [] ) {
 					},
 				}
 			},
+		}
+
+		if empty($site[repository]) {
+			exec { "${site[label]} Installation":
+				command => "/usr/bin/phalcon project ${site[directory]} --directory=/tmp && /bin/mv /tmp/${site[directory]}/* /srv/www/${site[directory]}/htdocs",
+				creates => "/srv/www/${site[directory]}/htdocs/public/index.php",
+			}
+		} else {
+			vcsrepo { "/srv/www/${site[directory]}/htdocs":
+				ensure   => 'present',
+				provider => $site[provider],
+				source   => $site[repository],
+			}
 		}
 	}
 }
