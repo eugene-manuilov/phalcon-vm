@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'json'
+
 vagrant_dir = File.expand_path(File.dirname(__FILE__))
 
 Vagrant.configure(2) do |config|
@@ -26,15 +28,17 @@ Vagrant.configure(2) do |config|
 	config.vm.synced_folder "www/", "/srv/www/", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774" ]
 
 	if defined?(VagrantPlugins::HostsUpdater)
-		paths = Dir[File.join(vagrant_dir, 'www', '**', 'phalcon-hosts')]
+		settings_file = File.join(vagrant_dir, 'www', 'default', 'data', 'settings.json')
+		if File.exists?(settings_file)
+			settings = JSON.parse(File.read(settings_file))
 
-		hosts = paths.map do |path|
-			lines = File.readlines(path).map(&:chomp)
-			lines.grep(/\A[^#]/)
-		end.flatten.uniq
+			hosts = settings["sites"].map do |site|
+				site['domains']
+			end
 
-		config.hostsupdater.aliases = hosts
-		config.hostsupdater.remove_on_suspend = true
+			config.hostsupdater.aliases = hosts
+			config.hostsupdater.remove_on_suspend = true
+		end
 	end
 
 	config.vm.provision "fix-no-tty", type: "shell" do |s|
