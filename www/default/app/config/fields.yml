@@ -228,6 +228,16 @@ elasticsearch:
             enabled:
                 type: switch
                 description: Defines whether Elasticsearch should be activated on provision or disabled.
+            port:
+                type: text
+                description: The port to listen on for TCP connections.
+#    Plugins:
+#        key: elasticsearch
+#        fields:
+#            xpack:
+#                type: switch
+#                label: Marvel/X-Pack
+#                description: The management and monitoring features for Elasticsearch.
 
 sphinx:
     Sphinx Server:

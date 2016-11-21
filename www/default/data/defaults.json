@@ -76,12 +76,13 @@
 		"enabled": false
 	},
 	"elasticsearch": {
-		"enabled": false
+		"enabled": false,
+		"port": "9200"
 	},
 	"sphinx": {
 		"enabled": false
 	},
 	"sites": {
-		
+
 	}
 }
