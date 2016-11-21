@@ -7,6 +7,7 @@ class phalconvm::tools::composer {
 	exec { 'composer-config':
 		command     => '/usr/bin/composer -q global config bin-dir /usr/local/bin',
 		environment => 'COMPOSER_HOME=/usr/local/src/composer',
+		unless      => '/bin/grep -Fq "bin-dir" /usr/local/src/composer/composer.json',
 		require     => Package['composer'],
 	}
 
