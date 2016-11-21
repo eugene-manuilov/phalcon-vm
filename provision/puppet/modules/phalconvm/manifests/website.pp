@@ -34,11 +34,11 @@ class phalconvm::website( $sites = [] ) {
 				creates => "/srv/www/${site[directory]}/htdocs/public/index.php",
 			}
 		} else {
-			vcsrepo { "/srv/www/${site[directory]}/htdocs":
-				ensure   => 'present',
-				provider => $site[provider],
-				source   => $site[repository],
-			}
+#			vcsrepo { "/srv/www/${site[directory]}/htdocs":
+#				ensure   => 'present',
+#				provider => $site[provider],
+#				source   => $site[repository],
+#			}
 		}
 	}
 }

@@ -31,7 +31,6 @@ Vagrant.configure(2) do |config|
 		settings_file = File.join(vagrant_dir, 'www', 'default', 'data', 'settings.json')
 		if File.exists?(settings_file)
 			settings = JSON.parse(File.read(settings_file))
-
 			hosts = settings["sites"].map do |site|
 				site['domains']
 			end
@@ -47,6 +46,5 @@ Vagrant.configure(2) do |config|
 	end
 
 	config.vm.provision "provision", type: "shell", path: File.join( "provision", "provision.sh" )
-
-	config.vm.provision "startup", type: "shell", path: File.join( "provision", "startup.sh" ), run: "always"
+	config.vm.provision "startup",   type: "shell", path: File.join( "provision", "startup.sh" ), run: "always"
 end
