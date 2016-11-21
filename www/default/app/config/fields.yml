@@ -1,10 +1,38 @@
 nginx:
-    Nginx Server:
+    Common Settings:
         key: nginx
         fields:
-            enabled:
+            client_max_body_size:
+                type: text
+                description: The maximum allowed size of the client request body, specified in the "Content-Length" request header field.
+            client_body_timeout:
+                type: text
+                description: The timeout for reading client request body.
+            send_timeout:
+                type: text
+                description: The timeout for transmitting a response to the client.
+            keepalive_timeout:
+                type: text
+                description: The timeout during which a keep-alive client connection will stay open on the server side. The zero value disables keep-alive client connections.
+    Gzip Settings:
+        key: nginx
+        fields:
+            gzip:
+                label: Enabled
                 type: switch
-                description: Defines whether Nginx should be activated on provision or disabled.
+                description: Determines whether to enable or disable gzipping of responses.
+            gzip_comp_level:
+                label: Compression Level
+                type: text
+                description: The gzip compression level of a response. Acceptable values are in the range from 1 to 9.
+            gzip_min_length:
+                label: Minimum Length
+                type: text
+                description: The minimum length of a response that will be gzipped. The length is determined only from the "Content-Length" response header field.
+            gzip_disable:
+                label: Disable Compression
+                type: text
+                description: Disables gzipping of responses for requests with "User-Agent" header fields matching any of the specified regular expressions.
 
 php:
     General Settings:

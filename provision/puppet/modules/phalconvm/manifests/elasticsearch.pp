@@ -1,7 +1,7 @@
 class phalconvm::elasticsearch(
 	$enabled = false,
-	$port = '9200',
-#	$xpack = false,
+	$port    = '9200',
+#	$xpack   = false,
 ) {
 	if $enabled == true {
 		class { 'elasticsearch':
