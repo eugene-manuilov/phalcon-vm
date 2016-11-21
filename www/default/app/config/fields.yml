@@ -107,6 +107,9 @@ varnish:
             port:
                 type: text
                 description: The port to listen on for TCP connections.
+            storage_size:
+                type: text
+                description: The malloc storage size for cache data.
 
 mysql:
     MySQL Server:

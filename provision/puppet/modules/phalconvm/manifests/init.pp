@@ -23,6 +23,7 @@ class phalconvm ( $settings ) {
 
 	# services
 	class { 'phalconvm::nginx':                       * => $settings[nginx] }
+	class { 'phalconvm::varnish':                     * => $settings[varnish] }
 	class { 'phalconvm::mysql':                       * => $settings[mysql] }
 	class { 'phalconvm::mysql::phpmyadmin':           * => $settings[phpMyAdmin] }
 	class { 'phalconvm::postgres':                    * => $settings[postgres] }

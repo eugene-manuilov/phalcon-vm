@@ -27,7 +27,8 @@
 	},
 	"varnish": {
 		"enabled": false,
-		"port": "81"
+		"port": "8080",
+		"storage_size": "64M"
 	},
 	"phpMyAdmin": {
 		"enabled": false,

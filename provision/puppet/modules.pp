@@ -62,3 +62,8 @@ exec { 'arioch-redis':
 	command => '/opt/puppetlabs/bin/puppet module install arioch-redis --version 1.2.3',
 	creates => '/etc/puppetlabs/code/environments/production/modules/redis/',
 }
+
+exec { 'maxchk-varnish':
+	command => '/opt/puppetlabs/bin/puppet module install maxchk-varnish --version 1.0.0',
+	creates => '/etc/puppetlabs/code/environments/production/modules/varnish/',
+}
