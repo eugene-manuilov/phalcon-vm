@@ -13,6 +13,13 @@ end
 
 require 'json'
 
+class ::Hash
+    def deep_merge(second)
+        merger = proc { |key, v1, v2| Hash === v1 && Hash === v2 ? v1.merge(v2, &merger) : v2 }
+        self.merge(second, &merger)
+    end
+end
+
 vagrant_dir = File.expand_path(File.dirname(__FILE__))
 data_dir = File.join(vagrant_dir, 'www', 'default', 'data')
 
@@ -21,7 +28,7 @@ custom_settings = File.join(data_dir, 'settings.json')
 
 settings = JSON.parse(File.read(default_settings))
 if File.exists?(custom_settings)
-	settings = settings.merge(JSON.parse(File.read(custom_settings)))
+	settings = settings.deep_merge(JSON.parse(File.read(custom_settings)))
 end
 
 Vagrant.configure(2) do |config|

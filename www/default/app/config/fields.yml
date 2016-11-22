@@ -84,6 +84,10 @@ php:
                 label: IDE Key
                 type: text
                 description: Controls which IDE Key Xdebug should pass on to the DBGp debugger handler.
+            xdebug_remote_port:
+                label: Remote Port
+                type: text
+                description: The port to which Xdebug tries to connect on the remote host.
             xdebug_var_display_max_children:
                 label: Var Display Max Children
                 type: text
