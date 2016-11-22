@@ -1,5 +1,15 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
+Vagrant.require_version ">= 1.8.5"
+
+required_plugins = %w(vagrant-hostsupdater vagrant-vbguest)
+plugins_to_install = required_plugins.select { |plugin| not Vagrant.has_plugin? plugin }
+if not plugins_to_install.empty?
+	puts "Installing plugins: #{plugins_to_install.join(' ')}"
+	if system "vagrant plugin install #{plugins_to_install.join(' ')}"
+		exec "vagrant #{ARGV.join(' ')}"
+	else
+		abort "Installation of one or more plugins has failed. Aborting."
+	end
+end
 
 require 'json'
 
@@ -40,6 +50,13 @@ Vagrant.configure(2) do |config|
 	config.vm.synced_folder "provision/", "/srv/provision/"
 	config.vm.synced_folder "log/", "/srv/log/", :owner => "www-data"
 	config.vm.synced_folder "www/", "/srv/www/", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774" ]
+
+	config.vm.synced_folders.each do |id, options|
+        # Make sure we use Samba for file mounts on Windows
+        if ! options[:type] && Vagrant::Util::Platform.windows?
+            options[:type] = "smb"
+        end
+    end
 
 	if defined?(VagrantPlugins::HostsUpdater)
 		hosts = settings['sites'].map do |site|
