@@ -31,7 +31,7 @@ Vagrant.configure(2) do |config|
 	config.ssh.forward_agent = true
 
 	config.vm.network "private_network", ip: "192.168.50.99"
-	config.vm.network "forwarded_port", guest: settings['varnish']['port'], host: settings['varnish']['port']
+	#config.vm.network "forwarded_port", guest: settings['varnish']['port'], host: settings['varnish']['port']
 	config.vm.network "forwarded_port", guest: settings['redis']['port'], host: settings['redis']['port']
 	config.vm.network "forwarded_port", guest: settings['memcached']['tcp_port'], host: settings['memcached']['tcp_port']
 	config.vm.network "forwarded_port", guest: settings['elasticsearch']['port'], host: settings['elasticsearch']['port']

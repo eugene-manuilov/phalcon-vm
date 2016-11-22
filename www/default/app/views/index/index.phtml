@@ -17,8 +17,9 @@ foreach ( $phalconvm['menu']['environment'] as $env ) :
 									?><h2 class="md-subhead"><?php echo $blockLabel; ?></h2><?php
 
 									$this->partial( "index/_list", array(
-										'key'    => $tabData['key'],
-										'fields' => $tabData['fields'],
+										'key'      => $tabData['key'],
+										'fields'   => $tabData['fields'],
+										'disabled' => ! empty( $tabData['disabled'] ),
 									) );
 								endforeach;
 							?></md-tab-body>
