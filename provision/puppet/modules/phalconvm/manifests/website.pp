@@ -41,7 +41,7 @@ class phalconvm::website( $sites = [] ) {
 				ensure   => 'present',
 				provider => $site[provider],
 				source   => $site[repository],
-                require  => [Phalconvm::Known_host['github.com'], Phalconvm::Known_host['bitbucket.org']],
+                require  => [Phalconvm::Utils::Known_host['github.com'], Phalconvm::Utils::Known_host['bitbucket.org']],
 			}
 		}
 	}

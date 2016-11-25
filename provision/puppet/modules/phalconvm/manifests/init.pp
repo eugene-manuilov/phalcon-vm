@@ -6,12 +6,12 @@ class phalconvm ( $settings ) {
 		'libxml2-dev', 'libmcrypt-dev', 'vim', 'colordiff', 'gcc', 'libpcre3-dev',
 		'dos2unix', 'ntp', 'gettext', 'libyaml-dev', 'ack-grep', 'g++',
 	]
-    
+
 	package { $packages: ensure => 'installed' }
 
 	# build known_hosts file
-    phalconvm::known_host{ 'github.com': }
-    phalconvm::known_host{ 'bitbucket.org': }
+	phalconvm::utils::known_host { 'github.com': }
+	phalconvm::utils::known_host { 'bitbucket.org': }
 
 	# php
 	class { 'phalconvm::php': * => $settings[php] }

@@ -1,69 +1,48 @@
-exec { 'puppetlabs-stdlib':
-	command => '/opt/puppetlabs/bin/puppet module install puppetlabs-stdlib --version 4.13.1',
-	creates => '/etc/puppetlabs/code/environments/production/modules/stdlib/',
+phalconvm::utils::puppet_modules { 'puppetlabs':
+	modules => {
+		'stdlib'     => '4.13.1',
+		'apt'        => '2.3.0',
+		'vcsrepo'    => '1.4.0',
+		'inifile'    => '1.6.0',
+		'mysql'      => '3.9.0',
+		'postgresql' => '4.8.0',
+		'mongodb'    => '0.14.0',
+	}
 }
 
-exec { 'puppetlabs-apt':
-	command => '/opt/puppetlabs/bin/puppet module install puppetlabs-apt --version 2.3.0',
-	creates => '/etc/puppetlabs/code/environments/production/modules/apt/',
+phalconvm::utils::puppet_modules { 'computology':
+	modules => {
+		'packagecloud' => '0.3.1',
+	}
 }
 
-exec { 'puppetlabs-vcsrepo':
-	command => '/opt/puppetlabs/bin/puppet module install puppetlabs-vcsrepo --version 1.4.0',
-	creates => '/etc/puppetlabs/code/environments/production/modules/vcsrepo/',
+phalconvm::utils::puppet_modules { 'saz':
+	modules => {
+		'memcached' => '2.8.1',
+	}
 }
 
-exec { 'puppetlabs-inifile':
-	command => '/opt/puppetlabs/bin/puppet module install puppetlabs-inifile --version 1.6.0',
-	creates => '/etc/puppetlabs/code/environments/production/modules/inifile/',
+phalconvm::utils::puppet_modules { 'puppet':
+	modules => {
+		'nginx'   => '0.4.0',
+		'archive' => '1.1.2',
+	}
 }
 
-exec { 'puppetlabs-mysql':
-	command => '/opt/puppetlabs/bin/puppet module install puppetlabs-mysql --version 3.9.0',
-	creates => '/etc/puppetlabs/code/environments/production/modules/mysql/',
+phalconvm::utils::puppet_modules { 'elasticsearch':
+	modules => {
+		'elasticsearch' => '0.14.0',
+	}
 }
 
-exec { 'puppetlabs-postgresql':
-	command => '/opt/puppetlabs/bin/puppet module install puppetlabs-postgresql --version 4.8.0',
-	creates => '/etc/puppetlabs/code/environments/production/modules/postgresql/',
+phalconvm::utils::puppet_modules { 'arioch':
+	modules => {
+		'redis' => '1.2.3',
+	}
 }
 
-exec { 'puppetlabs-mongodb':
-	command => '/opt/puppetlabs/bin/puppet module install puppetlabs-mongodb --version 0.14.0',
-	creates => '/etc/puppetlabs/code/environments/production/modules/mongodb/',
-}
-
-exec { 'computology-packagecloud':
-	command => '/opt/puppetlabs/bin/puppet module install computology-packagecloud --version 0.3.1',
-	creates => '/etc/puppetlabs/code/environments/production/modules/packagecloud/',
-}
-
-exec { 'saz-memcached':
-	command => '/opt/puppetlabs/bin/puppet module install saz-memcached --version 2.8.1',
-	creates => '/etc/puppetlabs/code/environments/production/modules/memcached/',
-}
-
-exec { 'puppet-nginx':
-	command => '/opt/puppetlabs/bin/puppet module install puppet-nginx --version 0.4.0',
-	creates => '/etc/puppetlabs/code/environments/production/modules/nginx/',
-}
-
-exec { 'puppet-archive':
-	command => '/opt/puppetlabs/bin/puppet module install puppet-archive --version 1.1.2',
-	creates => '/etc/puppetlabs/code/environments/production/modules/archive/',
-}
-
-exec { 'elasticsearch-elasticsearch':
-	command => '/opt/puppetlabs/bin/puppet module install elasticsearch-elasticsearch --version 0.14.0',
-	creates => '/etc/puppetlabs/code/environments/production/modules/elasticsearch/',
-}
-
-exec { 'arioch-redis':
-	command => '/opt/puppetlabs/bin/puppet module install arioch-redis --version 1.2.3',
-	creates => '/etc/puppetlabs/code/environments/production/modules/redis/',
-}
-
-exec { 'maxchk-varnish':
-	command => '/opt/puppetlabs/bin/puppet module install maxchk-varnish --version 1.0.0',
-	creates => '/etc/puppetlabs/code/environments/production/modules/varnish/',
+phalconvm::utils::puppet_modules { 'maxchk':
+	modules => {
+		'varnish' => '1.0.0',
+	}
 }
