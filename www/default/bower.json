@@ -1,0 +1,10 @@
+{
+	"name": "phalcon-vm",
+	"private": true,
+	"dependencies": {
+		"angular-material": "^1.1.1",
+		"angular-route": "^1.5.8",
+		"angular-sanitize": "^1.5.8",
+		"angular-messages": "^1.5.8"
+	}
+}

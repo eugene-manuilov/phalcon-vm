@@ -1,0 +1,75 @@
+#wrapper {
+	position: relative;
+	overflow-x: hidden
+}
+
+#content {
+	position: absolute;
+	top: 64px;
+	left: 0;
+	right: 0;
+	bottom: 4px;
+
+	.content-container {
+		max-width: $content-width;
+		margin: 16px;
+	}
+
+	.header > h2 {
+		margin: 0;
+		color: #164371;
+	}
+
+	p {
+		font-size: 16px;
+		font-weight: 400;
+		letter-spacing: 0.010em;
+		line-height: 1.6em;
+		margin: 0.8em 0 1.6em;
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+
+	.md-title {
+		margin-top: 1.5em;
+	}
+
+	.md-2-line {
+		p {
+			font-size: 11px;
+		}
+	}
+
+	.md-secondary-container {
+		min-width: 75px;
+
+		> * {
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		input[type="text"] {
+			text-align: center;
+			width: 75px;
+			border-width: 1px;
+			border-color: rgba(0, 0, 0, 0.1);
+			border-bottom-width: 2px;
+			border-bottom-color: rgba(0, 0, 0, 0.2);
+			padding: 5px 0;
+
+			&:focus {
+				outline-color: #106CC8;
+				outline-width: 1px;
+			}
+		}
+	}
+
+	md-tabs {
+		.md-subhead {
+			margin: 2em 0 .5em 14px;
+			font-weight: bold;
+		}
+	}
+}

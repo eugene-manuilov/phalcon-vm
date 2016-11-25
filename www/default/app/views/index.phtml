@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="PhalconVM" ng-cloak>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<?php echo $this->tag->getTitle(); ?>
+		<base href="http://phalcon-vm/">
+		<?php $this->assets->outputCss(); ?>
+		<?php $this->assets->outputInlineCss(); ?>
+	</head>
+    <body layout="row" ng-controller="AppCtrl as app"><?php
+		echo $this->getContent();
+		$this->assets->outputInlineJs();
+		$this->assets->outputJs();
+	?></body>
+</html>

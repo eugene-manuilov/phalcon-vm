@@ -1,0 +1,97 @@
+{
+	"mysql": {
+		"enabled": false,
+		"password": "root",
+		"general_log": false,
+		"slow_query_log": true,
+		"log_queries_not_using_indexes": true,
+		"long_query_time": "1"
+	},
+	"php": {
+		"max_execution_time": "30",
+		"memory_limit": "128M",
+		"post_max_size": "1024M",
+		"upload_max_filesize": "1024M",
+		"max_file_uploads": "20",
+		"display_errors": true,
+		"display_startup_errors": true,
+		"log_errors": true,
+		"ignore_repeated_errors": false,
+		"ignore_repeated_source": false,
+		"track_errors": false,
+		"html_errors": true,
+		"xdebug_idekey": "PVMDBG",
+		"xdebug_remote_port": "9000",
+		"xdebug_var_display_max_children": "-1",
+		"xdebug_var_display_max_data": "-1",
+		"xdebug_var_display_max_depth": "-1"
+	},
+	"varnish": {
+		"enabled": false,
+		"port": "8080",
+		"storage_size": "64M"
+	},
+	"phpMyAdmin": {
+		"enabled": false,
+		"maxDbList": "100",
+		"maxTableList": "250",
+		"showSQL": true,
+		"allowUserDropDatabase": true,
+		"confirm": true,
+		"useDbSearch": true,
+		"retainQueryBox": false,
+		"ignoreMultiSubmitErrors": false
+	},
+	"nginx": {
+		"client_max_body_size": "1024m",
+		"client_body_timeout": "60s",
+		"send_timeout": "60s",
+		"keepalive_timeout": "75s",
+		"gzip": false,
+		"gzip_comp_level": "5",
+		"gzip_min_length": "256",
+		"gzip_disable": "msie6"
+	},
+	"redis": {
+		"enabled": false,
+		"port": "6379",
+		"maxmemory": "64",
+		"save_db_to_disk": true,
+		"slowlog_log_slower_than": "100"
+	},
+	"postgres": {
+		"enabled": false,
+		"password": "postgres",
+		"log_min_duration_statement": "250"
+	},
+	"phpPgAdmin": {
+		"enabled": false
+	},
+	"mongodb": {
+		"enabled": false
+	},
+	"memcached": {
+		"enabled": false,
+		"max_memory": "64",
+		"tcp_port": "11211"
+	},
+	"phpMemcacheAdmin": {
+		"enabled": false
+	},
+	"gearman": {
+		"enabled": false
+	},
+	"rabbitmq": {
+		"enabled": false
+	},
+	"elasticsearch": {
+		"enabled": false,
+		"port": "9200"
+	},
+	"sphinx": {
+		"enabled": false
+	},
+	"sites": {
+
+	}
+}

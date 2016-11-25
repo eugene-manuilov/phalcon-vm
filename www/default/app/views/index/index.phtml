@@ -1,0 +1,32 @@
+<?php
+
+$this->partial( 'index/_homepage' );
+$this->partial( 'index/_new-site' );
+$this->partial( 'index/_edit-site' );
+
+foreach ( $phalconvm['menu']['environment'] as $env ) :
+	?><script id="tmpl-<?php echo $env['key']; ?>" type="text/html">
+		<md-content layout-padding>
+			<div class="content-container">
+				<md-tabs md-stretch-tabs="auto" md-dynamic-height="true">
+					<?php foreach ( $env['items'] as $tab => $tabLabel ) : ?>
+						<md-tab label="<?php echo $tabLabel; ?>">
+							<md-tab-body><?php
+
+								foreach ( $phalconvm['fields'][ $tab ] as $blockLabel => $tabData ) :
+									?><h2 class="md-subhead"><?php echo $blockLabel; ?></h2><?php
+
+									$this->partial( "index/_list", array(
+										'key'      => $tabData['key'],
+										'fields'   => $tabData['fields'],
+										'disabled' => ! empty( $tabData['disabled'] ),
+									) );
+								endforeach;
+							?></md-tab-body>
+						</md-tab>
+					<?php endforeach; ?>
+				</md-tabs>
+			</div>
+		</md-content>
+	</script><?php
+endforeach;

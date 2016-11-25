@@ -1,0 +1,80 @@
+<md-sidenav id="sidebar" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
+	<header class="nav-header" layout-padding>
+		<h1 id="logo" class="md-heading">
+			<a href="/">PhalconVM</a>
+			<small>2.0-beta1</small>
+		</h1>
+	</header>
+
+	<md-divider></md-divider>
+
+	<md-content id="sidebar-menu">
+		<div class="menu-group">
+			<span class="section-title">Environment</span>
+			<ul>
+				<li class="menu-item" ng-repeat="(key, item) in app.menu.environment">
+					<a ng-href="{{key}}">{{item.label}}</a>
+				</li>
+			</ul>
+			<md-divider></md-divider>
+		</div>
+
+		<div class="menu-group">
+			<span class="section-title">Sites</span>
+			<ul>
+				<li class="menu-item" ng-repeat="site in app.data.sites">
+					<a ng-href="/site/{{site.directory}}">{{site.label}}</a>
+				</li>
+				<li class="menu-item">
+					<a href="#" ng-click="app.newSiteDialog()">
+						<i class="material-icons">add</i> Add New Site
+					</a>
+				</li>
+			</ul>
+			<md-divider></md-divider>
+		</div>
+
+		<div class="menu-group" ng-show="app.menu.tools">
+			<span class="section-title">Tools</span>
+			<ul>
+				<li class="menu-item" ng-repeat="(key, item) in app.menu.tools">
+					<a ng-href="{{key}}">{{item.label}}</a>
+				</li>
+			</ul>
+			<md-divider></md-divider>
+		</div>
+
+		<div class="menu-group">
+			<span class="section-title">Miscellaneous</span>
+			<ul>
+				<li class="menu-item" ng-repeat="(key, item) in app.menu.miscellaneous">
+					<a ng-href="{{key}}">{{item.label}}</a>
+				</li>
+			</ul>
+		</div>
+	</md-content>
+</md-sidenav>
+
+<div id="wrapper" layout="column" flex>
+	<md-toolbar id="toolbar">
+		<div class="md-toolbar-tools">
+			<md-button class="md-icon-button" ng-click="app.toggleSidenav()" hide-gt-sm>
+				<i class="material-icons">menu</i>
+			</md-button>
+
+			<h2 class="md-toolbar-item md-breadcrumb md-headline" ng-show="$root.title">
+				<span class="md-breadcrumb-page">{{$root.title}}</span>
+			</h2>
+
+			<span flex></span>
+
+			<md-button class="md-primary" ng-disabled="!app.nasty" ng-click="app.saveChanges()" ng-show="$root.saveButton">
+				Save Changes
+			</md-button>
+		</div>
+	</md-toolbar>
+
+	<div id="content" ng-view></div>
+</div>
+
+<?php echo $this->getContent(); ?>

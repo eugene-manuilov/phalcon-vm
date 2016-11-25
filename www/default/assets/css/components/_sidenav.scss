@@ -1,0 +1,75 @@
+#sidebar,
+#sidebar-menu {
+	color: white;
+	background-color: #106CC8;
+}
+
+#sidebar {
+	#logo {
+		text-transform: uppercase;
+		text-align: center;
+		display: block;
+		padding: 0;
+		margin: .5em 0;
+
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
+
+		small {
+			display: block;
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 1em;
+			color: #bbb;
+		}
+	}
+
+	md-divider {
+		border-color: #267ED5;
+	}
+
+	ul {
+		padding: 0;
+		margin: 0 0 1.5em;
+	}
+
+	.section-title {
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.54);
+		display: block;
+		margin: 1em 0 0;
+		padding: .5em 1.5em 0;
+		line-height: 32px;
+	}
+
+	.group-title {
+		text-transform: uppercase;
+		display: block;
+		line-height: 32px;
+		font-weight: bold;
+	}
+
+	.menu-item {
+		margin: 0;
+		list-style: none;
+
+		a {
+			color: #fff;
+			text-decoration: none;
+			font-weight: 500;
+			display: block;
+			padding: .5em 1.5em;
+
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.25);
+			}
+		}
+	}
+
+	.material-icons {
+		font-size: 14px;
+		font-weight: bold;
+	}
+}

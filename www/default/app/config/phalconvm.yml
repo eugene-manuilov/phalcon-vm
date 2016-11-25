@@ -1,0 +1,49 @@
+app: null
+menu:
+    environment:
+        "/env/web":
+            key: web
+            label: Web Sevices
+            items:
+                nginx: Nginx
+                php: PHP
+                varnish: Varnish
+
+        "/env/db":
+            key: db
+            label: Databases
+            items:
+                mysql: MySQL
+                postgres: PostgreSQL
+                mongodb: MongoDB
+
+        "/env/cache":
+            key: cache
+            label: Caching Systems
+            items:
+                redis: Redis
+                memcached: Memcached
+
+        "/env/queue":
+            key: queue
+            label: Queue Systems
+            items:
+                gearman: Gearman
+                rabbitmq: RabbitMQ
+
+        "/env/search":
+            key: search
+            label: Search Engines
+            items:
+                elasticsearch: Elasticsearch
+                sphinx: Sphinxsearch
+    tools: []
+    miscellaneous:
+        "/iframe/opcache-status/opcache.php":
+            label: Opcache Status
+        "/iframe/webgrind":
+            label: Webgrind
+        "/iframe/php-info.php":
+            label: PHP Info
+        "/iframe/php-status%3Fhtml%26full":
+            label: PHP Status

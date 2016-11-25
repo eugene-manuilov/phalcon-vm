@@ -1,0 +1,284 @@
+nginx:
+    Common Settings:
+        key: nginx
+        fields:
+            client_max_body_size:
+                type: text
+                description: The maximum allowed size of the client request body, specified in the "Content-Length" request header field.
+            client_body_timeout:
+                type: text
+                description: The timeout for reading client request body.
+            send_timeout:
+                type: text
+                description: The timeout for transmitting a response to the client.
+            keepalive_timeout:
+                type: text
+                description: The timeout during which a keep-alive client connection will stay open on the server side. The zero value disables keep-alive client connections.
+    Gzip Settings:
+        key: nginx
+        fields:
+            gzip:
+                label: Enabled
+                type: switch
+                description: Determines whether to enable or disable gzipping of responses.
+            gzip_comp_level:
+                label: Compression Level
+                type: text
+                description: The gzip compression level of a response. Acceptable values are in the range from 1 to 9.
+            gzip_min_length:
+                label: Minimum Length
+                type: text
+                description: The minimum length of a response that will be gzipped. The length is determined only from the "Content-Length" response header field.
+            gzip_disable:
+                label: Disable Compression
+                type: text
+                description: Disables gzipping of responses for requests with "User-Agent" header fields matching any of the specified regular expressions.
+
+php:
+    General Settings:
+        key: php
+        fields:
+            max_execution_time:
+                type: text
+                description: The maximum time in seconds a script is allowed to run before it is terminated by the parser.
+            memory_limit:
+                type: text
+                description: The maximum amount of memory in bytes that a script is allowed to allocate.
+            post_max_size:
+                type: text
+                description: The maximum size of post data allowed. This setting also affects file upload. To upload large files, this value must be larger than upload max filesize.
+            upload_max_filesize:
+                type: text
+                description: The maximum size of an uploaded file.
+            max_file_uploads:
+                type: text
+                description: The maximum number of files allowed to be uploaded simultaneously.
+    Errors Tracking:
+        key: php
+        fields:
+            display_errors:
+                type: checkbox
+                description: Whether errors should be printed to the screen as part of the output or if they should be hidden from the user.
+            display_startup_errors:
+                type: checkbox
+                description: Whether errors that occur during PHP's startup sequence should be displayed.
+            log_errors:
+                type: checkbox
+                description: Whether script error messages should be logged to the server's error log.
+            ignore_repeated_errors:
+                type: checkbox
+                description: Do not log repeated messages. Repeated errors must occur in the same file on the same line unless ignore_repeated_source is set true.
+            ignore_repeated_source:
+                type: checkbox
+                description: Ignore source of message when ignoring repeated messages. When this setting is On you will not log errors with repeated messages from different files or sourcelines.
+            track_errors:
+                type: checkbox
+                description: If enabled, the last error message will always be present in the variable $php_errormsg.
+            html_errors:
+                type: checkbox
+                description: If enabled, error messages will include HTML tags.
+    Xdebug:
+        key: php
+        fields:
+            xdebug_idekey:
+                label: IDE Key
+                type: text
+                description: Controls which IDE Key Xdebug should pass on to the DBGp debugger handler.
+            xdebug_remote_port:
+                label: Remote Port
+                type: text
+                description: The port to which Xdebug tries to connect on the remote host.
+            xdebug_var_display_max_children:
+                label: Var Display Max Children
+                type: text
+                description: Controls the amount of array children and object's properties are shown when variables are displayed. To disable any limitation, use -1 as value.
+            xdebug_var_display_max_data:
+                label: Var Display Max Data
+                type: text
+                description: Controls the maximum string length that is shown when variables are displayed. To disable any limitation, use -1 as value.
+            xdebug_var_display_max_depth:
+                label: Var Display Max Depth
+                type: text
+                description: Controls how many nested levels of array elements and object properties are when variables are displayed. To disable any limitation, use -1 as value.
+
+varnish:
+    Varnish Server:
+        key: varnish
+        disabled: true
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether Varnish should be activated on provision or disabled.
+            port:
+                type: text
+                description: The port to listen on for TCP connections.
+            storage_size:
+                type: text
+                description: The malloc storage size for cache data.
+
+mysql:
+    MySQL Server:
+        key: mysql
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether MySQL should be activated on provision or disabled.
+            password:
+                type: text
+                description: The password for root user.
+            general_log:
+                type: checkbox
+                description: Whether the general query log is enabled.
+            slow_query_log:
+                type: checkbox
+                description: Whether the slow query log is enabled.
+            log_queries_not_using_indexes:
+                type: checkbox
+                description: Whether queries that do not use indexes are logged to the slow query log.
+            long_query_time:
+                type: text
+                description: If a query takes longer than this many seconds, then server writes the query to the slow query log file.
+    phpMyAdmin:
+        key: phpMyAdmin
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether phpMyAdmin should be activated on provision or disabled.
+            maxDbList:
+                type: text
+                description: The maximum number of database names to be displayed in the main panel&apos;s database list.
+            maxTableList:
+                type: text
+                description: The maximum number of table names to be displayed in the main panel&apos;s list.
+            showSQL:
+                type: checkbox
+                description: Defines whether SQL queries generated by phpMyAdmin should be displayed or not.
+            retainQueryBox:
+                type: checkbox
+                description: Defines whether the SQL query box should be kept displayed after its submission.
+            allowUserDropDatabase:
+                type: checkbox
+                description: Defines whether normal users (non-administrator) are allowed to delete their own database or not.
+            confirm:
+                type: checkbox
+                description: Whether a warning (&quot;Are your really sure...&quot;) should be displayed when you&apos;re about to lose data.
+            useDbSearch:
+                type: checkbox
+                description: Define whether the &quot;search string inside database&quot; is enabled or not.
+            ignoreMultiSubmitErrors:
+                type: checkbox
+                description: Define whether phpMyAdmin will continue executing a multi-query statement if one of the queries fails. Default is to abort execution.
+
+postgres:
+    PostgreSQL Server:
+        key: postgres
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether PostgreSQL should be activated on provision or disabled.
+            password:
+                type: text
+                description: The password for postgres user.
+            log_min_duration_statement:
+                type: text
+                description: If a query takes longer than this many milliseconds, then server writes the query to the slow query log file.
+    phpPgAdmin:
+        key: phpPgAdmin
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether phpPgAdmin should be activated on provision or disabled.
+
+mongodb:
+    MongoDB Server:
+        key: mongodb
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether MongoDB should be activated on provision or disabled.
+
+redis:
+    Redis Server:
+        key: redis
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether Redis should be activated on provision or disabled.
+            port:
+                type: text
+                description: The port to listen on for TCP connections.
+            maxmemory:
+                label: Max Memory
+                type: text
+                description: How much RAM memory to use for item storage (in megabytes).
+            slowlog_log_slower_than:
+                type: text
+                description: If a query takes longer than this many milliseconds, then server writes the query to the log file.
+            save_db_to_disk:
+                label: Save To Disk
+                type: checkbox
+                description: Defines if Redis has to save database to disk.
+
+memcached:
+    Memcached Server:
+        key: memcached
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether Memcache should be activated on provision or disabled.
+            max_memory:
+                type: input
+                label: Max memory
+                description: How much RAM memory to use for item storage (in megabytes).
+            tcp_port:
+                type: input
+                label: TCP port
+                description: The port to listen on for TCP connections.
+    phpMemcacheAdmin:
+        key: phpMemcacheAdmin
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether phpMemcacheAdmin should be activated on provision or disabled.
+
+gearman:
+    Gearman Server:
+        key: gearman
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether Gearman should be activated on provision or disabled.
+
+rabbitmq:
+    RabbitMQ Server:
+        key: rabbitmq
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether RabbitMQ should be activated on provision or disabled.
+
+elasticsearch:
+    Elasticsearch Server:
+        key: elasticsearch
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether Elasticsearch should be activated on provision or disabled.
+            port:
+                type: text
+                description: The port to listen on for TCP connections.
+#    Plugins:
+#        key: elasticsearch
+#        fields:
+#            xpack:
+#                type: switch
+#                label: Marvel/X-Pack
+#                description: The management and monitoring features for Elasticsearch.
+
+sphinx:
+    Sphinx Server:
+        key: sphinx
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether Sphinx should be activated on provision or disabled.
