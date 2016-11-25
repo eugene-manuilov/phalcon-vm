@@ -55,6 +55,7 @@ Vagrant.configure(2) do |config|
 	end
 
 	config.vm.synced_folder "provision/", "/srv/provision/"
+	config.vm.synced_folder "ssh/", "/root/.ssh/", :owner => "root"
 	config.vm.synced_folder "log/", "/srv/log/", :owner => "www-data"
 	config.vm.synced_folder "www/", "/srv/www/", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774" ]
 

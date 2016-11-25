@@ -32,15 +32,17 @@ class phalconvm::website( $sites = [] ) {
 
 		if empty($site[repository]) {
 			exec { "${site[label]} Installation":
-				command => "/usr/bin/phalcon project ${site[directory]} --directory=/tmp && /bin/mv /tmp/${site[directory]}/* /srv/www/${site[directory]}/htdocs",
+				command => "phalcon project ${site[directory]} --directory=/tmp && mv /tmp/${site[directory]}/* /srv/www/${site[directory]}/htdocs",
 				creates => "/srv/www/${site[directory]}/htdocs/public/index.php",
+                path    => '/bin:/usr/bin',
 			}
 		} else {
-#			vcsrepo { "/srv/www/${site[directory]}/htdocs":
-#				ensure   => 'present',
-#				provider => $site[provider],
-#				source   => $site[repository],
-#			}
+			vcsrepo { "/srv/www/${site[directory]}/htdocs":
+				ensure   => 'present',
+				provider => $site[provider],
+				source   => $site[repository],
+                require  => [Phalconvm::Known_host['github.com'], Phalconvm::Known_host['bitbucket.org']],
+			}
 		}
 	}
 }
