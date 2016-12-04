@@ -25,6 +25,25 @@ class phalconvm::mysql(
 				},
 			}
 		}
+
+		mysql_user { 'root@%':
+			ensure                   => 'present',
+			password_hash            => mysql_password( $password ),
+			max_user_connections     => 0,
+			max_connections_per_hour => 0,
+			max_queries_per_hour     => 0,
+			max_updates_per_hour     => 0,
+			require                  => Class['::mysql::server'],
+		}
+
+		mysql_grant { 'root@%/*.*':
+			ensure     => 'present',
+			options    => ['GRANT'],
+			privileges => ['ALL'],
+			table      => '*.*',
+			user       => 'root@%',
+			require    => Mysql_user['root@%'],
+		}
 	} else {
 		service { 'mysql':
 			ensure => 'stopped',
