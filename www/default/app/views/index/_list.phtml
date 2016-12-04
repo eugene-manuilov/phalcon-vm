@@ -1,35 +1,38 @@
-<md-list>
-	<md-divider></md-divider>
-	<?php foreach ( $fields as $id => $field ) : ?>
-		<md-list-item class="md-2-line">
-			<?php if ( 'switch' == $field['type'] ) : ?>
-				<md-switch class="md-secondary"
-						   ng-model="data.<?php echo $key; ?>.<?php echo $id; ?>"
-						   ng-change="app.setNasty()"
-						   ng-disabled="<?php echo ! empty( $disabled ) ? 1 : 0; ?>"
-						   >
-				</md-switch>
-			<?php elseif ( 'checkbox' == $field['type'] ) : ?>
-				<md-checkbox class="md-secondary"
-							 ng-model="data.<?php echo $key; ?>.<?php echo $id; ?>"
-							 ng-change="app.setNasty()"
-							 ng-disabled="<?php echo ! empty( $disabled ) ? 1 : 0; ?>"
-							 >
-				</md-checkbox>
-			<?php else : ?>
-				<input type="text"
-					   class="md-secondary"
+<?php
+
+foreach ( $fields as $id => $field ) :
+	$defaultDisabled = ! in_array( $key, array( 'nginx', 'php', 'varnish' ) )
+		? "!data.{$key}.enabled"
+		: 0;
+
+	?><md-list-item class="md-2-line">
+		<?php if ( 'switch' == $field['type'] ) : ?>
+			<md-switch class="md-secondary"
 					   ng-model="data.<?php echo $key; ?>.<?php echo $id; ?>"
 					   ng-change="app.setNasty()"
-					   ng-disabled="<?php echo ! empty( $disabled ) ? 1 : 0; ?>"
+					   ng-disabled="<?php echo ! empty( $disabled ) ? $disabled : 0; ?>"
 					   >
-			<?php endif; ?>
+			</md-switch>
+		<?php elseif ( 'checkbox' == $field['type'] ) : ?>
+			<md-checkbox class="md-secondary"
+						 ng-model="data.<?php echo $key; ?>.<?php echo $id; ?>"
+						 ng-change="app.setNasty()"
+						 ng-disabled="<?php echo ! empty( $disabled ) ? $disabled : $defaultDisabled; ?>"
+						 >
+			</md-checkbox>
+		<?php else : ?>
+			<input type="text"
+				   class="md-secondary"
+				   ng-model="data.<?php echo $key; ?>.<?php echo $id; ?>"
+				   ng-change="app.setNasty()"
+				   ng-disabled="<?php echo ! empty( $disabled ) ? $disabled : $defaultDisabled; ?>"
+				   >
+		<?php endif; ?>
 
-			<div class="md-list-item-text">
-				<h3><?php echo ! empty( $field['label'] ) ? $field['label'] : ucwords( str_replace( '_', ' ', $id ) ); ?></h3>
-				<p><?php echo $field['description']; ?></p>
-			</div>
-		</md-list-item>
-		<md-divider></md-divider>
-	<?php endforeach; ?>
-</md-list>
+		<div class="md-list-item-text">
+			<h3><?php echo ! empty( $field['label'] ) ? $field['label'] : ucwords( str_replace( '_', ' ', $id ) ); ?></h3>
+			<p><?php echo $field['description']; ?></p>
+		</div>
+	</md-list-item>
+	<md-divider></md-divider>
+<?php endforeach;
