@@ -4,7 +4,7 @@ class phalconvm ( $config ) {
 		'phpMyAdmin' => {
 			'port' => $config[mysql][port],
 		},
-	} );
+	} )
 
 	# prerequisites
 	$packages = [
