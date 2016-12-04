@@ -126,6 +126,12 @@ mysql:
             password:
                 type: text
                 description: The password for root user.
+            port:
+                type: text
+                description: The port to listen on for TCP connections.
+    Logs:
+        key: mysql
+        fields:
             general_log:
                 type: checkbox
                 description: Whether the general query log is enabled.
@@ -230,7 +236,7 @@ memcached:
                 type: input
                 label: Max memory
                 description: How much RAM memory to use for item storage (in megabytes).
-            tcp_port:
+            port:
                 type: input
                 label: TCP port
                 description: The port to listen on for TCP connections.

@@ -1,4 +1,11 @@
-class phalconvm ( $settings ) {
+class phalconvm ( $config ) {
+	# prepare settings
+	$settings = deep_merge( $config, {
+		'phpMyAdmin' => {
+			'port' => $config[mysql][port],
+		},
+	} )
+
 	# prerequisites
 	$packages = [
 		'imagemagick', 'subversion', 'git', 'zip', 'unzip', 'ngrep', 'curl', 'make',

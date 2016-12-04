@@ -8,6 +8,7 @@ class phalconvm::mysql::phpmyadmin(
 	$useDbSearch = true,
 	$retainQueryBox = false,
 	$ignoreMultiSubmitErrors = false,
+	$port = 3306,
 ) {
 	if $enabled == true {
 		archive { '/tmp/phpmyadmin.tar.gz':
