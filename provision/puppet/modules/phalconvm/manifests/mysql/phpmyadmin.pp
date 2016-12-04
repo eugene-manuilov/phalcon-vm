@@ -26,6 +26,9 @@ class phalconvm::mysql::phpmyadmin(
 			require => Archive['/tmp/phpmyadmin.tar.gz']
 		}
 
+		$fqdn_rand = fqdn_rand( 9999 )
+		$blowfish_secret = pw_hash( "${fqdn_rand}", 'SHA-512', 'JXXdi4G0Nl9xlh0emuoHZNSuPvZ0qcfGx1hF4cUfOkf3jS' )
+
 		file { '/srv/www/default/public/phpmyadmin/config.inc.php':
 			ensure  => 'present',
 			content => template( 'phalconvm/phpmyadmin/config.inc.php.erb' ),
