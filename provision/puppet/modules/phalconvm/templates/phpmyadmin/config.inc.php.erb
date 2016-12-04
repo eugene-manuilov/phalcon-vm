@@ -8,13 +8,14 @@
  * @see: https://docs.phpmyadmin.net/en/latest/config.html
  */
 
-$cfg['blowfish_secret'] = 'a8b7c6d';
+$cfg['blowfish_secret'] = 'JXXdi-/4G) {#0Nl9xl&h0-em(uoH,ZN$}SuPvZ0q*. c%?fGx1hF4cUfOkf=3jS';
 
 $i = 1;
 
 // server settings
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 $cfg['Servers'][$i]['host'] = 'localhost';
+$cfg['Servers'][$i]['port'] = <%= @port %>;
 $cfg['Servers'][$i]['connect_type'] = 'tcp';
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['extension'] = 'mysqli';
