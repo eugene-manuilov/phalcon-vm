@@ -12,6 +12,7 @@ class phalconvm::mysql(
 			remove_default_accounts => true,
 			override_options        => {
 				'mysqld' => {
+					'bind-address'                  => '0.0.0.0',
 					'general_log'                   => $general_log ? { true => 'on', default => 'off' },
 					'slow_query_log'                => $slow_query_log ? { true => 'on', default => 'off' },
 					'long_query_time'               => $long_query_time,
