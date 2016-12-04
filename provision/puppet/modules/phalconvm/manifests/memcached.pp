@@ -1,13 +1,13 @@
 class phalconvm::memcached(
 	$enabled = false,
 	$max_memory = 64,
-	$tcp_port = 11211
+	$port = 11211
 ) {
 	if $enabled == true {
 		class { 'memcached':
 			package_ensure => 'present',
 			listen_ip      => '127.0.0.1',
-			tcp_port       => $tcp_port,
+			tcp_port       => $port,
 			max_memory     => $max_memory,
 			user           => 'memcache',
 		}
