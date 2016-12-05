@@ -1,6 +1,7 @@
 class phalconvm::redis(
 	$enabled                 = false,
 	$port                    = 6379,
+	$forward_port            = false,
 	$maxmemory               = 64,
 	$save_db_to_disk         = true,
 	$slowlog_log_slower_than = 100,

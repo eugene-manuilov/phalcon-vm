@@ -3,6 +3,7 @@
 		"enabled": false,
 		"password": "root",
 		"port": "3306",
+		"forward_port": false,
 		"general_log": false,
 		"slow_query_log": true,
 		"log_queries_not_using_indexes": true,
@@ -56,6 +57,7 @@
 	"redis": {
 		"enabled": false,
 		"port": "6379",
+		"forward_port": false,
 		"maxmemory": "64",
 		"save_db_to_disk": true,
 		"slowlog_log_slower_than": "100"
@@ -74,7 +76,8 @@
 	"memcached": {
 		"enabled": false,
 		"max_memory": "64",
-		"port": "11211"
+		"port": "11211",
+		"forward_port": false
 	},
 	"phpMemcacheAdmin": {
 		"enabled": false
@@ -87,7 +90,8 @@
 	},
 	"elasticsearch": {
 		"enabled": false,
-		"port": "9200"
+		"port": "9200",
+		"forward_port": false
 	},
 	"sphinx": {
 		"enabled": false

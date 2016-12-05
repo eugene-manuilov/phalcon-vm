@@ -41,16 +41,16 @@ Vagrant.configure(2) do |config|
 #	if settings['varnish']['enabled'] === true
 #		config.vm.network "forwarded_port", guest: settings['varnish']['port'], host: settings['varnish']['port']
 #	end
-	if settings['mysql']['enabled'] === true
+	if settings['mysql']['enabled'] === true and settings['mysql']['forward_port'] === true
 		config.vm.network "forwarded_port", guest: settings['mysql']['port'], host: settings['mysql']['port']
 	end
-	if settings['redis']['enabled'] === true
+	if settings['redis']['enabled'] === true and settings['redis']['forward_port'] === true
 		config.vm.network "forwarded_port", guest: settings['redis']['port'], host: settings['redis']['port']
 	end
-	if settings['memcached']['enabled'] === true
+	if settings['memcached']['enabled'] === true and settings['memcached']['forward_port'] === true
 		config.vm.network "forwarded_port", guest: settings['memcached']['port'], host: settings['memcached']['port']
 	end
-	if settings['elasticsearch']['enabled'] === true
+	if settings['elasticsearch']['enabled'] === true and settings['elasticsearch']['forward_port'] === true
 		config.vm.network "forwarded_port", guest: settings['elasticsearch']['port'], host: settings['elasticsearch']['port']
 	end
 
