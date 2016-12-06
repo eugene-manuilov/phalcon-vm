@@ -8,12 +8,13 @@ The primary goal of this project is to provide an approachable development envir
 
 After initial provision of your vagrant machine, you will have a fresh Ubuntu 16.04 instance with initial applications set required for very basic development. It includes Nginx server, PHP7 and its extensions (including Phalcon 3.x), Zephir, Composer (with Phalcon Dev Tools installed globally) and a few more. It will also contain a default site which will allow you to configure your environment as you want.
 
-The default site will allow you to activate and configure MySQL, PostgreSQL or MongoDb databases (along with phpMyAdmin and phpPgAdmin tools), Redis and/or Memcached caching systems (along with phpMemcachedAdmin tool), Gearman and/or RabbitMQ jobs servers, Elasticsearch and/or Sphinxsearch search engines.
+The default site will allow you to activate and configure Varnish cache, MySQL, PostgreSQL or MongoDb databases (along with phpMyAdmin and phpPgAdmin tools), Redis and/or Memcached caching systems (along with phpMemcachedAdmin tool), Gearman and/or RabbitMQ jobs servers, Elasticsearch and/or Sphinxsearch search engines.
 
 Here is full list of what is and can be installed:
 
 1. [Ubuntu](http://www.ubuntu.com/) 16.04 LTS (Xenial Xerus)
 1. [nginx](http://nginx.org/) (mainline version)
+1. [Varnish](http://varnish-cache.org/) 4.x
 1. [Phalcon PHP](https://phalconphp.com/) 3.x
 1. [Phalcon Dev Tools](https://docs.phalconphp.com/en/latest/reference/tools.html) 3.x
 1. [Zephir](http://zephir-lang.com/) 0.9.x
