@@ -43,6 +43,6 @@ phalconvm::utils::puppet_modules { 'arioch':
 
 phalconvm::utils::puppet_modules { 'maxchk':
 	modules => {
-		'varnish' => '1.0.0',
+		'varnish' => false,
 	}
 }
