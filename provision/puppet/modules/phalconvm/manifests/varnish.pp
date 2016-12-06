@@ -6,6 +6,7 @@ class phalconvm::varnish (
 ) {
 	if $enabled == true {
 		class { 'varnish':
+			varnish_vcl_conf       => '/etc/varnish/default.vcl',
 			varnish_listen_address => '0.0.0.0',
 			varnish_listen_port    => $port,
 			varnish_storage_size   => $storage_size,
@@ -13,14 +14,21 @@ class phalconvm::varnish (
 			add_repo               => false,
 		}
 
-		varnish::backend { 'default':
-			host    => '127.0.0.1',
-			port    => '80',
+		file { '/etc/varnish/default.vcl':
+			ensure  => 'present',
+			content => template( 'phalconvm/varnish/default.vcl.erb' ),
 			require => Class['varnish'],
 		}
 	} else {
 		service { 'varnish':
 			ensure => 'stopped',
+		}
+
+		exec { 'varnish-unmount':
+			command     => 'umount /var/lib/varnish',
+			path        => '/bin:/usr/bin',
+			refreshonly => true,
+			subscribe   => Service['varnish'],
 		}
 
 		package { 'varnish':
@@ -29,8 +37,9 @@ class phalconvm::varnish (
 		}
 
 		exec { 'varnish-remove':
-			command     => '/usr/bin/apt-get autoremove --purge -y',
+			command     => 'apt-get autoremove --purge -y',
 			refreshonly => true,
+			path        => '/bin:/usr/bin',
 			subscribe   => Package['varnish'],
 		}
 	}

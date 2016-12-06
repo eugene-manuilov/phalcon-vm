@@ -7,6 +7,7 @@ restart() {
 }
 
 restart nginx
+restart varnish
 restart php7.0-fpm
 restart mysql
 restart postgresql
