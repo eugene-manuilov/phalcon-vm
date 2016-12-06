@@ -14,12 +14,6 @@ class phalconvm::varnish (
 			require => Package['varnish'],
 		}
 
-		exec { 'varnish-service-file':
-			command => '/bin/cp /lib/systemd/system/varnish.service /etc/systemd/system/',
-			creates => '/etc/systemd/system/varnish.service',
-			require => Package['varnish'],
-		}
-
 		$varnish_service = {
 			'Service' => {
 				'ExecStart' => "/usr/sbin/varnishd -j unix,user=vcache -F -a :${port} -T localhost:6082 -f /etc/varnish/default.vcl -t ${ttl} -S /etc/varnish/secret -s malloc,${storage_size}",
@@ -27,9 +21,9 @@ class phalconvm::varnish (
 		}
 
 		create_ini_settings( $varnish_service, {
-			path    => '/etc/systemd/system/varnish.service',
-			require => Exec['varnish-service-file'],
-			notify  => Service['varnish'],
+			path    => '/lib/systemd/system/varnish.service',
+			require => Package['varnish'],
+			notify  => Exec['varnish-daemon-reload'],
 		} )
 
 		file { '/etc/varnish/default.vcl':
@@ -37,6 +31,12 @@ class phalconvm::varnish (
 			content => template( 'phalconvm/varnish/default.vcl.erb' ),
 			require => Package['varnish'],
 			notify  => Service['varnish'],
+		}
+
+		exec { 'varnish-daemon-reload':
+			command     => '/bin/systemctl daemon-reload',
+			refreshonly => true,
+			notify      => Service['varnish'],
 		}
 	} else {
 		service { 'varnish':
