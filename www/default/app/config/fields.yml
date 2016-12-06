@@ -104,7 +104,6 @@ php:
 varnish:
     Varnish Server:
         key: varnish
-        disabled: true
         fields:
             enabled:
                 type: switch
@@ -112,6 +111,10 @@ varnish:
             port:
                 type: text
                 description: The port to listen on for TCP connections.
+            ttl:
+                type: text
+                label: TTL
+                description: The time in seconds after which cache will be expired.
             storage_size:
                 type: text
                 description: The malloc storage size for cache data.
@@ -129,6 +132,9 @@ mysql:
             port:
                 type: text
                 description: The port to listen on for TCP connections.
+            forward_port:
+                type: checkbox
+                description: Defines whether Vagrant should forward MySQL port or not.
     Logs:
         key: mysql
         fields:
@@ -213,6 +219,9 @@ redis:
             port:
                 type: text
                 description: The port to listen on for TCP connections.
+            forward_port:
+                type: checkbox
+                description: Defines whether Vagrant should forward Redis port or not.
             maxmemory:
                 label: Max Memory
                 type: text
@@ -240,6 +249,9 @@ memcached:
                 type: input
                 label: TCP port
                 description: The port to listen on for TCP connections.
+            forward_port:
+                type: checkbox
+                description: Defines whether Vagrant should forward Memcached port or not.
     phpMemcacheAdmin:
         key: phpMemcacheAdmin
         fields:
@@ -273,6 +285,9 @@ elasticsearch:
             port:
                 type: text
                 description: The port to listen on for TCP connections.
+            forward_port:
+                type: checkbox
+                description: Defines whether Vagrant should forward Elasticsearch port or not.
 #    Plugins:
 #        key: elasticsearch
 #        fields:

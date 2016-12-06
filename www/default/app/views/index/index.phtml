@@ -11,18 +11,22 @@ foreach ( $phalconvm['menu']['environment'] as $env ) :
 				<md-tabs md-stretch-tabs="auto" md-dynamic-height="true">
 					<?php foreach ( $env['items'] as $tab => $tabLabel ) : ?>
 						<md-tab label="<?php echo $tabLabel; ?>">
-							<md-tab-body><?php
+							<md-tab-body>
+								<?php foreach ( $phalconvm['fields'][ $tab ] as $blockLabel => $tabData ) : ?>
+									<h2 class="md-subhead"><?php echo $blockLabel; ?></h2>
 
-								foreach ( $phalconvm['fields'][ $tab ] as $blockLabel => $tabData ) :
-									?><h2 class="md-subhead"><?php echo $blockLabel; ?></h2><?php
-
-									$this->partial( "index/_list", array(
-										'key'      => $tabData['key'],
-										'fields'   => $tabData['fields'],
-										'disabled' => ! empty( $tabData['disabled'] ),
-									) );
-								endforeach;
-							?></md-tab-body>
+									<md-list>
+										<md-divider></md-divider>
+											<?php
+												$this->partial( "index/_list", array(
+													'key'      => $tabData['key'],
+													'fields'   => $tabData['fields'],
+													'disabled' => ! empty( $tabData['disabled'] ) ? $tabData['disabled'] : false,
+												) );
+											?>
+									</md-list>
+								<?php endforeach; ?>
+							</md-tab-body>
 						</md-tab>
 					<?php endforeach; ?>
 				</md-tabs>

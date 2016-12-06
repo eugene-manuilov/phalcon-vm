@@ -12,7 +12,7 @@ class phalconvm::php(
 	$track_errors                    = false,
 	$html_errors                     = true,
 	$xdebug_idekey                   = 'PVMDBG',
-    $xdebug_remote_port              = '9000',
+	$xdebug_remote_port              = '9000',
 	$xdebug_var_display_max_children = '-1',
 	$xdebug_var_display_max_data     = '-1',
 	$xdebug_var_display_max_depth    = '-1',

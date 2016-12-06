@@ -15,8 +15,8 @@ class phalconvm::website( $sites = [] ) {
 			www_root    => "/srv/www/${site[directory]}/htdocs/public",
 			index_files => ['index.php'],
 			try_files   => ['$uri', '$uri/', '/index.php?$args'],
-            access_log  => "/srv/log/nginx/${site[directory]}.access.log",
-            error_log   => "/srv/log/nginx/${site[directory]}.error.log",
+			access_log  => "/srv/log/nginx/${site[directory]}.access.log",
+			error_log   => "/srv/log/nginx/${site[directory]}.error.log",
 			locations   => {
 				"${site[label]}-php-loc" => {
 					ensure        => present,
@@ -34,14 +34,14 @@ class phalconvm::website( $sites = [] ) {
 			exec { "${site[label]} Installation":
 				command => "phalcon project ${site[directory]} --directory=/tmp && mv /tmp/${site[directory]}/* /srv/www/${site[directory]}/htdocs",
 				creates => "/srv/www/${site[directory]}/htdocs/public/index.php",
-                path    => '/bin:/usr/bin',
+				path    => '/bin:/usr/bin',
 			}
 		} else {
 			vcsrepo { "/srv/www/${site[directory]}/htdocs":
 				ensure   => 'present',
 				provider => $site[provider],
 				source   => $site[repository],
-                require  => [Phalconvm::Utils::Known_host['github.com'], Phalconvm::Utils::Known_host['bitbucket.org']],
+				require  => [Phalconvm::Utils::Known_host['github.com'], Phalconvm::Utils::Known_host['bitbucket.org']],
 			}
 		}
 	}

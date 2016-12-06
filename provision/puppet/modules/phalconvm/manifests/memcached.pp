@@ -1,7 +1,8 @@
 class phalconvm::memcached(
-	$enabled = false,
-	$max_memory = 64,
-	$port = 11211
+	$enabled      = false,
+	$max_memory   = 64,
+	$port         = 11211,
+	$forward_port = false,
 ) {
 	if $enabled == true {
 		class { 'memcached':

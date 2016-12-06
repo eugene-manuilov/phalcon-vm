@@ -2,6 +2,7 @@ class phalconvm::mysql(
 	$enabled                       = false,
 	$password                      = 'root',
 	$port                          = '3306',
+	$forward_port                  = false,
 	$general_log                   = false,
 	$slow_query_log                = true,
 	$log_queries_not_using_indexes = true,
