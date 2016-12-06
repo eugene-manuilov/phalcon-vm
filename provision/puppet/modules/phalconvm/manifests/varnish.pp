@@ -1,14 +1,22 @@
 class phalconvm::varnish (
 	$enabled      = false,
-	$port         = '8080',
+	$port         = '6081',
 	$storage_size = '64M',
+	$ttl          = '120',
 ) {
 	if $enabled == true {
 		class { 'varnish':
-#			varnish_listen_address => '0.0.0.0',
+			varnish_listen_address => '0.0.0.0',
 			varnish_listen_port    => $port,
 			varnish_storage_size   => $storage_size,
-            add_repo               => false,
+			varnish_ttl            => $ttl,
+			add_repo               => false,
+		}
+
+		varnish::backend { 'default':
+			host    => '127.0.0.1',
+			port    => '80',
+			require => Class['varnish'],
 		}
 	} else {
 		service { 'varnish':

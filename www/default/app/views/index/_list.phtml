@@ -1,7 +1,7 @@
 <?php
 
 foreach ( $fields as $id => $field ) :
-	$defaultDisabled = ! in_array( $key, array( 'nginx', 'php', 'varnish' ) )
+	$defaultDisabled = ! in_array( $key, array( 'nginx', 'php' ) )
 		? "!data.{$key}.enabled"
 		: 0;
 

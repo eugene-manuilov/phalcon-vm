@@ -14,10 +14,10 @@ end
 require 'json'
 
 class ::Hash
-    def deep_merge(second)
-        merger = proc { |key, v1, v2| Hash === v1 && Hash === v2 ? v1.merge(v2, &merger) : v2 }
-        self.merge(second, &merger)
-    end
+	def deep_merge(second)
+		merger = proc { |key, v1, v2| Hash === v1 && Hash === v2 ? v1.merge(v2, &merger) : v2 }
+		self.merge(second, &merger)
+	end
 end
 
 vagrant_dir = File.expand_path(File.dirname(__FILE__))
@@ -38,9 +38,9 @@ Vagrant.configure(2) do |config|
 	config.ssh.forward_agent = true
 
 	config.vm.network "private_network", ip: "192.168.50.99"
-#	if settings['varnish']['enabled'] === true
-#		config.vm.network "forwarded_port", guest: settings['varnish']['port'], host: settings['varnish']['port']
-#	end
+	if settings['varnish']['enabled'] === true
+		config.vm.network "forwarded_port", guest: settings['varnish']['port'], host: settings['varnish']['port']
+	end
 	if settings['mysql']['enabled'] === true and settings['mysql']['forward_port'] === true
 		config.vm.network "forwarded_port", guest: settings['mysql']['port'], host: settings['mysql']['port']
 	end
@@ -71,11 +71,11 @@ Vagrant.configure(2) do |config|
 	config.vm.synced_folder "www/", "/srv/www/", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774" ]
 
 	config.vm.synced_folders.each do |id, options|
-        # Make sure we use Samba for file mounts on Windows
-        if ! options[:type] && Vagrant::Util::Platform.windows?
-            options[:type] = "smb"
-        end
-    end
+		# Make sure we use Samba for file mounts on Windows
+		if ! options[:type] && Vagrant::Util::Platform.windows?
+			options[:type] = "smb"
+		end
+	end
 
 	if defined?(VagrantPlugins::HostsUpdater)
 		hosts = settings['sites'].map do |site|

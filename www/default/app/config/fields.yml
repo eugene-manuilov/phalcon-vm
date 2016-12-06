@@ -104,7 +104,6 @@ php:
 varnish:
     Varnish Server:
         key: varnish
-        disabled: true
         fields:
             enabled:
                 type: switch
@@ -112,6 +111,10 @@ varnish:
             port:
                 type: text
                 description: The port to listen on for TCP connections.
+            ttl:
+                type: text
+                label: TTL
+                description: The time in seconds after which cache will be expired.
             storage_size:
                 type: text
                 description: The malloc storage size for cache data.

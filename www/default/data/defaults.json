@@ -30,7 +30,8 @@
 	},
 	"varnish": {
 		"enabled": false,
-		"port": "8080",
+		"port": "6081",
+		"ttl": "120",
 		"storage_size": "64M"
 	},
 	"phpMyAdmin": {
