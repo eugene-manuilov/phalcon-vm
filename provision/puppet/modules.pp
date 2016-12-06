@@ -40,9 +40,3 @@ phalconvm::utils::puppet_modules { 'arioch':
 		'redis' => '1.2.3',
 	}
 }
-
-phalconvm::utils::puppet_modules { 'maxchk':
-	modules => {
-		'varnish' => false,
-	}
-}

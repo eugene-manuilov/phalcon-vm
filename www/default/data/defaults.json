@@ -32,7 +32,7 @@
 		"enabled": false,
 		"port": "6081",
 		"ttl": "120",
-		"storage_size": "64M"
+		"storage_size": "64m"
 	},
 	"phpMyAdmin": {
 		"enabled": false,

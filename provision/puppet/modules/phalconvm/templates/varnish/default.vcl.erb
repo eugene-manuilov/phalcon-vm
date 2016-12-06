@@ -34,7 +34,7 @@ sub vcl_recv {
         return (pass);
     }
 
-    return (lookup);
+    return (hash);
 }
 
 sub vcl_backend_response {

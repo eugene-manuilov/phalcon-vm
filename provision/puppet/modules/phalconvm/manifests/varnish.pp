@@ -1,23 +1,42 @@
 class phalconvm::varnish (
 	$enabled      = false,
 	$port         = '6081',
-	$storage_size = '64M',
+	$storage_size = '64m',
 	$ttl          = '120',
 ) {
 	if $enabled == true {
-		class { 'varnish':
-			varnish_vcl_conf       => '/etc/varnish/default.vcl',
-			varnish_listen_address => '0.0.0.0',
-			varnish_listen_port    => $port,
-			varnish_storage_size   => $storage_size,
-			varnish_ttl            => $ttl,
-			add_repo               => false,
+		package { 'varnish':
+			ensure => 'installed',
 		}
+
+		service { 'varnish':
+			ensure  => 'running',
+			require => Package['varnish'],
+		}
+
+		exec { 'varnish-service-file':
+			command => '/bin/cp /lib/systemd/system/varnish.service /etc/systemd/system/',
+			creates => '/etc/systemd/system/varnish.service',
+			require => Package['varnish'],
+		}
+
+		$varnish_service = {
+			'Service' => {
+				'ExecStart' => "/usr/sbin/varnishd -j unix,user=vcache -F -a :${port} -T localhost:6082 -f /etc/varnish/default.vcl -t ${ttl} -S /etc/varnish/secret -s malloc,${storage_size}",
+			},
+		}
+
+		create_ini_settings( $varnish_service, {
+			path    => '/etc/systemd/system/varnish.service',
+			require => Exec['varnish-service-file'],
+			notify  => Service['varnish'],
+		} )
 
 		file { '/etc/varnish/default.vcl':
 			ensure  => 'present',
 			content => template( 'phalconvm/varnish/default.vcl.erb' ),
-			require => Class['varnish'],
+			require => Package['varnish'],
+			notify  => Service['varnish'],
 		}
 	} else {
 		service { 'varnish':
