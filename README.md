@@ -1,4 +1,4 @@
-# Phalcon VM (2.0-beta3)
+# Phalcon VM (2.0-beta4)
 
 Phalcon VM is an open source [Vagrant](https://www.vagrantup.com/) configuration which contains wide range of tools required in modern web development. Like a Swiss Army Knife, Phalcon VM allows you to easily activate and use tools required for you project.
 
