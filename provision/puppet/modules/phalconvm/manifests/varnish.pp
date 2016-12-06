@@ -25,15 +25,14 @@ class phalconvm::varnish (
 		}
 
 		exec { 'varnish-unmount':
-			command     => 'umount /var/lib/varnish',
-			path        => '/bin:/usr/bin',
-			refreshonly => true,
-			subscribe   => Service['varnish'],
+			command => 'umount /var/lib/varnish',
+			path    => '/bin:/usr/bin',
+			unless  => "test -n `mount | grep varnish`",
 		}
 
 		package { 'varnish':
 			ensure  => 'purged',
-			require => Service['varnish'],
+			require => [ Service['varnish'], Exec['varnish-unmount'] ],
 		}
 
 		exec { 'varnish-remove':
