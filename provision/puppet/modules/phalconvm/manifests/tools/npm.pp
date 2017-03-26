@@ -5,7 +5,7 @@ class phalconvm::tools::npm {
 		target_dir => '/usr/local/bin',
 	}
 
-	package { ['bower', 'grunt', 'gulp', 'webpack', 'yarn']:
+	package { ['bower', 'grunt-cli', 'gulp-cli', 'webpack', 'yarn']:
 		ensure   => 'present',
 		provider => 'npm',
 		require  => Class['nodejs'],
