@@ -31,10 +31,38 @@ class phalconvm::gearman::gearmanui(
 			content => template( 'phalconvm/gearman-ui/config.yml.erb' ),
 			require => Vcsrepo['gearman-ui-repo'],
 		}
+
+		nginx::resource::vhost { 'gearman-ui-host':
+			ensure      => 'present',
+			server_name => ['gearman-ui'],
+			www_root    => "/srv/www/default/public/gearman-ui/web/",
+			index_files => ['index.php'],
+			try_files   => ['$uri', '$uri/', '/index.php?$args'],
+			access_log  => "/srv/log/nginx/gearman-ui.access.log",
+			error_log   => "/srv/log/nginx/gearman-ui.error.log",
+			require     => Vcsrepo['gearman-ui-repo'],
+			locations   => {
+				"gearman-ui-php-loc" => {
+					ensure        => 'present',
+					location      => '~ \.php$',
+					try_files     => ['$uri', '=404'],
+					fastcgi       => 'phpupstream',
+					fastcgi_param => {
+						'SCRIPT_FILENAME' => '$document_root$fastcgi_script_name'
+					},
+				},
+			},
+		}
 	} else {
 		file { '/srv/www/default/public/gearman-ui':
 			ensure => 'absent',
 			force  => true,
+		}
+
+		nginx::resource::vhost { 'gearman-ui-host':
+			ensure      => 'absent',
+			server_name => ['gearman-ui'],
+			www_root    => "/srv/www/default/public/gearman-ui/web/",
 		}
 	}
 }

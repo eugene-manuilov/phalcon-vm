@@ -82,6 +82,10 @@ Vagrant.configure(2) do |config|
 			site['domains']
 		end
 
+		if settings['gearmanui']['enabled'] === true
+			hosts.push('gearman-ui')
+		end
+
 		config.hostsupdater.aliases = hosts
 		config.hostsupdater.remove_on_suspend = true
 	end
