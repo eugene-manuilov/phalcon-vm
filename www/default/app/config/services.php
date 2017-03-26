@@ -119,6 +119,11 @@ $di->setShared( 'phalconvmConfig', function() {
 		}
 	}
 
+	$gearmanui_filename = sprintf( '%s/public/gearman-ui/web/', BASE_PATH );
+	if ( ! empty( $phalconvm['data']['gearmanui']['enabled'] ) && is_dir( $gearmanui_filename ) ) {
+		$phalconvm['menu']['tools']['/iframe/gearman-ui'] = array( 'label' => 'Gearman UI' );
+	}
+
 	if ( empty( $phalconvm['menu']['tools'] ) ) {
 		unset( $phalconvm['menu']['tools'] );
 	}
