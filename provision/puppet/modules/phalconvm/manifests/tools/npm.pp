@@ -1,4 +1,5 @@
 class phalconvm::tools::npm {
+
 	package { ['nodejs', 'npm']: 
 		ensure => 'installed',
 	}
@@ -26,4 +27,11 @@ class phalconvm::tools::npm {
 		creates => '/usr/local/bin/gulp',
 		require => Package['npm'],
 	}
+
+	exec { 'webpack':
+		command => '/usr/bin/npm install -g webpack',
+		creates => '/usr/local/bin/webpack',
+		require => Package['npm'],
+	}
+
 }
