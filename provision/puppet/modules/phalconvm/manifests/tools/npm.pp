@@ -34,4 +34,10 @@ class phalconvm::tools::npm {
 		require => Package['npm'],
 	}
 
+	exec { 'yarn':
+		command => '/usr/bin/npm install -g yarn',
+		creates => '/usr/local/bin/yarn',
+		require => Package['npm'],
+	}
+
 }
