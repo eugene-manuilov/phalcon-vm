@@ -35,7 +35,8 @@
 			controller: 'FrameCtrl',
 			controllerAs: 'frm',
 			template: function(params) {
-				return '<iframe src="' + params.href + '" width="100%" height="100%" md-content style="border:none"/>';
+				var src = params.href === '/gearman-ui' ? 'http://gearman-ui/' : params.href;
+				return '<iframe src="' + src + '" width="100%" height="100%" md-content style="border:none"/>';
 			}
 		});
 

@@ -86,6 +86,9 @@
 	"gearman": {
 		"enabled": false
 	},
+	"gearmanui": {
+		"enabled": false
+	},
 	"rabbitmq": {
 		"enabled": false
 	},

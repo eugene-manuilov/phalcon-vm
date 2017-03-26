@@ -3,31 +3,27 @@ class phalconvm::tools::npm {
 		ensure => 'installed',
 	}
 
-	->
-
 	file { '/usr/bin/node':
-		ensure => 'link',
-		target => '/usr/bin/nodejs',
+		ensure  => 'link',
+		target  => '/usr/bin/nodejs',
+		require => Package['nodejs'],
 	}
-
-	->
 
 	exec { 'bower':
 		command => '/usr/bin/npm install -g bower',
 		creates => '/usr/local/bin/bower',
+		require => Package['npm'],
 	}
-
-	->
 
 	exec { 'grunt':
 		command => '/usr/bin/npm install -g grunt-cli',
 		creates => '/usr/local/bin/grunt',
+		require => Package['npm'],
 	}
-
-	->
 
 	exec { 'gulp':
 		command => '/usr/bin/npm install -g gulp-cli',
 		creates => '/usr/local/bin/gulp',
+		require => Package['npm'],
 	}
 }

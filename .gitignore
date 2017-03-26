@@ -10,5 +10,6 @@
 /www/default/public/phpmyadmin/
 /www/default/public/phppgadmin/
 /www/default/public/phpmemcachedadmin/
+/www/default/public/gearman-ui/
 /www/default/data/settings.json
 /ubuntu-xenial-16.04-cloudimg-console.log

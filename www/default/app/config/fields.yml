@@ -266,6 +266,12 @@ gearman:
             enabled:
                 type: switch
                 description: Defines whether Gearman should be activated on provision or disabled.
+    Gearman UI:
+        key: gearmanui
+        fields:
+            enabled:
+                type: switch
+                description: Defines whether Gearman UI should be activated on provision or not.
 
 rabbitmq:
     RabbitMQ Server:
