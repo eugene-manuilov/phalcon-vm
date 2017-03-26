@@ -40,3 +40,9 @@ phalconvm::utils::puppet_modules { 'arioch':
 		'redis' => '1.2.3',
 	}
 }
+
+phalconvm::utils::puppet_modules { 'willdurand':
+	modules => {
+		'nodejs' => '2.0.0-alpha2',
+	}
+}
