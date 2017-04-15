@@ -2,16 +2,14 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-	devtool: 'source-map',
-
 	entry: {
-		app: path.resolve(__dirname, 'assets/application.js')
+		application: path.resolve(__dirname, 'assets/application.js')
 	},
 
 	output: {
-		path: path.resolve(__dirname, 'public/js'),
-		publicPath: '/js/',
-		filename: 'app.js'
+		path: path.resolve(__dirname, 'public/'),
+		publicPath: '/',
+		filename: 'application.js'
 	},
 
 	module: {
@@ -39,7 +37,7 @@ module.exports = {
 		, new webpack.optimize.UglifyJsPlugin({
 			compress: {warnings: false},
 			output: {comments: false},
-			sourceMap: true
+			sourceMap: false
 		})
 	]
 };

@@ -7,11 +7,11 @@ import ngMessages from 'angular-messages';
 import styles from './css/app.scss';
 
 import config from './js/config';
-import getAppController from './js/app';
-import getEnvController from './js/env';
-import getFrameController from './js/frame';
-import getHomeController from './js/home';
-import getSiteController from './js/site';
+import AppController from './js/app';
+import EnvController from './js/env';
+import FrameController from './js/frame';
+import HomeController from './js/home';
+import SiteController from './js/site';
 
 const app = angular.module('PhalconVM', [ngMaterial, ngRoute, ngSanitize, ngMessages]);
 
@@ -19,8 +19,8 @@ const app = angular.module('PhalconVM', [ngMaterial, ngRoute, ngSanitize, ngMess
 app.config(config);
 
 // controllers
-app.controller('AppCtrl', getAppController());
-app.controller('EnvCtrl', getEnvController());
-app.controller('FrameCtrl', getFrameController());
-app.controller('HomeCtrl', getHomeController());
-app.controller('SiteCtrl', getSiteController());
+app.controller('AppCtrl', AppController);
+app.controller('EnvCtrl', EnvController);
+app.controller('FrameCtrl', FrameController);
+app.controller('HomeCtrl', HomeController);
+app.controller('SiteCtrl', SiteController);

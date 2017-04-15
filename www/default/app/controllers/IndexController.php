@@ -14,7 +14,7 @@ class IndexController extends \Phalcon\Mvc\Controller {
 		$this->assets->addCss( '//fonts.googleapis.com/icon?family=Material+Icons', false );
 
 		$this->assets->addInlineJs( sprintf( 'var phalconvm = %s;', json_encode( $phalconvm ) ) );
-		$this->assets->addJs( 'js/app.js' );
+		$this->assets->addJs( '/application.js' );
 
 		$phalconvm['fields'] = $fields;
 		$this->view->phalconvm = $phalconvm;

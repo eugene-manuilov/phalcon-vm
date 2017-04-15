@@ -1,42 +1,42 @@
-export default function getAppController() {
-	return ['$rootScope', '$mdSidenav', '$mdDialog', '$http', function ($rootScope, $mdSidenav, $mdDialog, $http) {
-		const self = this;
+const AppController = ['$rootScope', '$mdSidenav', '$mdDialog', '$http', function ($rootScope, $mdSidenav, $mdDialog, $http) {
+	const self = this;
+
+	self.nasty = false;
+	self.menu = phalconvm.menu;
+	self.data = phalconvm.data;
+
+	self.setNasty = function() {
+		self.nasty = true;
+	};
+
+	self.saveChanges = function() {
+		const alert = $mdDialog.alert()
+			.clickOutsideToClose(true)
+			.title('Saved changes')
+			.htmlContent('Changes have been saved. Please, do not forget to halt your vagrant box<br>and up it again with <b>--provision</b> mode.')
+			.ok('Got it!');
 
 		self.nasty = false;
-		self.menu = phalconvm.menu;
-		self.data = phalconvm.data;
 
-		self.setNasty = function() {
-			self.nasty = true;
-		};
+		$http.post('/save/env', phalconvm.data);
+		$mdDialog.show(alert);
+	};
 
-		self.saveChanges = function() {
-			const alert = $mdDialog.alert()
-				.clickOutsideToClose(true)
-				.title('Saved changes')
-				.htmlContent('Changes have been saved. Please, do not forget to halt your vagrant box<br>and up it again with <b>--provision</b> mode.')
-				.ok('Got it!');
+	self.toggleSidenav = function() {
+		$mdSidenav('left').toggle();
+	};
 
-			self.nasty = false;
+	self.newSiteDialog = function() {
+		$rootScope.newSite = true;
 
-			$http.post('/save/env', phalconvm.data);
-			$mdDialog.show(alert);
-		};
+		$mdDialog.show({
+			controller: 'SiteCtrl',
+			controllerAs: 'site',
+			template: document.getElementById('tmpl-new-site').innerHTML
+		}).then(function() {
+			self.setNasty();
+		});
+	};
+}];
 
-		self.toggleSidenav = function() {
-			$mdSidenav('left').toggle();
-		};
-
-		self.newSiteDialog = function() {
-			$rootScope.newSite = true;
-
-			$mdDialog.show({
-				controller: 'SiteCtrl',
-				controllerAs: 'site',
-				template: document.getElementById('tmpl-new-site').innerHTML
-			}).then(function() {
-				self.setNasty();
-			});
-		};
-	}];
-}
+export default AppController;
