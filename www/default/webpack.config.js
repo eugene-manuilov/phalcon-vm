@@ -1,5 +1,7 @@
 const path = require('path');
+
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: {
@@ -26,13 +28,21 @@ module.exports = {
 			{
 				test: /\.scss$/,
 				include: [path.resolve(__dirname, 'assets'), path.resolve(__dirname, 'node_modules')],
-				loader: 'style-loader!css-loader?sourceMap!sass-loader?sourceMap'
+				loaders: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: 'css-loader?sourceMap!sass-loader?sourceMap'
+				})
 			}
 		]
 	},
 
 	plugins: [
 		new webpack.NoEmitOnErrorsPlugin()
+
+		, new ExtractTextPlugin({
+			filename: '[name].css',
+			allChunks: true
+		})
 
 		, new webpack.optimize.UglifyJsPlugin({
 			compress: {warnings: false},
