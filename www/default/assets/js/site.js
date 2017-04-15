@@ -1,7 +1,9 @@
-(function(phalconvm) {
-	var controller = function($rootScope, $routeParams, $mdDialog) {
-		var self = this,
-			data = {};
+import angular from 'angular';
+
+export default function getSiteController() {
+	return ['$rootScope', '$routeParams', '$mdDialog', function($rootScope, $routeParams, $mdDialog) {
+		const self = this;
+		let data = {};
 
 		$rootScope.saveButton = true;
 
@@ -54,7 +56,5 @@
 			$rootScope.newSite = false;
 			$mdDialog.cancel();
 		};
-	};
-
-	phalconvm.app.controller('SiteCtrl', ['$rootScope', '$routeParams', '$mdDialog', controller]);
-})(phalconvm);
+	}];
+}

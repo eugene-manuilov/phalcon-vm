@@ -1,5 +1,5 @@
-(function(phalconvm) {
-	phalconvm.app.controller('FrameCtrl', ['$rootScope', '$routeParams', function($rootScope, $routeParams) {
+export default function getFrameController() {
+	return ['$rootScope', '$routeParams', function($rootScope, $routeParams) {
 		var key = '/iframe' + encodeURIComponent($routeParams.href).split('%2F').join('/');
 
 		$rootScope.saveButton = false;
@@ -10,5 +10,5 @@
 		} else if (phalconvm.menu.tools[key]) {
 			$rootScope.title = phalconvm.menu.tools[key].label;
 		}
-	}]);
-})(phalconvm);
+	}];
+}

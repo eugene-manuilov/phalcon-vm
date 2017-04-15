@@ -1,6 +1,6 @@
-(function(phalconvm) {
-	var controller = function ($rootScope, $mdSidenav, $mdDialog, $http) {
-		var self = this;
+export default function getAppController() {
+	return ['$rootScope', '$mdSidenav', '$mdDialog', '$http', function ($rootScope, $mdSidenav, $mdDialog, $http) {
+		const self = this;
 
 		self.nasty = false;
 		self.menu = phalconvm.menu;
@@ -11,9 +11,7 @@
 		};
 
 		self.saveChanges = function() {
-			var alert;
-
-			alert = $mdDialog.alert()
+			const alert = $mdDialog.alert()
 				.clickOutsideToClose(true)
 				.title('Saved changes')
 				.htmlContent('Changes have been saved. Please, do not forget to halt your vagrant box<br>and up it again with <b>--provision</b> mode.')
@@ -40,7 +38,5 @@
 				self.setNasty();
 			});
 		};
-	};
-
-	phalconvm.app.controller('AppCtrl', ['$rootScope', '$mdSidenav', '$mdDialog', '$http', controller]);
-})(phalconvm);
+	}];
+}
