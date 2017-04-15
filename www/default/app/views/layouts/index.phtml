@@ -68,7 +68,10 @@
 
 			<span flex></span>
 
-			<md-button class="md-icon-button md-primary" ng-click="app.importSettings()" title="Import Settings">
+			<input type="file" id="settings-file" onchange="angular.element(this).scope().importSettings(this)" style="position:fixed;top:-100em">
+
+			<!--<label for="translation-file" class="button-secondary button" style="visibility:hidden">-->
+			<md-button class="md-icon-button md-primary" ng-click="app.selectFile()" title="Import Settings">
 				<md-icon md-font-icon="file_upload">file_upload</md-icon>
 			</md-button>
 
@@ -76,7 +79,7 @@
 				<md-icon md-font-icon="file_download">file_download</md-icon>
 			</md-button>
 
-			<md-button class="md-icon-button md-primary" ng-disabled="!app.nasty" ng-click="app.saveChanges()" ng-show="$root.saveButton" title="Save Changes">
+			<md-button class="md-icon-button md-accent" ng-disabled="!app.nasty" ng-click="app.saveChanges()" ng-show="$root.saveButton" title="Save Changes">
 				<md-icon md-font-icon="save">save</md-icon>
 			</md-button>
 		</div>

@@ -56,7 +56,52 @@ const AppController = ['$rootScope', '$mdSidenav', '$mdDialog', '$http', functio
 		download('settings.json', JSON.stringify(Object.assign({}, phalconvm.data, {sites: {}})));
 	};
 
-	self.importSettings = function() {
+	$rootScope.importSettings = function(input) {
+		const reader = new FileReader();
+
+		reader.onload = function() {
+			let alert = false;
+
+			try {
+				const data = JSON.parse(reader.result);
+				for (const group in data) {
+					if ('sites' !== group) {
+						for (const item in data[group]) {
+							phalconvm.data[group][item] = data[group][item];
+						}
+					}
+				}
+
+				self.nasty = true;
+
+				alert = $mdDialog
+					.alert()
+					.title('Settings imported')
+					.htmlContent('Settings has been imported. You need to save it by clicking "Save Changes" button in the toolbar.');
+			} catch(e) {
+				alert = $mdDialog
+					.alert()
+					.title('Import failed')
+					.htmlContent(e);
+			}
+
+			if (alert) {
+				alert.clickOutsideToClose(true);
+				alert.ok('Got it!');
+
+				$mdDialog.show(alert);
+			}
+
+			input.value = '';
+		};
+
+		if (input.files.length > 0) {
+			reader.readAsText(input.files[0]);
+		}
+	};
+
+	self.selectFile = function() {
+		document.getElementById('settings-file').click();
 	};
 }];
 
