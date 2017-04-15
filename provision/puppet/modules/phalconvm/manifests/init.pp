@@ -11,7 +11,7 @@ class phalconvm ( $config ) {
 		'imagemagick', 'subversion', 'git', 'zip', 'unzip', 'ngrep', 'curl', 'make',
 		'autoconf', 'automake', 'build-essential', 'libxslt1-dev', 're2c',
 		'libxml2-dev', 'libmcrypt-dev', 'vim', 'colordiff', 'gcc', 'libpcre3-dev',
-		'dos2unix', 'ntp', 'gettext', 'libyaml-dev', 'ack-grep', 'g++', 'ruby', 'rubygems-integration',
+		'dos2unix', 'ntp', 'gettext', 'libyaml-dev', 'ack-grep', 'g++', 'rubygems-integration',
 	]
 
 	package { $packages: ensure => 'installed' }

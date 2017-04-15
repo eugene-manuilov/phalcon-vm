@@ -21,7 +21,11 @@
 		}
 	}
 
-	.md-icon-button {
-		color: black;
+	.md-button {
+		&[disabled] {
+			md-icon {
+				color: rgba(0, 0, 0, .38);
+			}
+		}
 	}
 }

@@ -3,7 +3,7 @@
 /nbproject/
 /www/*
 !/www/default/
-/www/default/bower_components/
+/www/default/npm-debug.log
 /www/default/node_modules/
 /www/default/public/opcache-status/
 /www/default/public/webgrind/

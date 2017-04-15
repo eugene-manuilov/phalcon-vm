@@ -68,8 +68,16 @@
 
 			<span flex></span>
 
-			<md-button class="md-primary" ng-disabled="!app.nasty" ng-click="app.saveChanges()" ng-show="$root.saveButton">
-				Save Changes
+			<md-button class="md-icon-button md-primary" ng-click="app.importSettings()" title="Import Settings">
+				<md-icon md-font-icon="file_upload">file_upload</md-icon>
+			</md-button>
+
+			<md-button class="md-icon-button md-primary" ng-click="app.exportSettings()" title="Export Settings">
+				<md-icon md-font-icon="file_download">file_download</md-icon>
+			</md-button>
+
+			<md-button class="md-icon-button md-primary" ng-disabled="!app.nasty" ng-click="app.saveChanges()" ng-show="$root.saveButton" title="Save Changes">
+				<md-icon md-font-icon="save">save</md-icon>
 			</md-button>
 		</div>
 	</md-toolbar>

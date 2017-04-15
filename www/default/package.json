@@ -1,11 +1,24 @@
 {
 	"name": "phalcon-vm",
-	"devDependencies": {
-		"grunt": "^1.0.1",
-		"grunt-contrib-concat": "^1.0.1",
-		"grunt-contrib-jshint": "^1.0.0",
-		"grunt-sass": "^1.2.1",
-		"grunt-contrib-watch": "^1.0.0",
-		"matchdep": "^1.0.1"
+	"scripts": {
+		"build": "webpack --progress"
+	},
+	"dependencies": {
+		"angular": "1.5.8",
+		"angular-animate": "1.5.8",
+		"angular-aria": "1.5.8",
+		"angular-material": "^1.1.3",
+		"angular-messages": "1.5.8",
+		"angular-route": "1.5.8",
+		"angular-sanitize": "1.5.8",
+		"babel-core": "^6.24.0",
+		"babel-loader": "^6.4.1",
+		"babel-preset-es2015-native-modules": "^6.9.4",
+		"css-loader": "^0.27.3",
+		"extract-text-webpack-plugin": "^2.1.0",
+		"node-sass": "^4.5.1",
+		"sass-loader": "^6.0.3",
+		"style-loader": "^0.16.0",
+		"webpack": "^2.3.2"
 	}
 }
