@@ -1,3 +1,17 @@
+const download = function(filename, text) {
+	var element = document.createElement('a');
+
+	element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(text));
+	element.setAttribute('download', filename);
+
+	element.style.display = 'none';
+	document.body.appendChild(element);
+
+	element.click();
+
+	document.body.removeChild(element);
+};
+
 const AppController = ['$rootScope', '$mdSidenav', '$mdDialog', '$http', function ($rootScope, $mdSidenav, $mdDialog, $http) {
 	const self = this;
 
@@ -36,6 +50,13 @@ const AppController = ['$rootScope', '$mdSidenav', '$mdDialog', '$http', functio
 		}).then(function() {
 			self.setNasty();
 		});
+	};
+
+	self.exportSettings = function() {
+		download('settings.json', JSON.stringify(Object.assign({}, phalconvm.data, {sites: {}})));
+	};
+
+	self.importSettings = function() {
 	};
 }];
 
