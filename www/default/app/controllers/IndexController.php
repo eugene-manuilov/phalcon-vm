@@ -8,6 +8,8 @@ class IndexController extends \Phalcon\Mvc\Controller {
 		$phalconvm = $di->getShared( 'phalconvmConfig' );
 		$fields = $di->getShared( 'fieldsConfig' );
 
+		$this->response->setStatusCode( 200 );
+		
 		$this->tag->setTitle( 'Phalcon VM' );
 
 		$this->assets->addCss( '//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic', false );

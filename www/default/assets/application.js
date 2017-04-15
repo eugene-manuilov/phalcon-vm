@@ -13,14 +13,11 @@ import FrameController from './js/frame';
 import HomeController from './js/home';
 import SiteController from './js/site';
 
-const app = angular.module('PhalconVM', [ngMaterial, ngRoute, ngSanitize, ngMessages]);
-
-// config
-app.config(config);
-
-// controllers
-app.controller('AppCtrl', AppController);
-app.controller('EnvCtrl', EnvController);
-app.controller('FrameCtrl', FrameController);
-app.controller('HomeCtrl', HomeController);
-app.controller('SiteCtrl', SiteController);
+angular
+	.module('PhalconVM', [ngMaterial, ngRoute, ngSanitize, ngMessages])
+	.config(config)
+	.controller('AppCtrl', AppController)
+	.controller('EnvCtrl', EnvController)
+	.controller('FrameCtrl', FrameController)
+	.controller('HomeCtrl', HomeController)
+	.controller('SiteCtrl', SiteController);
