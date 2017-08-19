@@ -1,5 +1,7 @@
 # Phalcon VM 2.1
 
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=eugene-manuilov&url=https%3A%2F%2Fgithub.com%2Feugene-manuilov%2Fphalcon-vm&title=Phalcon%20VM&language=en_GB&tags=github&category=software)
+
 Phalcon VM is an open source [Vagrant](https://www.vagrantup.com/) configuration which contains wide range of tools required in modern web development. Like a Swiss Army Knife, Phalcon VM allows you to easily activate and use tools required for you project.
 
 The primary goal of this project is to provide an approachable development environment with a modern server configuration for project written with PHP7 and Phalcon 3.x framework. The project also contains compiled [Zephir](http://zephir-lang.com/) executable, which allows you to go even further, beyond just PHP. However it doesn't mean that you have to use only Phalcon framework, you can use it with your framework of choice.
@@ -50,7 +52,7 @@ Here is full list of what is and can be installed:
 
 1. Start with any local operating system such as Mac OS X, Linux, or Windows.
 1. Install [VirtualBox 5.0.x](https://www.virtualbox.org/wiki/Downloads).
-1. Install [Vagrant 1.8.x](https://www.vagrantup.com/downloads.html).
+1. Install [Vagrant 1.8.5+](https://www.vagrantup.com/downloads.html).
     * `vagrant` will now be available as a command in your terminal, try it out.
     * ***Note:*** If Vagrant is already installed, use `vagrant -v` to check the version. You may want to consider upgrading if a much older version is in use.
 1. Clone or extract the Phalcon VM project into a local directory.
@@ -69,6 +71,12 @@ You can easily create a new site in the default dashboard. To do this, go to the
 Please, pay attention to the domains field in the site form. It allows you to enter multiple domains for your site. To do it, just separate your domains with spaces like this: `example.dev test.example.dev jobs.example.dev`. In this case all these domains will be properly added to your local maching hosts file and added to the nginx setup on your vagrant machine.
 
 The new site form is also allows you to create new site using existing repository. Just enter a link to your repository into appropriate field and select proper VCS provider and it will be used to build your site on next provision. **One caveat here**: please, don't forget to copy your private SSH keys to the `ssh/` folder if you want to use SSH connection to your repository.
+
+## Troubleshooting on Windows
+
+### Vagrant gets stucks
+
+If any vagrant command gets stuck on your Windows machine, then you need to check your PowerShell version. Major version needs to be equal or grater than 3. Use `$PSVersionTable.PSVersion` to determine the engine version.
 
 ## LICENSE
 
