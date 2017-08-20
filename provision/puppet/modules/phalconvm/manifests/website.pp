@@ -9,12 +9,22 @@ class phalconvm::website( $sites = [] ) {
 			require => File["/srv/www/${site[directory]}"],
 		}
 
+		$public = empty($site[public]) ? {
+			true  => 'public',
+			false => $site[public],
+		}
+
+		$index = empty($site[index]) ? {
+			true  => 'index.php',
+			false => $site[index],
+		}
+
 		nginx::resource::vhost { $site[label]:
 			ensure      => present,
 			server_name => split($site[domains], ' '),
-			www_root    => "/srv/www/${site[directory]}/htdocs/public",
+			www_root    => "/srv/www/${site[directory]}/htdocs/${public}",
 			index_files => ['index.php'],
-			try_files   => ['$uri', '$uri/', '/index.php?$args'],
+			try_files   => ['$uri', '$uri/', "/${index}?$args"],
 			access_log  => "/srv/log/nginx/${site[directory]}.access.log",
 			error_log   => "/srv/log/nginx/${site[directory]}.error.log",
 			locations   => {

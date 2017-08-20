@@ -12,7 +12,9 @@ const SiteController = ['$rootScope', '$routeParams', '$mdDialog', function($roo
 			directory: '',
 			domains: '',
 			repository: '',
-			provider: ''
+			provider: '',
+			public: '',
+			index: ''
 		};
 	} else {
 		angular.forEach(phalconvm.data.sites, function(site) {
@@ -44,7 +46,9 @@ const SiteController = ['$rootScope', '$routeParams', '$mdDialog', function($roo
 			directory: self.data.directory,
 			domains: self.data.domains,
 			repository: self.data.repository,
-			provider: self.data.provider
+			provider: self.data.provider,
+			public: self.data.public,
+			index: self.data.index
 		});
 
 		$rootScope.newSite = false;
