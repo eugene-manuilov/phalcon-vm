@@ -27,6 +27,16 @@
 				</md-input-container>
 
 				<md-input-container class="md-block">
+					<label>Public folder</label>
+					<input type="text" name="repository" ng-model="site.data.public" placeholder="public" ng-change="app.setNasty()">
+				</md-input-container>
+
+				<md-input-container class="md-block">
+					<label>Index script</label>
+					<input type="text" name="repository" ng-model="site.data.index" placeholder="index.php" ng-change="app.setNasty()">
+				</md-input-container>
+
+				<md-input-container class="md-block">
 					<label>Repository</label>
 					<input type="text" name="repository" ng-model="site.data.repository" ng-change="app.setNasty()">
 				</md-input-container>
