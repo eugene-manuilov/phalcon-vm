@@ -14,7 +14,7 @@ class phalconvm::website( $sites = [] ) {
 			server_name => split($site[domains], ' '),
 			www_root    => "/srv/www/${site[directory]}/htdocs/public",
 			index_files => ['index.php'],
-			try_files   => ['$uri', '$uri/', '/index.php?$args'],
+			try_files   => ['$uri', '$uri/', '/index.php?_url=$uri&$args'],
 			access_log  => "/srv/log/nginx/${site[directory]}.access.log",
 			error_log   => "/srv/log/nginx/${site[directory]}.error.log",
 			locations   => {
