@@ -1,4 +1,4 @@
-# Phalcon VM 2.0.1
+# Phalcon VM 2.0.2
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=eugene-manuilov&url=https%3A%2F%2Fgithub.com%2Feugene-manuilov%2Fphalcon-vm&title=Phalcon%20VM&language=en_GB&tags=github&category=software)
 
@@ -14,7 +14,7 @@ The default site will allow you to activate and configure Varnish cache, MySQL, 
 
 Here is full list of what is and can be installed:
 
-1. [Ubuntu](http://www.ubuntu.com/) 16.04 LTS (Xenial Xerus)
+1. [Ubuntu](http://www.ubuntu.com/) 14.04.5 LTS (Trusty Tahr)
 1. [nginx](http://nginx.org/) (mainline version)
 1. [Varnish](http://varnish-cache.org/) 4.x
 1. [Phalcon PHP](https://phalconphp.com/) 3.x
