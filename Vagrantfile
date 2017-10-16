@@ -63,6 +63,9 @@ Vagrant.configure(2) do |config|
 		v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
 		v.customize ["modifyvm", :id, "--ioapic", "on"]
 		v.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
+		v.customize ["modifyvm", :id, "--rtcuseutc", "on"]
+		v.customize ["modifyvm", :id, "--audio", "none"]
+		v.customize ["modifyvm", :id, "--paravirtprovider", "kvm"]
 	end
 
 	config.vm.synced_folder "provision/", "/srv/provision/"
