@@ -4,8 +4,8 @@
 if [ ! -f /opt/puppetlabs/bin/puppet ]; then
 	# install latest version of puppet
 	pushd /tmp/
-	wget http://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
-	dpkg -i puppetlabs-release-pc1-xenial.deb
+	wget http://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb
+	dpkg -i puppetlabs-release-pc1-trusty.deb
 	apt-get update --quiet --yes
 	apt-get install --quiet --yes puppetserver
 	popd
