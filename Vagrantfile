@@ -35,9 +35,28 @@ Vagrant.configure(2) do |config|
 	config.vm.box = "ubuntu/xenial64"
 	config.vm.hostname = "phalcon-vm"
 
+	config.vm.provider :virtualbox do |v|
+		v.name = File.basename(vagrant_dir) + "_" + (Digest::SHA256.hexdigest vagrant_dir)[0..10]
+
+		v.customize ["modifyvm", :id, "--memory", 1024]
+		v.customize ["modifyvm", :id, "--cpus", 1]
+		v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+		v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+		v.customize ["modifyvm", :id, "--rtcuseutc", "on"]
+		v.customize ["modifyvm", :id, "--audio", "none"]
+		v.customize ["modifyvm", :id, "--paravirtprovider", "kvm"]
+	end
+
+	config.vm.provider :parallels          do |v, override| override.vm.box = "parallels/ubuntu-14.04";    end
+	config.vm.provider :vmware_fusion      do |v, override| override.vm.box = "netsensia/ubuntu-trusty64"; end
+	config.vm.provider :vmware_workstation do |v, override| override.vm.box = "netsensia/ubuntu-trusty64"; end
+	config.vm.provider :hyperv             do |v, override| override.vm.box = "ericmann/trusty64";         end
+
 	config.ssh.forward_agent = true
 
 	config.vm.network "private_network", ip: "192.168.50.99"
+	config.vm.provider :hyperv do |v, override| override.vm.network :private_network, id: "avm_primary", ip: nil; end
+
 	if settings['varnish']['enabled'] === true
 		config.vm.network "forwarded_port", guest: settings['varnish']['port'], host: settings['varnish']['port']
 	end
@@ -54,28 +73,17 @@ Vagrant.configure(2) do |config|
 		config.vm.network "forwarded_port", guest: settings['elasticsearch']['port'], host: settings['elasticsearch']['port']
 	end
 
-	config.vm.provider :virtualbox do |v|
-		v.memory = 1024
-		v.cpus = 2
-		v.name = File.basename(Dir.pwd)
-
-		v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-		v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-		v.customize ["modifyvm", :id, "--ioapic", "on"]
-		v.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
-	end
-
 	config.vm.synced_folder "provision/", "/srv/provision/"
 	config.vm.synced_folder "ssh/", "/root/.ssh/", :owner => "root"
-	config.vm.synced_folder "log/", "/srv/log/", :owner => "www-data"
+	# config.vm.synced_folder "log/", "/srv/log/", :owner => "www-data"
 	config.vm.synced_folder "www/", "/srv/www/", :owner => "www-data", :mount_options => [ "dmode=775", "fmode=774" ]
 
-	config.vm.synced_folders.each do |id, options|
-		# Make sure we use Samba for file mounts on Windows
-		if ! options[:type] && Vagrant::Util::Platform.windows?
-			options[:type] = "smb"
-		end
-	end
+	# config.vm.synced_folders.each do |id, options|
+	# 	# Make sure we use Samba for file mounts on Windows
+	# 	if ! options[:type] && Vagrant::Util::Platform.windows?
+	# 		options[:type] = "smb"
+	# 	end
+	# end
 
 	if defined?(VagrantPlugins::HostsUpdater)
 		hosts = settings['sites'].map do |site|

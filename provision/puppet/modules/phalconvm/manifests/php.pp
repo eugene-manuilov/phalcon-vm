@@ -56,7 +56,7 @@ class phalconvm::php(
 			'ignore_repeated_source'         => $ignore_repeated_source ? { true => 'On', default => 'Off' },
 			'track_errors'                   => $track_errors           ? { true => 'On', default => 'Off' },
 			'html_errors'                    => $html_errors            ? { true => 'On', default => 'Off' },
-			'error_log'                      => '/srv/log/php_errors.log',
+			# 'error_log'                      => '/srv/log/php_errors.log',
 			'post_max_size'                  => $post_max_size,
 			'upload_max_filesize'            => $upload_max_filesize,
 			'max_file_uploads'               => $max_file_uploads,
@@ -70,11 +70,11 @@ class phalconvm::php(
 		notify  => Service['php7.0-fpm'],
 	} )
 
-	file { '/srv/log/xdebug-remote.log':
-		ensure => 'present',
-		owner  => 'www-data',
-		group  => 'www-data',
-	}
+	# file { '/srv/log/xdebug-remote.log':
+	# 	ensure => 'present',
+	# 	owner  => 'www-data',
+	# 	group  => 'www-data',
+	# }
 
 	$xdebug = {
 		'XDebug' => {
@@ -84,7 +84,7 @@ class phalconvm::php(
 			'xdebug.profiler_output_name'     => 'cachegrind.out.%t-%s',
 			'xdebug.remote_enable'            => 1,
 			'xdebug.remote_host'              => '192.168.50.99',
-			'xdebug.remote_log'               => '/srv/log/xdebug-remote.log',
+			# 'xdebug.remote_log'               => '/srv/log/xdebug-remote.log',
 			'xdebug.remote_port'              => $xdebug_remote_port,
 			'xdebug.var_display_max_children' => $xdebug_var_display_max_children,
 			'xdebug.var_display_max_data'     => $xdebug_var_display_max_data,
@@ -94,7 +94,8 @@ class phalconvm::php(
 
 	create_ini_settings( $xdebug, {
 		path    => '/etc/php/7.0/mods-available/xdebug.ini',
-		require => [ Package['php-xdebug'], File['/srv/log/xdebug-remote.log'] ],
+		# require => [ Package['php-xdebug'], File['/srv/log/xdebug-remote.log'] ],
+		require => Package['php-xdebug'],
 		notify  => Service['php7.0-fpm'],
 	} )
 
