@@ -17,13 +17,13 @@ class phalconvm::nginx (
 		'text/css', 'text/plain', 'text/x-component',
 	]
 
-	file { '/srv/log/nginx':
-		ensure => 'directory',
-	}
+	# file { '/srv/log/nginx':
+	# 	ensure => 'directory',
+	# }
 
 	class { '::nginx::config':
-		require              => File['/srv/log/nginx'],
-		nginx_error_log      => '/srv/log/nginx/error.log',
+		# require              => File['/srv/log/nginx'],
+		# nginx_error_log      => '/srv/log/nginx/error.log',
 		sendfile             => 'Off',
 		http_tcp_nopush      => 'On',
 		keepalive_timeout    => $keepalive_timeout,

@@ -13,9 +13,9 @@ class phalconvm::memcached(
 			user           => 'memcache',
 		}
 	} else {
-		file { '/srv/log/memcached.log':
-			ensure => 'absent',
-		}
+		# file { '/srv/log/memcached.log':
+		# 	ensure => 'absent',
+		# }
 
 		service { 'memcached':
 			ensure => 'stopped',
