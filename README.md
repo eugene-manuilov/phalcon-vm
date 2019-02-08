@@ -1,7 +1,5 @@
 # Phalcon VM 2.0.1
 
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=eugene-manuilov&url=https%3A%2F%2Fgithub.com%2Feugene-manuilov%2Fphalcon-vm&title=Phalcon%20VM&language=en_GB&tags=github&category=software)
-
 Phalcon VM is an open source [Vagrant](https://www.vagrantup.com/) configuration which contains wide range of tools required in modern web development. Like a Swiss Army Knife, Phalcon VM allows you to easily activate and use tools required for you project.
 
 The primary goal of this project is to provide an approachable development environment with a modern server configuration for project written with PHP7 and Phalcon 3.x framework. The project also contains compiled [Zephir](http://zephir-lang.com/) executable, which allows you to go even further, beyond just PHP. However it doesn't mean that you have to use only Phalcon framework, you can use it with your framework of choice.
